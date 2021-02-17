@@ -12,15 +12,17 @@
 .bg-bluish{
     background-color: #e7ecf0;
 }
-
+.w-full{
+    width: 100%;
+}
 .c-button{
     background-color: #214369;
     color: #fff;
     text-align: center;
     outline: none;
-    padding: .4rem 1rem;
+    padding: .4rem 2rem !important;
     border: 0;
-    border-radius: 15px;
+    border-radius: 20px;
     cursor: pointer;
 }
 .action-icon{

@@ -30,9 +30,13 @@ export const content: Routes = [
     loadChildren: () => import('../../components/settings/settings.module').then(m => m.SettingsModule)
   },
   {
-    path: 'tour-panning',
-    loadChildren: () => import('../../components/tour-planning/tour-planning.module').then(m => m.TourPlanningModule)
+    path: 'tours',
+    loadChildren: () => import('../../components/tours/tours.module').then(m => m.ToursModule)
   },
+  // {
+  //   path: 'tour-panning',
+  //   loadChildren: () => import('../../components/tour-planning/tour-planning.module').then(m => m.TourPlanningModule)
+  // },
   {
     path: 'franchises',
     loadChildren: () => import('../../components/franchises/franchises.module').then(m => m.FranchisesModule)

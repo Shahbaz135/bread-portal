@@ -10,7 +10,7 @@ import { ContentComponent } from './layouts/content/content.component';
 @NgModule({
   declarations: [
     ContentComponent,
-    AppComponent,
+    AppComponent
   ],
   imports: [
     BrowserModule,

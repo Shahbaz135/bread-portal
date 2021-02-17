@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
+
 @Component({
   selector: 'app-serial-mails',
   templateUrl: './serial-mails.component.html',
