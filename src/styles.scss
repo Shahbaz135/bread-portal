@@ -1,1 +1,46 @@
 /* You can add global styles to this file, and also import other style files */
+
+.text-white{
+    color: #fff;;
+}
+.text-bluish{
+    color: #214369;
+}
+.bg-white{
+    background-color: #fff;
+}
+.bg-bluish{
+    background-color: #e7ecf0;
+}
+
+.c-button{
+    background-color: #214369;
+    color: #fff;
+    text-align: center;
+    outline: none;
+    padding: .4rem 1rem;
+    border: 0;
+    border-radius: 15px;
+    cursor: pointer;
+}
+.action-icon{
+    float: left;
+    width: 40px;
+    height: 40px;
+    background-color: rgba(99, 177, 241, 0.438);
+    border-radius: 4px;
+}
+
+.b-table > thead{
+    background-color:#214369 ;
+    color: rgb(192,192,192);
+    font-weight: 400;
+}
+.b-table > thead >th{
+    padding: .4rem .7rem;
+}
+.b-table >tbody > tr >td{
+    padding: 0rem .6rem !important ;
+    font-weight: 500;
+    border-bottom: 1px solid rgb(197, 188, 188);
+}
