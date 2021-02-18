@@ -26,14 +26,6 @@ input[type="date"]:after {
     color: #555;
     padding: 0 5px;
 }
-
-/* change color of symbol on hover */
-// input[type="date"]:hover:after {
-//     // color: #bf1400;
-    
-// }
-
-/* make the native arrow invisible and stretch it over the whole field so you can click anywhere in the input field to trigger the native datepicker*/
 input[type="date"]::-webkit-calendar-picker-indicator {
     position: absolute;
     top: 0;

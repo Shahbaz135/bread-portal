@@ -12,7 +12,7 @@ const routes: Routes = [
   { path: `billing`, component: BillingComponent },
   { path: `open-item-list`, component: OpenItemListComponent },
   { path: `cost-performance-accounting`, component: CostPerformanceAccountingComponent },
-  { path: `reminders`, component: RemindersComponent },
+  { path: `remainders`, component: RemindersComponent },
 ];
 
 @NgModule({

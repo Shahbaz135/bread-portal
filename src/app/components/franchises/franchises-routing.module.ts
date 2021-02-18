@@ -6,9 +6,9 @@ import { ManageFranchiseComponent } from './manage-franchise/manage-franchise.co
 
 const routes: Routes = [
   {
-    path: ``, redirectTo: `create-franchise`
+    path: ``, redirectTo: `create-franchisee`
   },
-  { path: `create-franchise`, component: CreateFranchiseComponent },
+  { path: `create-franchisee`, component: CreateFranchiseComponent },
   { path: `manage-franchise`, component: ManageFranchiseComponent },
   { path: `all-franchise`, component: AllFranchisesComponent }
 ];

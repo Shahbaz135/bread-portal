@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./all-tours.component.scss']
 })
 export class AllToursComponent implements OnInit {
-
+  active = 1;
   constructor() { }
 
   ngOnInit(): void {

@@ -42,14 +42,20 @@ export class NavService {
 
 	// tslint:disable-next-line: member-ordering
 	MENUITEMS: Menu[] = [
-		{
-			path: '/sample/sample-component', title: 'Sample Components', icon: 'headphones', active: true, type: 'link'
-		},
+		// {
+		// 	path: '/sample/sample-component', title: 'Sample Components', icon: 'headphones', active: true, type: 'link'
+		// },
 		{
 			path: '/dashboard', title: 'Dashboard', icon: 'headphones', active: true, type: 'link'
 		},
 		{
-			path: '/customers', title: 'Customers', icon: 'headphones', active: true, type: 'link'
+			title: 'customers', icon: 'headphones', type: 'sub', children:
+			[
+				{ path: '/customers/customers', title: 'customers', type: 'link' },
+				{ path: 'customers/create-customer', title: 'Create Customers', type: 'link' },
+				{ path: '/customers/trail-customers', title: 'trail Customers', type: 'link' },
+				{ path: '/customers/web-customers', title: 'Web Customers', type: 'link' },
+			]
 		},
 		{
 			title: 'Logistics', icon: 'headphones', type: 'sub', children:
@@ -61,26 +67,26 @@ export class NavService {
 		{
 			title: 'Accounting', icon: 'headphones', type: 'sub', children:
 			[
-				{ path: '/sample/sample-component',  icon: 'headphones', title: 'Open Item List', type: 'link' },
-				{ path: '/sample/sample-component',  icon: 'headphones', title: 'Billing', type: 'link' },
-				{ path: '/sample/sample-component',  icon: 'headphones', title: 'Reminder', type: 'link' },
-				{ path: '/sample/sample-component',  icon: 'headphones', title: 'Cost and Performance Account', type: 'link' }
+				{ path: '/accounting/open-item-list',  icon: 'headphones', title: 'Open Item List', type: 'link' },
+				{ path: '/accounting/billing',  icon: 'headphones', title: 'Billing', type: 'link' },
+				{ path: '/accounting/remainders',  icon: 'headphones', title: 'Reminder', type: 'link' },
+				{ path: 'accounting/cost-performance-accounting',  icon: 'headphones', title: 'Cost & Performance', type: 'link' }
 			]
 		},
 		{
 			title: 'Communication', icon: 'headphones', type: 'sub', children:
 			[
-				{ path: '/sample/sample-component',  icon: 'headphones', title: 'Tickets', type: 'link' },
-				{ path: '/sample/sample-component',  icon: 'headphones', title: 'Serial-Emails', type: 'link' },
+				{ path: 'communications/tickets',  icon: 'headphones', title: 'Tickets', type: 'link' },
+				{ path: 'communications/serial-mails',  icon: 'headphones', title: 'Serial-Emails', type: 'link' },
 			]
 		},
 		{
 			title: 'Tour Planning', icon: 'headphones', type: 'sub', children:
 			[
-				{ path: '/sample/sample-component',  icon: 'headphones', title: 'All Tours', type: 'link' },
-				{ path: '/sample/sample-component',  icon: 'headphones', title: 'Create Tour', type: 'link' },
-				{ path: '/sample/sample-component',  icon: 'headphones', title: 'Tour Overview', type: 'link' },
-				{ path: '/sample/sample-component',  icon: 'headphones', title: 'Tour Sorting', type: 'link' }
+				{ path: '/tours/all-tours',  icon: 'headphones', title: 'All Tours', type: 'link' },
+				{ path: '/tours/create-tours',  icon: 'headphones', title: 'Create Tour', type: 'link' },
+				{ path: '/tours/all-tours',  icon: 'headphones', title: 'Tour Overview', type: 'link' },
+				{ path: '/tours/all-tours',  icon: 'headphones', title: 'Tour Sorting', type: 'link' }
 			]
 		},
 		{
@@ -124,7 +130,12 @@ export class NavService {
 				]
 		},
 		{
-			path: '/customers', title: 'Franchises', icon: 'headphones', active: true, type: 'link'
+			title: 'franchises', icon: 'headphones', type: 'sub', children:
+			[
+				{ path: '/franchises/create-franchisee',  icon: 'headphones', title: 'Create Franchisee', type: 'link' },
+				{ path: '/franchises/manage-franchise',  icon: 'headphones', title: 'Manage Franchise', type: 'link' },
+				{ path: '/franchises/all-franchise',  icon: 'headphones', title: 'All Franchises', type: 'link' },
+			]
 		},
 	]
 	// tslint:disable-next-line: member-ordering

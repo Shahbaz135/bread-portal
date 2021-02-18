@@ -1,0 +1,178 @@
+.f-form{
+    width: 100%;
+    display: block;
+}
+.f-row{
+    width: 98%;
+    text-align: center;
+    margin: 0 auto;
+}
+.col-50{
+    float: left;
+    width: 48%;
+    margin: 0.8rem 2% 0.8rem 0;
+}
+
+.form-input{
+    outline: none !important;
+    padding: 0.5rem  0.75rem;
+    background-color: #ced4da56 !important;
+    border:0px !important;
+    width: 100%;
+    height: 50px;
+}
+ .form-textarea{
+    outline: none !important;
+    padding: 0.5rem  0.75rem;
+    background-color: #ced4da56 !important;
+    border:0px !important;
+    width: 100%;
+    height: 120px;
+}
+.col-50 .form-input:focus{
+    outline: none !important;
+}
+
+.upload-btn-wrapper {
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+  }
+  
+  .btn {
+    border: 2px solid gray;
+    color: gray;
+    background-color: white;
+    padding: 8px 20px;
+    border-radius: 8px;
+    font-size: 20px;
+    font-weight: bold;
+  }
+  
+  .upload-btn-wrapper input[type=file] {
+    font-size: 100px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0;
+  }
+  .form-check {
+    display: block;
+    width: 100%;
+    text-align: left;
+  }
+  
+  .form-check input {
+    padding: 0;
+    height: initial;
+    width: initial;
+    margin-bottom: 0;
+    display: none;
+    cursor: pointer;
+  }
+  
+  .form-check label {
+    position: relative;
+    cursor: pointer;
+    font-weight: 500;
+  }
+  
+  input[type="radio"], input[type="checkbox"]{
+      margin-right: .5rem !important;
+      cursor: pointer;
+  }
+  
+
+//   input[type="checkbox"]:checked ~ label:before {background: #fff no-repeat center;}
+
+  .form-check label:before {
+    content:'';
+    -webkit-appearance: none;
+    background-color: transparent;
+    border: 2px solid #214369;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), inset 0px -15px 10px -12px rgba(0, 0, 0, 0.05);
+    padding: 8px;
+    display: inline-block;
+    position: relative;
+    vertical-align: middle;
+    cursor: pointer;
+    margin-right: 10px;
+  }
+  .form-check input:checked {
+    background-color: #214369;
+  }
+ 
+  .form-check input:checked + label:after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 3px;
+    left: 7px;
+    width: 6px;
+    height: 14px;
+    border: solid #214369;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+  }
+  input[type="date"] {
+    position: relative;
+    cursor: pointer;
+    background-color: #fff;
+    outline: none;
+    border: 0;
+    padding:.4rem 1rem;
+    min-width: 200px;
+}
+
+/* create a new arrow, because we are going to mess up the native one
+see "List of symbols" below if you want another, you could also try to add a font-awesome icon.. */
+input[type="date"]:after {
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900; 
+    content: "\f073";
+    color: #555;
+    padding: 0 5px;
+}
+input[type="date"]::-webkit-calendar-picker-indicator {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: auto;
+    height: auto;
+    color: transparent;
+    background: transparent;
+    cursor: pointer;
+}
+
+/* adjust increase/decrease button */
+input[type="date"]::-webkit-inner-spin-button {
+    z-index: 1;
+}
+
+ /* adjust clear button */
+ input[type="date"]::-webkit-clear-button {
+     z-index: 1;
+ }
+
+  input[type=radio]:checked ~ .check::before{
+    background: #214369;
+    cursor: pointer;
+  }
+  
+  input[type=radio]:checked ~ label{
+    color: #214369;
+    
+  }
+  .lft{
+      float: left;
+      margin-right: 1rem;
+      
+  }
+@media only screen and (max-width: 520px){
+    .col-50{
+        width: 98%;
+        margin: 0.5rem 1%;
+    }
+}

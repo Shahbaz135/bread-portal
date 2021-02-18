@@ -1,7 +1,21 @@
 /* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap');
 
+/* Importing Bootstrap SCSS file. */
+@import '~bootstrap/scss/bootstrap';
+
+
+*, body{
+    font-family: 'Poppins', sans-serif;
+}
 .text-white{
     color: #fff;;
+}
+.text-green{
+    color: rgb(52, 175, 62);;
+}
+.text-red{
+    color: rgb(219, 16, 16);;
 }
 .text-bluish{
     color: #214369;
@@ -14,6 +28,7 @@
 }
 .w-full{
     width: 100%;
+    display: inline-block;
 }
 .c-button{
     background-color: #214369;
@@ -22,6 +37,16 @@
     outline: none;
     padding: .4rem 2rem !important;
     border: 0;
+    border-radius: 20px;
+    cursor: pointer;
+}
+.rst-button{
+    background-color: transparent;
+    color: #214369;
+    text-align: center;
+    outline: none;
+    padding: .4rem 2rem !important;
+    border: 1px solid #214369;
     border-radius: 20px;
     cursor: pointer;
 }
@@ -46,6 +71,38 @@
     font-weight: 500;
     border-bottom: 1px solid rgb(197, 188, 188);
 }
+.nav-tabs{
+    border: 0px !important;
+    width: 100%;
+    margin-bottom: 1rem !important;
+   
+}
 
-/* Importing Bootstrap SCSS file. */
-@import '~bootstrap/scss/bootstrap';
+.nav-tabs .nav-link.active, .nav-tabs .nav-item.show .nav-link{
+    color: #214369 !important;
+    background-color: transparent !important;
+    border-left: 0px  !important;
+    border-right: 0px  !important;
+    border-top: 0px  !important;
+    border-bottom: 2px solid #214369 !important;
+    font-weight: 500;
+}
+.nav-tabs a{
+    color: rgb(197, 188, 188) !important;
+    font-size: 1rem;
+    margin-right: 1rem;
+    font-weight: 500;
+}
+.tab-content{
+    width: 100%;
+}
+
+.table-responsive{
+    display: inline-table !important;
+}
+
+@media only screen and (max-width: 768px){
+    .table-responsive{
+        display: block !important;
+    }
+ }

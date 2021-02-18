@@ -1,0 +1,45 @@
+form{
+    width: 100%;
+    display: inline-flex;
+}
+label{
+    font-weight: 600;
+    margin-right: 1rem;
+}
+
+select{
+    position: relative;
+    cursor: pointer;
+    background-color: #fff;
+    outline: none;
+    border-radius: 12px;
+    border: 0;
+    padding:.4rem 1rem;   
+}
+.loc-select{
+    position: relative;
+    cursor: pointer;
+    background-color: transparent;
+    outline: none;
+    border: 0;
+    padding:0.7rem;
+    
+}
+select option {
+    padding: .5rem;
+  }
+.s-title{
+    padding: .5rem;
+    width: 100%;
+}
+.brdr-dot{
+    border-top: 2px dotted #214369;
+    font-weight: 500;
+    
+}
+
+ @media only screen and (max-width: 768px){
+    form{
+        display: inline-block;
+    }
+ }

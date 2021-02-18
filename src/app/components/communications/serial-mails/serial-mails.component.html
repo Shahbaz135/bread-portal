@@ -1,38 +1,246 @@
-<ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs">
+<div class="row px-3 pt-3 pb-2">
+  <h3>Tickets</h3>    
+</div>
+
+<div class="row px-3 pt-3 pb-2 ">
+  <ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs">
     <li [ngbNavItem]="1">
-      <a ngbNavLink>One</a>
+      <a ngbNavLink>Serial Emails</a>
       <ng-template ngbNavContent>
-        <p>Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth
-          master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro
-          keffiyeh dreamcatcher synth. Cosby sweater eu banh mi, qui irure terry richardson ex squid. Aliquip placeat
-          salvia cillum iphone. Seitan aliquip quis cardigan american apparel, butcher voluptate nisi qui.</p>
+        <table class="b-table table-responsive bg-white">
+          <thead>
+              <th>#</th>
+              <th>TYPE</th>
+              <th>SUBJECT</th>
+              <th>CONTENT</th>
+              <th>SERACH CRITERIA</th>
+              <th>DATE</th>
+              <th>TO CHANGE</th>
+              <th>CLEAR</th>
+              <th>ACTION</th>
+          </thead>
+          <tbody>
+              <tr>
+                  <td>213</td>
+                  <td>E-Mail</td>
+                  <td>Delivery<br>
+                  01/02/20</td>
+                  <td>Just to let you know - we've recived your order #4019,
+                    and it is now being proccessed delivery time 4-6 working days.
+                  </td>
+                  <td>Change search criteria</td>
+                  <td></td>
+                  <td>
+                      <img src="#!" class="action-icon">
+                  </td>
+                  <td>
+                    <img src="#!" class="action-icon">
+                </td>
+                <td>
+                  <img src="#!" class="action-icon">
+              </td>
+              </tr>
+          </tbody>
+      </table>
       </ng-template>
     </li>
     <li [ngbNavItem]="2">
-      <a ngbNavLink>Two</a>
+      <a ngbNavLink>Create Serial Emails</a>
       <ng-template ngbNavContent>
-        <p>Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko
-          farm-to-table craft beer twee. Qui photo booth letterpress, commodo enim craft beer mlkshk aliquip jean shorts
-          ullamco ad vinyl cillum PBR. Homo nostrud organic, assumenda labore aesthetic magna delectus mollit. Keytar
-          helvetica VHS salvia yr, vero magna velit sapiente labore stumptown. Vegan fanny pack odio cillum wes anderson
-          8-bit, sustainable jean shorts beard ut DIY ethical culpa terry richardson biodiesel. Art party scenester
-          stumptown, tumblr butcher vero sint qui sapiente accusamus tattooed echo park.</p>
+        <div class="row p-3 m-0 bg-white">
+          <h5 class="w-full text-bluish">Create Search Emails</h5> 
+          <form class="f-form">
+            <div class="row f-row m-0">
+                <div class="col-50">
+                    <input  class="form-input " type="text" placeholder="Subject"/>
+                </div>
+                <div class="col-50">
+                  <select class="form-input" id="inlineFormCustomSelect">
+                    <option selected>Choose...</option>
+                    <option value="1">One</option>
+                    <option value="2">Two</option>
+                    <option value="3">Three</option>
+                  </select>
+                </div>
+            </div>
+            <div class="row f-row m-0">
+                <div class="col-50">
+                    <textarea class="form-textarea" placeholder="Content"></textarea>
+                </div>
+                <div class="col-50 text-left">
+                  <div class="upload-btn-wrapper">
+                    <button class="c-button">Upload a file</button>
+                    <input type="file" name="myfile" />
+                  </div>
+                </div>
+            </div>
+            <div class="row f-row m-0">
+                <div class="col-50">
+                  <input type="date" placeholder="date" class="form-input"/>  
+                </div>
+            </div>
+            <div class="row f-row p-0 my-2 mx-0 ">
+                <div class="form-check mt-4">
+                  <button class="c-button py-2">Create Mail Merge</button>
+              </div>
+            </div>
+        </form>
+        </div>
       </ng-template>
     </li>
     <li [ngbNavItem]="3">
-      <a ngbNavLink>Three</a>
+      <a ngbNavLink>Change Search criteria</a>
       <ng-template ngbNavContent>
-        <p>Sed commodo, leo at suscipit dictum, quam est porttitor sapien, eget sodales nibh elit id diam. Nulla facilisi.
-          Donec egestas ligula vitae odio interdum aliquet. Duis lectus turpis, luctus eget tincidunt eu, congue et odio.
-          Duis pharetra et nisl at faucibus. Quisque luctus pulvinar arcu, et molestie lectus ultrices et. Sed diam urna,
-          egestas ut ipsum vel, volutpat volutpat neque. Praesent fringilla tortor arcu. Vivamus faucibus nisl enim, nec
-          tristique ipsum euismod facilisis. Morbi ut bibendum est, eu tincidunt odio. Orci varius natoque penatibus et
-          magnis dis parturient montes, nascetur ridiculus mus. Mauris aliquet odio ac lorem aliquet ultricies in eget
-          neque. Phasellus nec tortor vel tellus pulvinar feugiat.</p>
+        <form class="mb-5">
+        <div class="row bg-white m-0 p-3">
+          <div class="col-md-6">
+            <div class="b-01 mt-2">
+            <h6 class="mb-2">History Filters</h6>
+            <select class="form-input" id="inlineFormCustomSelect">
+              <option selected>Choose...</option>
+              <option value="1">One</option>
+              <option value="2">Two</option>
+              <option value="3">Three</option>
+            </select>
+            <label class="my-2">Multiple selection with CTRL+Click</label>
+            <input  class="form-input my-2 " type="text" placeholder="From "/>
+            <input  class="form-input my-2" type="text" placeholder="To"/>
+          </div>
+          <div class="b-01 mt-2">
+            <h6 class="mb-2">History Filters</h6>
+            <select class="form-input" id="inlineFormCustomSelect">
+              <option selected>Choose...</option>
+              <option value="1">One</option>
+              <option value="2">Two</option>
+              <option value="3">Three</option>
+            </select>
+            <label class="my-2">Multiple selection with CTRL+Click</label>
+          </div>
+          <div class="b-01 mt-2">
+            <h6 class="mb-2">Orders</h6>
+            <select class="form-input" id="inlineFormCustomSelect">
+              <option selected>Choose...</option>
+              <option value="1">One</option>
+              <option value="2">Two</option>
+              <option value="3">Three</option>
+            </select>
+            <label class="my-2">Multiple selection with CTRL+Click</label>
+          </div>
+          <div class="b-01 mt-2">
+            <h6 class="mb-2">Customers Code</h6>
+            <div>
+              <input type="checkbox" id="name">
+                <label for="name" >selects all customers who have recived an
+                   invoice in one invoice run</label>
+          </div><br>
+          <div>
+            <input type="checkbox" id="name2">
+                <label for="name2" >Exclude customers with active order</label>
+          </div>
+          </div>
+          </div>
+          <div class="col-md-6">
+            <div class="b-01 mt-2">
+              <h6 class="">Address & Contact Detail</h6>
+              <div class="row f-row m-0">
+                <div class="col-50">
+                    <input  class="form-input " type="text" placeholder="Neck Namee"/>
+                </div>
+                <div class="col-50">
+                  <input  class="form-input " type="text" placeholder="Email"/>
+                </div>
+            </div>
+            <div class="row f-row m-0">
+              <div class="col-50">
+                  <input  class="form-input " type="text" placeholder="Street"/>
+              </div>
+              <div class="col-50">
+                <input  class="form-input " type="text" placeholder="Fax"/>
+              </div>
+          </div>
+          <div class="row f-row m-0">
+            <div class="col-50">
+                <input  class="form-input " type="text" placeholder="Postcode"/>
+            </div>
+            <div class="col-50">
+              <input  class="form-input " type="text" placeholder="Mobile"/>
+            </div>
+        </div>
+        <div class="row f-row m-0">
+          <div class="col-50">
+              <input  class="form-input " type="text" placeholder="Place"/>
+          </div>
+          <div class="col-50">
+            <input  class="form-input " type="text" placeholder="Customer Number"/>
+          </div>
+      </div>
+      <div class="b-01 mt-2 w-full">
+        <h6 class="mb-2">Aquired by</h6>
+        <ul>
+          <li class="lft">
+          <input type="radio" id="1-option" name="selector">
+          <label for="1-option">Internet</label>
+        </li>
+        <li class="lft">
+          <input type="radio" id="2-option" name="selector">
+          <label for="2-option">offline marketing</label>
+        </li>
+        <li class="lft">
+          <input type="radio" id="6-option" name="selector">
+          <label for="6-option">No matter</label>
+        </li>
+      </ul>
+      </div>
+      <div class="b-01 mt-2 w-full">
+        <h6 class="mb-2">E-Mail Filter</h6>
+        <ul>
+          <li class="lft">
+          <input type="radio" id="11-option" name="selector">
+          <label for="11-option">All</label>
+        </li>
+        <li class="lft">
+          <input type="radio" id="22-option" name="selector">
+          <label for="22-option">only Customer with E-mail</label>
+        </li>
+        <li class="lft">
+          <input type="radio" id="33-option" name="selector">
+          <label for="33-option">only Customer without E-mail</label>
+        </li>
+      </ul>
+      </div>
+      <div class="b-01 mt-2">
+        <h6 class="mb-2">Payment Method</h6>
+        <ul>
+          <li class="lft">
+          <input type="radio" id="7-option" name="selector">
+          <label for="7-option">Bar </label>
+        </li>
+        <li class="lft">
+          <input type="radio" id="8-option" name="selector">
+          <label for="8-option">Direct Debit</label>
+        </li>
+        <li class="lft">
+          <input type="radio" id="9-option" name="selector">
+          <label for="9-option">Transfer</label>
+        </li>
+      </ul>
+      </div>
+
+
+      
+            </div>
+          </div>
+        </div>
+        <div class="row bg-white m-0 p-3">
+          <button class="c-button">Start Customers Selection</button>
+          <button class="rst-button ml-3">Reset Search</button>
+        </div>
+      </form>
       </ng-template>
     </li>
+
   </ul>
   
   <div [ngbNavOutlet]="nav" class="mt-2"></div>
-  
-  <pre>Active: {{ active }}</pre>
+
+</div>
