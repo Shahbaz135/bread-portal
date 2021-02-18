@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./serial-mails.component.scss']
 })
 export class SerialMailsComponent implements OnInit {
+  active = 1;
 
   constructor() { }
 
