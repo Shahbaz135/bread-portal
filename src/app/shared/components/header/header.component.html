@@ -1,15 +1,7 @@
 <!--Page Header Start-->
 <div class="page-main-header">
     <div class="main-header-left" [attr.semilight-bg-color]="customize.data.header.semiLightbgColor">
-        <div class="logo-wrapper">
-            <a [routerLink]="'/landing'">
-                <div class="logo-tag">Bread Delivery Management System</div>
-                <!-- <img src="assets/images/logo-light.png" class="image-dark" alt="" /> -->
-                <!-- <img src="assets/images/logo-light-dark-layout.png" class="image-light" alt="" /> -->
-            </a>
-        </div>
-    </div>
-    <div class="main-header-right row"  [attr.header-bg-color]="customize.data.header.headerBgColor">
+        
         <div class="mobile-sidebar" id="mobile-sidebar">
             <div class="media-body text-right switch-sm">
                 <label class="switch">
@@ -18,6 +10,15 @@
                 </label>
             </div>
             
+        </div>
+    </div>
+    <div class="main-header-right row"  [attr.header-bg-color]="customize.data.header.headerBgColor">
+        <div class="logo-wrapper">
+            <a [routerLink]="'/dashboard'">
+                <div class="logo-tag">Bread Delivery Management System</div>
+                <!-- <img src="assets/images/logo-light.png" class="image-dark" alt="" /> -->
+                <!-- <img src="assets/images/logo-light-dark-layout.png" class="image-light" alt="" /> -->
+            </a>
         </div>
         <div class="nav-right col">
             <ul class="nav-menus" [class.open]="open">

@@ -8,6 +8,31 @@
 *, body{
     font-family: 'Poppins', sans-serif;
 }
+.switch input:checked + .switch-state{
+    background-color: #214369 !important;
+}
+.logo-wrapper a{
+    color:  #214369 !important;
+}
+.page-wrapper .page-body-wrapper .page-sidebar{
+    top: 50px !important;
+}
+.page-wrapper .page-main-header{
+    height: 50px !important;
+}
+.page-main-header .main-header-right{
+    height: auto !important;
+}
+.fa-circle{
+    
+}
+.txt-bold{
+    font-weight: 500;
+    border: 0px !important;
+}
+.f-big{
+    font-size: 1rem;
+}
 .text-white{
     color: #fff;;
 }
@@ -20,11 +45,36 @@
 .text-bluish{
     color: #214369;
 }
+.bg-purple{
+    background-color: #cec2ea !important;
+}
 .bg-white{
-    background-color: #fff;
+    background-color: #fff !important;
+}
+.bg-blue{
+    background-color: #c7edee !important;
+}
+.bg-pink{
+    background-color: #f3c0c5 !important;
+}
+.txt-black{
+    color: #333 !important;
 }
 .bg-bluish{
     background-color: #e7ecf0;
+}
+.txt-red{
+    color: #f04741;
+}
+.bg-offwhite{
+    background-color: #fbdeb4 !important;
+}
+.bg-greenish{
+    background-color: #ccf6ce !important;
+}
+.icons{
+    width: 24px;
+    height: 24px;
 }
 .w-full{
     width: 100%;
@@ -35,7 +85,7 @@
     color: #fff;
     text-align: center;
     outline: none;
-    padding: .4rem 2rem !important;
+    padding: .6rem 2rem !important;
     border: 0;
     border-radius: 20px;
     cursor: pointer;
@@ -57,7 +107,10 @@
     background-color: rgba(99, 177, 241, 0.438);
     border-radius: 4px;
 }
-
+.b-table > .thead1{
+    background-color:#e7ecf0 !important ;
+    color: #333 !important;
+}
 .b-table > thead{
     background-color:#214369 ;
     color: rgb(192,192,192);
@@ -67,7 +120,7 @@
     padding: .4rem .7rem;
 }
 .b-table >tbody > tr >td{
-    padding: 0rem .6rem !important ;
+    padding: 0.4rem .6rem !important ;
     font-weight: 500;
     border-bottom: 1px solid rgb(197, 188, 188);
 }
@@ -90,8 +143,14 @@
 .nav-tabs a{
     color: rgb(197, 188, 188) !important;
     font-size: 1rem;
-    margin-right: 1rem;
+    margin-right: 0rem;
     font-weight: 500;
+}
+.nav-tabs .nav-link:hover {
+    border-left: 0px  !important;
+    border-right: 0px  !important;
+    border-top: 0px  !important;
+    border-bottom: 2px solid #214369 !important;
 }
 .tab-content{
     width: 100%;

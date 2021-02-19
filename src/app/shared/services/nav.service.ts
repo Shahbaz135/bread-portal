@@ -90,6 +90,14 @@ export class NavService {
 			]
 		},
 		{
+			title: 'franchises', icon: 'headphones', type: 'sub', children:
+			[
+				{ path: '/franchises/create-franchisee',  icon: 'headphones', title: 'Create Franchisee', type: 'link' },
+				{ path: '/franchises/manage-franchise',  icon: 'headphones', title: 'Manage Franchise', type: 'link' },
+				{ path: '/franchises/all-franchise',  icon: 'headphones', title: 'All Franchises', type: 'link' },
+			]
+		},
+		{
 			title: 'Settings', icon: 'anchor', type: 'sub', children:
 				[
 					{
@@ -129,14 +137,7 @@ export class NavService {
 					}
 				]
 		},
-		{
-			title: 'franchises', icon: 'headphones', type: 'sub', children:
-			[
-				{ path: '/franchises/create-franchisee',  icon: 'headphones', title: 'Create Franchisee', type: 'link' },
-				{ path: '/franchises/manage-franchise',  icon: 'headphones', title: 'Manage Franchise', type: 'link' },
-				{ path: '/franchises/all-franchise',  icon: 'headphones', title: 'All Franchises', type: 'link' },
-			]
-		},
+		
 	]
 	// tslint:disable-next-line: member-ordering
 	items = new BehaviorSubject<Menu[]>(this.MENUITEMS);

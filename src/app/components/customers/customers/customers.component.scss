@@ -1,0 +1,114 @@
+.c-title{
+    font-weight: 600;
+}
+.c-box{
+    border-radius: 12px;
+    padding: .7rem 1rem 2rem 1rem;
+}
+.orders{
+    border-bottom: 1px solid #33363d;
+    padding: 5px 0 3px 0;
+}
+.btns{
+    width: 100%;
+    display: inline-flex;
+}
+.img-size{
+    width: 70px;
+    height: 80px;
+}
+.f-row{
+    width: 100%;
+    margin: 0 auto;
+}
+.lbl{
+    width: 100%;
+    text-align: left;
+    float: left;
+}
+.form-select{
+    outline: none !important;
+    padding: 0.4rem  0.2rem 0rem;
+    background-color: transparent !important;
+    border:0px !important;
+    border-bottom:1px solid #33363d !important;
+    width: 100%;
+    height: 45px;
+}
+.form-select-delry{
+    position: relative;
+    cursor: pointer;
+    background-color: #fff;
+    outline: none;
+    border-radius: 12px;
+    border: 0;
+    padding:0.7rem  0.5rem ;
+    width: 100%;
+}
+.col-50{
+    float: left;
+    width: 50%;
+    margin: 0.5rem 0;
+}
+.form-input{
+    outline: none !important;
+    padding: 0.5rem  0.75rem;
+    background-color: #ced4da56 !important;
+    border:0px !important;
+    width: 100%;
+    height: 50px;
+}
+.sm-input{
+    border: 1px solid #33363d;
+    padding: 0.3rem;
+    min-width: 50px;
+    max-width: 60px;
+    margin-left: 10px;
+}
+input[type="date"] {
+    position: relative;
+    cursor: pointer;
+    background-color: #fff;
+    outline: none;
+    border-radius: 12px;
+    border: 0;
+    padding:0.6rem  0.2rem ;
+    width: 100%;
+}
+
+input[type="date"]:after {
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900; 
+    content: "\f073";
+    color: #555;
+    padding: 0 5px;
+}
+input[type="date"]::-webkit-calendar-picker-indicator {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: auto;
+    height: auto;
+    color: transparent;
+    background: transparent;
+    cursor: pointer;
+}
+
+/* adjust increase/decrease button */
+input[type="date"]::-webkit-inner-spin-button {
+    z-index: 1;
+}
+
+ /* adjust clear button */
+ input[type="date"]::-webkit-clear-button {
+     z-index: 1;
+ }
+
+ @media only screen and (max-width: 768px){
+    .col-50{
+      width: 100%;
+      float: left;
+    }
+ }

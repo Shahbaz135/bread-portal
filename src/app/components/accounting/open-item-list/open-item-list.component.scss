@@ -69,7 +69,9 @@ input[type="date"]::-webkit-inner-spin-button {
  input[type="date"]::-webkit-clear-button {
      z-index: 1;
  }
-
+.b-table{
+    display: block !important;
+}
 .b-table > thead{
     background-color:#214369 ;
     color: rgb(192,192,192);

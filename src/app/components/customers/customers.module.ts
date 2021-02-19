@@ -6,13 +6,15 @@ import { CustomersComponent } from './customers/customers.component';
 import { TrailCustomersComponent } from './trail-customers/trail-customers.component';
 import { WebCustomersComponent } from './web-customers/web-customers.component';
 import { CreateCustomersComponent } from './create-customers/create-customers.component';
-
+import { NgbModule, NgbNavModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [CustomersComponent, TrailCustomersComponent, WebCustomersComponent, CreateCustomersComponent],
   imports: [
     CommonModule,
-    CustomersRoutingModule
+    CustomersRoutingModule,
+    NgbNavModule,
+    NgbModule
   ]
 })
 export class CustomersModule { }
