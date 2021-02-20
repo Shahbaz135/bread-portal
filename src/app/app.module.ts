@@ -6,12 +6,16 @@ import { AppComponent } from './app.component';
 import { SharedModule } from "./shared/shared.module";
 import { ContentComponent } from './layouts/content/content.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { AuthComponent } from './layouts/auth/auth.component';
+import { SearchComponent } from './layouts/search/search.component';
 
 
 @NgModule({
   declarations: [
     ContentComponent,
-    AppComponent
+    AppComponent,
+    AuthComponent,
+    SearchComponent
   ],
   imports: [
     BrowserModule,

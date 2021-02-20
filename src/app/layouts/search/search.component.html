@@ -1,0 +1,21 @@
+<!--page-wrapper Start-->
+<div class="page-wrapper">
+    <app-header></app-header>
+
+    <div class="page-body-wrapper" [class.sidebar-close]="navService.closeSidebar" [ngClass]="customize.data.menuLayout">
+        <div class="page-sidebar"  [ngClass]="customize.data.scroll"
+        [class.navigation-bordered]="customize.data.borderNavigation"
+        [class.navigation-rightside]="customize.data.rightSidebarIcon"
+        [class.native-image-bg]="customize.data.backgroungImage"
+        [class.native-default]="customize.data.defaultNavigation">
+        <app-searchbar></app-searchbar>
+        </div>
+   
+   
+
+        <div class="page-body ">
+            <router-outlet></router-outlet>
+        </div>
+    <!--Page Body End-->
+</div>
+<!--page-wrapper End-->

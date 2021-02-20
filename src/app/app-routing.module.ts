@@ -1,7 +1,11 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { AuthComponent } from './layouts/auth/auth.component';
 import { ContentComponent } from './layouts/content/content.component';
+import { SearchComponent } from './layouts/search/search.component';
+import { auth } from './shared/routes/auth-routes';
 import { content } from "./shared/routes/content-routes";
+import { searchBar } from './shared/routes/search-routes';
 
 const routes: Routes = [
   {
@@ -11,13 +15,23 @@ const routes: Routes = [
   },
   {
     path: '',
+    component: SearchComponent,
+    children: searchBar
+  },
+  {
+    path: '',
     component: ContentComponent,
     children: content
   },
-  // {
-  //   path: '**',
-  //   redirectTo: '/sample/sample-component'
-  // }
+  {
+    path: "",
+    component: AuthComponent,
+    children: auth,
+  },
+  {
+    path: "**",
+    redirectTo: "/dashboard",
+  },
 ];
 
 @NgModule({

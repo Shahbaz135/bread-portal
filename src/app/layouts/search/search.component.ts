@@ -1,23 +1,22 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { CustomizerService } from '../../shared/services/customizer.service'
-import { NavService } from '../../shared/services/nav.service';
+import { Component, OnInit } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
+import { CustomizerService } from 'src/app/shared/services/customizer.service';
+import { NavService } from 'src/app/shared/services/nav.service';
 
 @Component({
-  selector: 'app-content',
-  templateUrl: './content.component.html',
-  styleUrls: ['./content.component.scss']
+  selector: 'app-search',
+  templateUrl: './search.component.html',
+  styleUrls: ['./search.component.scss']
 })
-export class ContentComponent implements OnInit {
+export class SearchComponent implements OnInit {
   public toggle;
 
   constructor(
     public customize: CustomizerService, 
     public navService: NavService,
     private router: Router
-    ) {
-    
-  }
+  ) { }
+
   openToggle: boolean;
 
   receiveToggle($event) {
@@ -25,7 +24,7 @@ export class ContentComponent implements OnInit {
     this.toggle = this.openToggle;
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
     if (window.innerWidth < 1199) {
       this.router.events.subscribe(event => {
         if (event instanceof NavigationEnd) {
@@ -36,6 +35,6 @@ export class ContentComponent implements OnInit {
         }
       })
     }
-   }
+  }
 
 }

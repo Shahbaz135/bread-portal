@@ -5,14 +5,15 @@ import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { ToggleFullscreenDirective } from "./directives/fullscreen.directive";
+import { SearchbarComponent } from './components/searchbar/searchbar.component';
 
 
 @NgModule({
-  declarations: [ HeaderComponent, FooterComponent, SidebarComponent, ToggleFullscreenDirective ],
+  declarations: [ HeaderComponent, FooterComponent, SidebarComponent, ToggleFullscreenDirective, SearchbarComponent ],
   imports: [
     CommonModule,
     RouterModule
   ],
-  exports:[ HeaderComponent, FooterComponent, SidebarComponent ]
+  exports:[ HeaderComponent, FooterComponent, SidebarComponent, SearchbarComponent ]
 })
 export class SharedModule { }
