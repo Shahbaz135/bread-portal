@@ -7,19 +7,19 @@
         <img src="../../../../assets/images/bread/hicon-1.png" class="h-icons">
         <h4>CUSTOMERS</h4>
         <ul>
-          <li><a href="#!">Search Customers</a></li>
-          <li><a href="#!">Create new Customers</a></li>
-          <li><a href="#!">Trail Customers</a></li>
-          <li><a href="#!">Web Customers</a></li>
-          <li><a href="#!">Customers Archive</a></li>
+          <li><a [routerLink]="['/customers/search-customers']">Search Customers</a></li>
+          <li><a [routerLink]="['/customers/create-customer']">Create new Customers</a></li>
+          <li><a [routerLink]="['/customers/trail-customers']">Trail Customers</a></li>
+          <li><a [routerLink]="['/customers/web-customers']">Web Customers</a></li>
+          <li><a [routerLink]="['/dashboard']">Customers Archive</a></li>
         </ul>
       </div>
       <div class="h-box">
         <img src="../../../../assets/images/bread/hicon-2.png" class="h-icons">
         <h4>LOGISTICS</h4>
         <ul>
-          <li><a href="#!">Suplier Order</a></li>
-          <li><a href="#!">Delivery List</a></li>
+          <li><a [routerLink]="['/logistics/order-supplier']">Suplier Order</a></li>
+          <li><a [routerLink]="['/logistics/delivery-list']">Delivery List</a></li>
         </ul>
         
       </div>
@@ -27,10 +27,10 @@
         <img src="../../../../assets/images/bread/hicon-3.png" class="h-icons">
         <h4>ACCOUNTING</h4>        
         <ul>
-          <li><a href="#!">Billing</a></li>
-          <li><a href="#!">OutStanding Payments </a></li>
-          <li><a href="#!">Invoice</a></li>
-          <li><a href="#!">Cost & Performance accounting</a></li>
+          <li><a [routerLink]="['/accounting/billing']">Billing</a></li>
+          <li><a [routerLink]="['/dashboard']">OutStanding Payments </a></li>
+          <li><a [routerLink]="['/dashboard']">Invoice</a></li>
+          <li><a [routerLink]="['/accounting/cost-performance-accounting']">Cost & Performance accounting</a></li>
         </ul>
       </div>
   
@@ -38,20 +38,20 @@
         <img src="../../../../assets/images/bread/hicon-4.png" class="h-icons">
         <h4>COMUNICATION</h4>
         <ul>
-          <li><a href="#!">Tickets</a></li>
-          <li><a href="#!">Serial Email</a></li>
+          <li><a [routerLink]="['/communications/tickets']">Tickets</a></li>
+          <li><a [routerLink]="['/communications/serial-mails']">Serial Email</a></li>
         </ul>
       </div>
       <div class="h-box pb-3">
         <img src="../../../../assets/images/bread/hicon-5.png" class="h-icons">
         <h4>LOGISTICS</h4>
         <ul>
-          <li><a href="#!">Bakery Data</a></li>
-          <li><a href="#!">Users</a></li>
-          <li><a href="#!">Products</a></li>
-          <li><a href="#!">Categories</a></li>
-          <li><a href="#!">Delivery Areas</a></li>
-          <li><a href="#!">Non Delivery Days</a></li>
+          <li><a [routerLink]="['/dashboard']">Bakery Data</a></li>
+          <li><a [routerLink]="['/settings/users']">Users</a></li>
+          <li><a [routerLink]="['/settings/active-products']">Products</a></li>
+          <li><a [routerLink]="['/settings/categories/categories-overview']">Categories</a></li>
+          <li><a [routerLink]="['/settings/delivery-areas/delivery-areas-overview']">Delivery Areas</a></li>
+          <li><a [routerLink]="['/settings/non-delivery-days']">Non Delivery Days</a></li>
         </ul>
         
       </div>
@@ -59,8 +59,8 @@
         <img src="../../../../assets/images/bread/hicon-6.png" class="h-icons">
         <h4>ACCOUNTING</h4>        
         <ul>
-          <li><a href="#!">Tours Overview</a></li>
-          <li><a href="#!">Create a tour</a></li>
+          <li><a [routerLink]="['/tours/all-tours']">Tours Overview</a></li>
+          <li><a [routerLink]="['/tours/create-tours']">Create a tour</a></li>
         </ul>
       </div>
     </div>

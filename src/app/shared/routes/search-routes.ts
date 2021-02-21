@@ -4,7 +4,7 @@ import { SearchCustomersComponent } from 'src/app/components/customers/search-cu
 
 export const searchBar: Routes = [
   {
-    path: 'customers/search',
+    path: 'customers/search-customers',
     pathMatch:  `full`,
     component: SearchCustomersComponent
   },

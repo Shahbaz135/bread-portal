@@ -52,7 +52,7 @@ export class NavService {
 			title: 'customers', icon: 'headphones', type: 'sub', children:
 			[
 				{ path: '/customers/customers', title: 'customers', type: 'link' },
-				{ path: 'customers/create-customer', title: 'Create Customers', type: 'link' },
+				{ path: '/customers/create-customer', title: 'Create Customers', type: 'link' },
 				{ path: '/customers/trail-customers', title: 'trail Customers', type: 'link' },
 				{ path: '/customers/web-customers', title: 'Web Customers', type: 'link' },
 			]
@@ -70,14 +70,14 @@ export class NavService {
 				{ path: '/accounting/open-item-list',  icon: 'headphones', title: 'Open Item List', type: 'link' },
 				{ path: '/accounting/billing',  icon: 'headphones', title: 'Billing', type: 'link' },
 				{ path: '/accounting/remainders',  icon: 'headphones', title: 'Reminder', type: 'link' },
-				{ path: 'accounting/cost-performance-accounting',  icon: 'headphones', title: 'Cost & Performance', type: 'link' }
+				{ path: '/accounting/cost-performance-accounting',  icon: 'headphones', title: 'Cost & Performance', type: 'link' }
 			]
 		},
 		{
 			title: 'Communication', icon: 'headphones', type: 'sub', children:
 			[
-				{ path: 'communications/tickets',  icon: 'headphones', title: 'Tickets', type: 'link' },
-				{ path: 'communications/serial-mails',  icon: 'headphones', title: 'Serial-Emails', type: 'link' },
+				{ path: '/communications/tickets',  icon: 'headphones', title: 'Tickets', type: 'link' },
+				{ path: '/communications/serial-mails',  icon: 'headphones', title: 'Serial-Emails', type: 'link' },
 			]
 		},
 		{
