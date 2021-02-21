@@ -102,38 +102,34 @@ export class NavService {
 				[
 					{
 						title: 'Categories', type: 'sub', children: [
-							{ path: '/sample/sample-component', title: 'Categories Overview', type: 'link' },
-							{ path: '/sample/sample-component', title: 'Connect Product with Category', type: 'link' },
-							{ path: '/sample/sample-component', title: 'Create a Category', type: 'link' },
-							{ path: '/sample/sample-component', title: 'Product in this Category', type: 'link' }
+							{ path: '/settings/categories/categories-overview', title: 'Categories Overview', type: 'link' },
+							{ path: '/settings/categories/create-categories', title: 'Create a Category', type: 'link' },
+							{ path: '/settings/categories/product-categories', title: 'Product in this Category', type: 'link' }
 						]
 					},
 					{
 						title: 'Delivery Areas', type: 'sub', active: false, children: [
-							{ path: '/sample/sample-component', title: 'Add Delivery Area', type: 'link' },
-							{ path: '/sample/sample-component', title: 'Delivery Areas Overview', type: 'link', },
-							{ path: '/sample/sample-component', title: 'Edit Delivery Area', type: 'link' },
+							{ path: '/settings/delivery-areas/add-delivery-area', title: 'Add Delivery Area', type: 'link' },
+							{ path: '/settings/delivery-areas/delivery-areas-overview', title: 'Delivery Areas Overview', type: 'link', },
+							{ path: '/settings/delivery-areas/edit-delivery-area', title: 'Edit Delivery Area', type: 'link' },
 						]
 					},
 					{
-						title: 'Non-Delivery Days', type: 'link', active: false
+							path: '/settings/non-delivery-days', title: 'Non-Delivery Days', type: 'link',
 					},
 					{
 						title: 'Products', type: 'sub', active: false, children: [
-							{ path: '/sample/sample-component', title: 'Active Products', type: 'link' },
-							{ path: '/sample/sample-component', title: 'Create a Product', type: 'link' },
-							{ path: '/sample/sample-component', title: 'Edit Product', type: 'link', },
-							{ path: '/sample/sample-component', title: 'Inactive Products', type: 'link' },
+							{ path: '/settings/active-products', title: 'Active Products', type: 'link' },
+							{ path: '/settings/create-product', title: 'Create a Product', type: 'link' },
+							{ path: '/settings/edit-product', title: 'Edit Product', type: 'link', },
+							{ path: '/settings/inactive-products', title: 'Inactive Products', type: 'link' },
 						]
 					},
 					{
-						title: 'Settings', type: 'link', icon: 'headphones'
+						path: '/settings/users', title: 'users', type: 'link',
 					},
 					{
-						title: 'Users', type: 'link', icon: 'headphones'
-					},
-					{
-						title: 'Uploads', type: 'link', icon: 'headphones'
+						path: '/settings/account-settings', title: 'Settings', type: 'link',
 					}
 				]
 		},

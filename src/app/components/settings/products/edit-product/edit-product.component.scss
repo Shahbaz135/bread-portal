@@ -1,0 +1,17 @@
+input[type=radio]{
+    margin-right: .5rem;
+}
+input[type=radio]:checked ~ .check::before{
+    background: #214369;
+    cursor: pointer;
+  }
+  
+  input[type=radio]:checked ~ label{
+    color: #214369;
+    
+  }
+  .lft{
+      float: left;
+      margin-right: 1rem;
+      
+  }

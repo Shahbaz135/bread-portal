@@ -1,0 +1,350 @@
+<div class="row px-3 pt-3 pb-2">
+    <h3>Settings</h3>    
+  </div>
+  
+  <div class="row px-3 pt-3 pb-2 ">
+    <ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs">
+      <li [ngbNavItem]="1">
+        <a ngbNavLink>Bank Details</a>
+        <ng-template ngbNavContent>
+            <div class="bg-white">
+                <div class="row p-3">
+                    <div class="col-md-6">
+                        <h5 class="mb-3 w-full"> Account of transfers</h5>
+                        <div class="row f-row mb-2 mx-0 ">
+                            <input  class="form-input" type="text" placeholder="Account Owner"/>
+                        </div>
+                        <div class="row f-row mb-2 mx-0 ">
+                            <input  class="form-input" type="text" placeholder="Bank name"/>
+                        </div>
+                        <div class="row f-row mb-2 mx-0 ">
+                            <input  class="form-input" type="text" placeholder="Bank code"/>
+                        </div>
+                        <div class="row f-row mb-2 mx-0 ">
+                            <input  class="form-input" type="text" placeholder="Bank Account number"/>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <h5 class="mb-3 w-full"> Account for DTA direct debits</h5>
+                        <div class="row f-row mb-2 mx-0 ">
+                            <input  class="form-input" type="text" placeholder="Account Owner"/>
+                        </div>
+                        <div class="row f-row mb-2 mx-0 ">
+                            <input  class="form-input" type="text" placeholder="Bank name"/>
+                        </div>
+                        <div class="row f-row mb-2 mx-0 ">
+                            <input  class="form-input" type="text" placeholder="Bank code"/>
+                        </div>
+                        <div class="row f-row mb-2 mx-0 ">
+                            <input  class="form-input" type="text" placeholder="Bank Account number"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="row p-3">
+                    <div class="col-md-6">
+                        <h5 class="mb-3 w-full"> Account for SEPA direct debits</h5>
+                        <div class="row f-row mb-2 mx-0 ">
+                            <input  class="form-input" type="text" placeholder="IBAN"/>
+                        </div>
+                        <div class="row f-row mb-2 mx-0 ">
+                            <input  class="form-input" type="text" placeholder="BIC"/>
+                        </div>
+                        <div class="row f-row mb-2 mx-0 ">
+                            <input  class="form-input" type="text" placeholder="Cridet ID"/>
+                        </div>
+                        <div class="row f-row mb-2 mx-0 ">
+                            <textarea class="form-input-text" placeholder="Usage"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="row px-4 pt-3 pb-4 mb-5 bg-white">
+                    <button class="c-button py-2">Accept Changes</button>
+                </div>
+            </div>
+        </ng-template>
+      </li>
+      <li [ngbNavItem]="2">
+        <a ngbNavLink>Base Data</a>
+        <ng-template ngbNavContent>
+          
+            <div class="bg-white">
+                <div class="row p-3">
+                    <h5 class="text-black w-full px-3">My Details</h5>
+                    <div class="col-md-6">
+                        <div class="row f-row">
+                            <div class="col-50">
+                                <input  class="form-input-half " type="text" value="waseem"/>
+                            </div>
+                            <div class="col-50">
+                                <input  class="form-input-half" type="text" value="Abbas"/>
+                            </div>
+                        </div>
+                        <div class="row f-row">
+                            <div class="col-50">
+                                <input  class="form-input-half " type="text" value="23253"/>
+                            </div>
+                            <div class="col-50">
+                                <input  class="form-input-half" type="text" value="islamabad"/>
+                            </div>
+                        </div>
+                        <div class="row f-row my-2">
+                            <input  class="form-input" type="text" value="abbas@email.com"/>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="row f-row my-2">
+                            <input  class="form-input" type="text" value="address 1"/>
+                        </div>
+                        <div class="row f-row mt-3">
+                            <input  class="form-input" type="text" value="address 1"/>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row p-3">
+                    <h5 class="text-black w-full px-3">Backery Details</h5>
+                    <div class="col-md-6">
+                        <div class="row f-row my-2">
+                            <input  class="form-input" type="text" placeholder="waseem"/>
+                        </div>
+                        <div class="row f-row">
+                            <div class="col-50">
+                                <input  class="form-input-half " type="text" placeholder="21322"/>
+                            </div>
+                            <div class="col-50">
+                                <input  class="form-input-half" type="text" placeholder="Islamabad"/>
+                            </div>
+                        </div>
+                        <div class="row f-row my-2">
+                            <input  class="form-input" type="text" placeholder="123142123"/>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="row f-row my-2">
+                            <input  class="form-input" type="text" placeholder="123 Street abc"/>
+                        </div>
+                        <div class="row f-row mt-3">
+                            <input  class="form-input" type="text" placeholder="abas@email.com"/>
+                        </div>
+                        <div class="row f-row mt-3">
+                            <input  class="form-input" type="text" placeholder="12312312"/>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row p-3">
+                    <h5 class="text-black w-full px-3">Sttings</h5>
+                    <div class="col-md-6">
+                        <div class="row f-row my-2">
+                            <input  class="form-input" type="text" placeholder="Number of sample products"/>
+                        </div>
+                        <h5 class="text-black w-full p-0 my-3">Global Delivery Charges</h5>
+                        <div class="row f-row mb-2">
+                            <label class="lft pt-3 f5">Working Days </label>
+                            <input  class="form-input-mini mx-1" value="1.1"/>
+                            <label class="lft pt-3">EUR </label>
+                        </div>
+                        <div class="row f-row mb-2">
+                            <label class="lft pt-3 f5">Saturday </label>
+                            <input  class="form-input-mini mx-1" value="1.45"/>
+                            <label class="lft pt-3">EUR </label>
+                        </div>
+                        <div class="row f-row mb-2 ">
+                            <label class="lft pt-3 f5">Sunday </label>
+                            <input  class="form-input-mini mx-1" value="1.45"/>
+                            <label class="lft pt-3">EUR </label>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        
+                    </div>
+                    <div class="form-check mt-4">
+                        <button class="c-button py-2">Accept Changes</button>
+                    </div>
+                </div>
+            </div>
+
+        </ng-template>
+      </li>
+      <li [ngbNavItem]="3">
+        <a ngbNavLink>Billing Details</a>
+        <ng-template ngbNavContent>
+          <div class="bg-white">
+            <div class="row p-3">
+                <div class="col-md-6">
+                    
+                    <div class="row f-row my-2">
+                        <input  class="form-input" type="text" value="express broetchen"/>
+                    </div>
+                    <div class="row f-row my-2">
+                        <input  class="form-input" type="text" value="123141212321"/>
+                    </div>
+                    <div class="row f-row my-2">
+                        <input  class="form-input" type="text" value="expressbroetchen@email.com"/>
+                    </div>
+                    <div class="row f-row my-2">
+                        <input  class="form-input" type="text" value="www.expressbroetchen.com"/>
+                    </div>
+                    <div class="row f-row my-2">
+                        <input  class="form-input" type="text" value="Free field 2 order fax"/>
+                    </div>
+                    <div class="row f-row my-2">
+                        <textarea class="form-input-text" placeholder="Email Signature"></textarea>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="row f-row my-2">
+                        <input  class="form-input" type="text" value="12312421"/>
+                    </div>
+                    <div class="row f-row mt-3">
+                        <input  class="form-input" type="text" value="further address data"/>
+                    </div>
+                    <div class="row f-row my-4 form-checkbox">
+                        <input type="checkbox" id="fee3">
+                        <label for="fee3">VAT Exempt</label>
+                    </div>
+                    <div class="row f-row mt-3">
+                        <input  class="form-input" type="text" value="free field 1 order fax"/>
+                    </div>
+                    <div class="row f-row mt-3">
+                        <input  class="form-input" type="text" value="other 1"/>
+                    </div>
+                    <div class="row f-row mt-3">
+                        <input  class="form-input" type="text" value="other 2"/>
+                    </div>
+                </div>
+            </div>
+            <div class="row p-0 m-0">
+                <h5 class="text-black w-full px-3 py-4">Payment Option accepted</h5>
+                <div class="col-md-4">
+                    <h6 class="text-black w-full ">Payment options custom portal</h6>
+                    <div class="row p-0 mx-0 f-row my-1 form-checkbox">
+                        <input type="checkbox" id="fee3">
+                        <label for="fee3">Cash Payments</label>
+                    </div>
+                    <div class="row p-0 mx-0 f-row my-1 form-checkbox">
+                        <input type="checkbox" id="fee3" checked>
+                        <label for="fee3">Direct debits</label>
+                    </div>
+                    <div class="row p-0 mx-0 f-row my-1 form-checkbox">
+                        <input type="checkbox" id="fee3" checked>
+                        <label for="fee3">Transfer</label>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <h6 class="text-black w-full">Payment options Supplier</h6>
+                    <div class="row p-0 mx-0 f-row my-1 form-checkbox">
+                        <input type="checkbox" id="fee3">
+                        <label for="fee3">Cash Payments</label>
+                    </div>
+                    <div class="row p-0 mx-0 f-row my-1 form-checkbox">
+                        <input type="checkbox" id="fee3" checked>
+                        <label for="fee3">Direct debits</label>
+                    </div>
+                    <div class="row p-0 mx-0 f-row my-1 form-checkbox">
+                        <input type="checkbox" id="fee3" checked>
+                        <label for="fee3">Transfer</label>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="text-black w-full "><h6 class="text-black w-full px-3">Payment options custom portal</h6>
+                    <div class="row p-0 mx-0 f-row my-1 form-checkbox">
+                        <input type="checkbox" id="fee3">
+                        <label for="fee3">Cash Payments</label>
+                    </div>
+                    <div class="row p-0 mx-0 f-row my-1 form-checkbox">
+                        <input type="checkbox" id="fee3" checked>
+                        <label for="fee3">Direct debits</label>
+                    </div>
+                    <div class="row p-0 mx-0 f-row my-1 form-checkbox">
+                        <input type="checkbox" id="fee3" checked>
+                        <label for="fee3">Transfer</label>
+                    </div></div>
+                    
+                </div>
+                <div class="form-check my-4">
+                    <button class="c-button py-2">Accept Changes</button>
+                </div>
+            </div>
+          </div>
+        </ng-template>
+      </li>
+      <li [ngbNavItem]="4">
+        <a ngbNavLink>Auto, Fax & Mail</a>
+        <ng-template ngbNavContent>
+          this tab 3
+        </ng-template>
+      </li>
+      <li [ngbNavItem]="5">
+        <a ngbNavLink>Deadline </a>
+        <ng-template ngbNavContent>
+          this tab 3
+        </ng-template>
+      </li>
+      <li [ngbNavItem]="6">
+        <a ngbNavLink>Remainder</a>
+        <ng-template ngbNavContent>
+          this tab 3
+        </ng-template>
+      </li>
+      <li [ngbNavItem]="7">
+        <a ngbNavLink>Serial Letter</a>
+        <ng-template ngbNavContent>
+            <div class="bg-white">
+                <div class="row p-3">
+                    <div class="col-md-6">
+                        
+                        <div class="row f-row my-2">
+                            <input  class="form-input" type="text" value="express broetchen"/>
+                        </div>
+                        <div class="row f-row mt-3">
+                            <input  class="form-input" type="text" value="Gabrial sufi"/>
+                        </div>
+                        <div class="row f-row mt-3">
+                            <input  class="form-input" type="text" value="wartair dargai"/>
+                        </div>
+                        <div class="row f-row mt-3">
+                            <input  class="form-input" type="text" value="12312 islamabad"/>
+                        </div>
+                        <div class="row f-row mt-3">
+                            <input  class="form-input" type="text" value="Tax number "/>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="row f-row my-2">
+                            <input  class="form-input" type="text" value="123112421"/>
+                        </div>
+                        <div class="row f-row mt-3">
+                            <input  class="form-input" type="text" value="212323112312"/>
+                        </div>
+                        <div class="row f-row mt-3">
+                            <input  class="form-input" type="text" value="expressbroetchen@gmail.com"/>
+                        </div>
+                        <div class="row f-row mt-3">
+                            <input  class="form-input" type="text" value="www.expressbroetchen.com"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="row p-0 m-0">
+                    <h5 class="text-black w-full px-3 py-4">Payment Option accepted</h5>
+                    <button class="c-button bg-gray txt-black mr-3">
+                        <img src="../../../../assets/images/bread/31.png" class="mr-2"/>
+                        Download
+                    </button >
+                    <button class="c-button bg-gray txt-black">
+                        <img src="../../../../assets/images/bread/35.png" class="mr-2"/>
+                        Upload new template
+                    </button>
+                </div>
+                <div class="form-check my-4">
+                    <button class="c-button py-2">Accept Changes</button>
+                </div>
+              </div>
+        </ng-template>
+      </li>
+  
+    </ul>
+    
+    <div [ngbNavOutlet]="nav" class="mt-2"></div>
+  
+  </div>
