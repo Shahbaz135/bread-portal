@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, HostListener } from '@angular/core';
 import { NavService, Menu } from '../../services/nav.service';
 import { CustomizerService } from '../../services/customizer.service';
 
@@ -19,8 +19,22 @@ export class HeaderComponent implements OnInit {
   public openSearch
 
   @Output() rightSidebarEvent = new EventEmitter<boolean>();
+
+  // Windows width
+	@HostListener('window:resize', ['$event'])
+	onResize(event?) {
+    if (window.innerWidth < 1000) {
+      this.navServices.closeSidebar = true;
+      this.navServices.sidebarToggle = false;
+    } else {
+      this.navServices.closeSidebar = false;
+      this.navServices.sidebarToggle = true;
+    }
+	}
+
  
   constructor(public navServices: NavService, public customize: CustomizerService) {
+    // this.onResize();
   }
 
   ngOnInit() {

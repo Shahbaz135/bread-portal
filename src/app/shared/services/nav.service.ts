@@ -27,7 +27,7 @@ export class NavService {
 
 	constructor() {
 	  this.onResize();
-	  if (this.screenWidth < 1199) {
+	  if (this.screenWidth < 1000) {
 		this.closeSidebar = true;
 		this.sidebarToggle = false;
 	  }
