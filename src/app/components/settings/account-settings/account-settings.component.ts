@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./account-settings.component.scss']
 })
 export class AccountSettingsComponent implements OnInit {
-  active = 2;
+  active = 1;
   constructor() { }
 
   ngOnInit(): void {

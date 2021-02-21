@@ -272,19 +272,269 @@
       <li [ngbNavItem]="4">
         <a ngbNavLink>Auto, Fax & Mail</a>
         <ng-template ngbNavContent>
-          this tab 3
+            <div class="bg-white">
+                <div class="row p-3">
+                    <div class="col-md-6">
+                        <h5 class="mb-3 w-full"> Automatic Fax Transmission</h5>
+                        <div class="row f-row my-2 form-checkbox">
+                            <input type="checkbox" id="act1">
+                            <label for="act1">Activated</label>
+                        </div>
+                        <div class="row f-row my-2">
+                            <label class="txt-bold f-big w-full text-left">Time of fax</label>
+                            <select class="form-input-mini">
+                                <option value="">01</option>
+                                <option value="">02</option>
+                                <option value="">03</option>
+                                <option value="">04</option>
+                                <option value="">05</option>
+                                <option value="">06</option>
+                                <option value="">07</option>
+                                <option value="">08</option>
+                            </select>
+                            <span class="txt-bold f-big mx-2 py-3"> : </span>
+                            <select class="form-input-mini">
+                                <option value="">01</option>
+                                <option value="">02</option>
+                                <option value="">03</option>
+                                <option value="">04</option>
+                                <option value="">05</option>
+                                <option value="">06</option>
+                                <option value="">07</option>
+                                <option value="">08</option>
+                            </select>
+                        </div>
+                        <div class="row f-row mb-2 mx-0 ">
+                            <textarea class="form-input-text" placeholder="details"></textarea>
+                        </div>  
+                    </div>
+                    <div class="col-md-6">
+                        <h5 class="mb-3 w-full"> Automatic Fax Transmission</h5>
+                        <p class="my-2 f-big">
+                            Lurom ipsum is simple dummy text content for placement.
+                            Lurom ipsum is simple dummy text content for placement.
+                            Lurom ipsum is simple dummy text content for placement.
+                            Lurom ipsum is simple dummy text content for placement.
+                            Lurom ipsum is simple dummy text content for placement.
+                        </p>
+                    </div>
+                </div>
+                <div class="row p-3">
+                    <div class="col-md-6">
+                        <h5 class="mb-2 w-full"> Automatic Mailing</h5>
+                        <div class="row f-row my-2 form-checkbox">
+                            <input type="checkbox" id="act2">
+                            <label for="act2">Activated</label>
+                        </div>
+                        <div class="row f-row my-2">
+                            <label class="txt-bold f-big w-full text-left">Time of fax</label>
+                            <select class="form-input-mini">
+                                <option value="">01</option>
+                                <option value="">02</option>
+                                <option value="">03</option>
+                                <option value="">04</option>
+                                <option value="">05</option>
+                                <option value="">06</option>
+                                <option value="">07</option>
+                                <option value="">08</option>
+                            </select>
+                            <span class="txt-bold f-big mx-2 py-3"> : </span>
+                            <select class="form-input-mini">
+                                <option value="">01</option>
+                                <option value="">02</option>
+                                <option value="">03</option>
+                                <option value="">04</option>
+                                <option value="">05</option>
+                                <option value="">06</option>
+                                <option value="">07</option>
+                                <option value="">08</option>
+                            </select>
+                        </div>
+                        <div class="row f-row mb-2 mx-0 ">
+                            <textarea class="form-input-text" placeholder="Recipt fax number"></textarea>
+                        </div>
+                        <div class="row f-row my-3">
+                            <input  class="form-input" type="text" value="broetchengold@email.com"/>
+                        </div>
+                        <div class="row p-0 mx-0 f-row my-1 form-checkbox" >
+                            <input type="checkbox" id="status1" checked>
+                            <label for="status1">Status notification in the event of failed fax attempts</label>
+                        </div>
+                        <div class="row p-0 mx-0 f-row my-1 form-checkbox">
+                            <input type="checkbox" id="status2" checked>
+                            <label for="status2">Send status notification of successful fax sent</label>
+                        </div>
+                        <div class="row p-0 mx-0 f-row my-1 form-checkbox">
+                            <input type="checkbox" id="status3" checked>
+                            <label for="status3">Automatically resend failed faxes</label>
+                        </div> 
+                        <div class="form-check px-0 my-4">
+                            <button class="c-button py-2">Accept Changes</button>
+                        </div> 
+                    </div>
+                </div>
+            </div>
         </ng-template>
       </li>
       <li [ngbNavItem]="5">
         <a ngbNavLink>Deadline </a>
         <ng-template ngbNavContent>
-          this tab 3
+            <div class="bg-white">
+                <div class="row p-3  mx-3">
+                    <div class="row f-row my-2">
+                        
+                        <label class="txt-bold f-big py-3 mr-2">Time of acceptance deadline</label>
+                        <select class="form-input-mini">
+                            <option value="">01</option>
+                            <option value="">02</option>
+                            <option value="">03</option>
+                            <option value="">04</option>
+                            <option value="">05</option>
+                            <option value="">06</option>
+                            <option value="">07</option>
+                            <option value="">08</option>
+                        </select>
+                        <span class="txt-bold f-big mx-2 py-3"> : </span>
+                        <select class="form-input-mini">
+                            <option value="">01</option>
+                            <option value="">02</option>
+                            <option value="">03</option>
+                            <option value="">04</option>
+                            <option value="">05</option>
+                            <option value="">06</option>
+                            <option value="">07</option>
+                            <option value="">08</option>
+                        </select>
+                    </div>
+                    <div class="b-01 w-full">
+                        <ul>
+                        <li class="">
+                        <input type="radio" id="rd1" name="selector">
+                        <label for="rd1">Buld order on the weekend</label>
+                        </li>
+                        <li class="">
+                        <input type="radio" id="rd2" name="selector">
+                        <label for="rd2">Order possible any day</label>
+                        </li>
+                        </ul>
+                    </div>
+                    <div class="row f-row my-2">
+                        <label class="txt-bold f-big py-3 mr-2">Send buld order on</label>
+                        <select class="form-input-mini">
+                            <option value="">Friday</option>
+                            <option value="">Saturday</option>
+                            <option value="">Sunday</option>
+                            <option value="">Monday</option>
+                        </select>
+                    </div>
+                    <div class="row f-row my-2">
+                        <label class="txt-bold f-big py-3 mr-2">Collective order is valid Until</label>
+                        <select class="form-input-mini">
+                            <option value="">Friday</option>
+                            <option value="">Saturday</option>
+                            <option value="">Sunday</option>
+                            <option value="">Monday</option>
+                        </select>
+                    </div>
+                    <div class="form-check px-0 my-4">
+                        <button class="c-button py-2">Accept Changes</button>
+                    </div> 
+                </div>
+            </div>
         </ng-template>
       </li>
       <li [ngbNavItem]="6">
         <a ngbNavLink>Remainder</a>
         <ng-template ngbNavContent>
-          this tab 3
+            <div class="bg-white">
+                <div class="row p-3">
+                    <div class="col-md-6">
+                        <h5 class="my-2 w-full"> Memory</h5>
+                        <div class="row f-row my-2">
+                            <input  class="form-input" type="text" value="express broetchen"/>
+                        </div>
+                        <div class="row f-row mt-3">
+                            <textarea class="form-input-text text-left">Lurom ipsum this just dummy text.Lurom ipsum this just dummy text.Lurom ipsum this just dummy text. Lurom ipsum this just dummy text.Lurom ipsum this just dummy text
+                            </textarea>
+                        </div>
+                        
+                    </div>
+                    <div class="col-md-6">
+                        <h5 class="mb-3 w-full"> Automatic Fax Transmission</h5>
+                        <p class="my-2 f-big">
+                            Lurom ipsum is simple dummy text content for placement.
+                            Lurom ipsum is simple dummy text content for placement.
+                            Lurom ipsum is simple dummy text content for placement.
+                            Lurom ipsum is simple dummy text content for placement.
+                            Lurom ipsum is simple dummy text content for placement.
+                        </p>
+                    </div>
+                </div>
+                <div class="row p-3">
+                    <div class="col-md-6">
+                        <h5 class="my-3 w-full my-2"> 1 warning</h5>
+                        <div class="row f-row my-2">
+                            <input  class="form-input" type="text" value="1 warning"/>
+                        </div>
+                        <div class="row f-row mt-3">
+                            <textarea class="form-input-text text-left">Lurom ipsum this just dummy text.Lurom ipsum this just dummy text.Lurom ipsum this just dummy text. Lurom ipsum this just dummy text.Lurom ipsum this just dummy text
+                            </textarea>
+                        </div>
+                        <div class="row f-row mt-3">
+                            <input  class="form-input" type="text" value="2"/>
+                        </div>
+                        <div class="row f-row mt-3">
+                            <input  class="form-input" type="text" value="12 "/>
+                        </div>
+                        <div class="row f-row mt-3">
+                            <input  class="form-input" type="text" value="Pay the full amount upto the {first} "/>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <h5 class="my-3 w-full my-2"> 2 warning</h5>
+                        <div class="row f-row my-2">
+                            <input  class="form-input" type="text" value="1 warning"/>
+                        </div>
+                        <div class="row f-row mt-3">
+                            <textarea class="form-input-text text-left">Lurom ipsum this just dummy text.Lurom ipsum this just dummy text.Lurom ipsum this just dummy text. Lurom ipsum this just dummy text.Lurom ipsum this just dummy text
+                            </textarea>
+                        </div>
+                        <div class="row f-row mt-3">
+                            <input  class="form-input" type="text" value="2"/>
+                        </div>
+                        <div class="row f-row mt-3">
+                            <input  class="form-input" type="text" value="12 "/>
+                        </div>
+                        <div class="row f-row mt-3">
+                            <input  class="form-input" type="text" value="Pay the full amount upto the {first} "/>
+                        </div>
+                    </div>
+                </div>
+                <div class="row p-3">
+                    <div class="col-md-6">
+                        <h5 class="my-3 w-full my-2"> REturn Debit info</h5>
+                        <div class="row f-row my-2">
+                            <input  class="form-input" type="text" value="Return debit of you bread delivery invoice"/>
+                        </div>
+                        <div class="row f-row mt-3">
+                            <textarea class="form-input-text text-left">Lurom ipsum this just dummy text.Lurom ipsum this just dummy text.Lurom ipsum this just dummy text. Lurom ipsum this just dummy text.Lurom ipsum this just dummy text
+                            </textarea>
+                        </div>
+                        <div class="row f-row mt-3">
+                            <input  class="form-input" type="text" value="2"/>
+                        </div>
+                        <div class="row f-row mt-3">
+                            <input  class="form-input" type="text" value="12 "/>
+                        </div>
+                        <div class="row f-row mt-3">
+                            <input  class="form-input" type="text" value="Pay the full amount upto the {first} "/>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-check my-4">
+                    <button class="c-button py-2">Accept Changes</button>
+                </div>
+              </div>
         </ng-template>
       </li>
       <li [ngbNavItem]="7">
