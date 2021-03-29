@@ -1,21 +1,21 @@
 <div class="login-form">
-    <form class="">
+    <!-- <form class=""> -->
         <h3 class="text-center w-full my-5">Bread Delivery Service Managemente System </h3>
         <h4 class="my-3">LOGIN</h4>
         <div class="row f-row mx-0 my-3">
             <label class="lft txt-bold f-big w-full text-left">Email</label>
-            <input  class="form-input" type="text" placeholder="abc@email.com" autocomplete="off"/>
+            <input [(ngModel)]="user.email"  class="form-input" type="email" placeholder="abc@email.com" autocomplete="off"/>
         </div>
         <div class="row f-row my-3 mx-0">
-            <label class="lft txt-bold f-big w-full text-left">Email</label>
-            <input  class="form-input" type="password" placeholder="*******" autocomplete="off"/>
+            <label class="lft txt-bold f-big w-full text-left">Password</label>
+            <input [(ngModel)]="user.password" class="form-input" type="password" placeholder="*******" autocomplete="off"/>
         </div>
-        <div class="row p-0 mx-0 f-row my-3 form-checkbox">
+        <!-- <div class="row p-0 mx-0 f-row my-3 form-checkbox">
             <input type="checkbox" id="pass">
             <label for="pass">Remember Password</label>
-        </div> 
+        </div>  -->
         <div class="form-check px-0 my-4 text-center w-full">
-            <a  [routerLink]="['/dashboard']"><button class="l-button  py-2">LOGIN</button></a>
+            <a  (click)="login()"><button class="l-button  py-2">LOGIN</button></a>
         </div> 
-    </form>
+    <!-- </form> -->
 </div>

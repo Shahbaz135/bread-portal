@@ -8,6 +8,8 @@ import { ContentComponent } from './layouts/content/content.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AuthComponent } from './layouts/auth/auth.component';
 import { SearchComponent } from './layouts/search/search.component';
+import { WrapHttpService } from './shared/services/common/wrap-http.service';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -22,9 +24,10 @@ import { SearchComponent } from './layouts/search/search.component';
     AppRoutingModule,
     SharedModule,
     NgbModule,
-    NgbModule
+    NgbModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [WrapHttpService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

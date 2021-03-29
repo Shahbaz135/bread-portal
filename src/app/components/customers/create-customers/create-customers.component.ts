@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { HelperService } from 'src/app/shared/services/helper.service';
 
 @Component({
   selector: 'app-create-customers',
@@ -7,7 +8,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CreateCustomersComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private helperService: HelperService
+  ) { }
 
   ngOnInit(): void {
   }

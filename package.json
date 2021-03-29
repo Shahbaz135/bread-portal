@@ -24,8 +24,10 @@
     "angular-font-awesome": "^3.1.2",
     "bootstrap": "^4.6.0",
     "font-awesome": "^4.7.0",
+    "ngx-spinner": "^10.0.1",
     "rxjs": "~6.6.0",
     "screenfull": "^5.0.2",
+    "sweetalert2": "^10.15.5",
     "tslib": "^2.0.0",
     "zone.js": "~0.10.3"
   },
