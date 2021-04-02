@@ -8,6 +8,8 @@ import { WebCustomersComponent } from './web-customers/web-customers.component';
 import { CreateCustomersComponent } from './create-customers/create-customers.component';
 import { NgbModule, NgbNavModule } from '@ng-bootstrap/ng-bootstrap';
 import { SearchCustomersComponent } from './search-customers/search-customers.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 @NgModule({
   declarations: [CustomersComponent, TrailCustomersComponent, WebCustomersComponent, CreateCustomersComponent, SearchCustomersComponent],
@@ -15,7 +17,10 @@ import { SearchCustomersComponent } from './search-customers/search-customers.co
     CommonModule,
     CustomersRoutingModule,
     NgbNavModule,
-    NgbModule
+    NgbModule,
+    FormsModule,
+    ReactiveFormsModule,
+    NgxSpinnerModule
   ]
 })
 export class CustomersModule { }

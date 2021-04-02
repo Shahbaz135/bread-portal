@@ -1,254 +1,293 @@
 <div class="row px-3 pt-3 pb-2">
     <h3>Create Customer</h3>    
 </div>
-<form>
-<div class="wraper px-3 my-2 py-4 bg-white">
-    <div class="row p-0 m-0">
-        <h3 class="text-bluish w-full brdr-dash">Base Data</h3>
-        <div class="col-md-6 p-0 m-0">
-            <div class="row f-row">
-                <div class="col-50">
-                    <input  class="form-input-half " type="text" placeholder="Salutaion"/>
+<ngx-spinner
+  bdColor="rgba(51,51,51,0.8)"
+  size="medium"
+  color="#fff"
+  type="ball-scale-multiple"
+>
+  <p style="font-size: 20px; color: white">{{ loadingText }}</p>
+</ngx-spinner>
+<form [formGroup]="customerForm">
+    <div class="wraper px-3 my-2 py-4 bg-white">
+        <div class="row p-0 m-0">
+            <h3 class="text-bluish w-full brdr-dash">Base Data</h3>
+            <div class="col-md-6 p-0 m-0">
+                <div class="row f-row">
+                    <div class="col-50">
+                        <div class="row f-row mb-2">
+                            <select class="form-input" formControlName="salutation">
+                                <option value="" selected disabled>Salutation</option>
+                                <option value="Mr">Mr</option>
+                                <option value="Ms">Ms</option>
+                                <option value="Mrs">Mrs</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-50">
+                        <input  class="form-input-half" formControlName="academicTitle" type="text" placeholder="Academic Title"/>
+                    </div>
                 </div>
-                <div class="col-50">
-                    <input  class="form-input-half" type="text" placeholder="Academic Title"/>
+                <div class="row f-row mb-2">
+                    <input  class="form-input" formControlName="houseStreetNumber" type="text" placeholder="Street"/>
+                    <span *ngIf="cf.houseStreetNumber.touched && cf.houseStreetNumber.invalid">
+                        <p class="text-danger">{{houseStreetNumberError()}}</p>
+                    </span>
+                </div>
+                <div class="row f-row mt-2">
+                    <input  class="form-input" formControlName="email" type="text" placeholder="Email"/>
+                    <span *ngIf="cf.email.touched && cf.email.invalid">
+                        <p class="text-danger">{{emailError()}}</p>
+                    </span>
+                </div>
+                <div class="row f-row">
+                    <div class="col-50">
+                        <input  class="form-input-half" formControlName="fax" type="text" placeholder="Fax"/>
+                    </div>
+                    <div class="col-50">
+                        <input  class="form-input-half" formControlName="phone" type="text" placeholder="Mobile Number"/>
+                        <span *ngIf="cf.phone.touched && cf.phone.invalid">
+                            <p class="text-danger">{{phoneError()}}</p>
+                        </span>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="col-md-6 ">
+                <div class="row f-row">
+                    <div class="col-50">
+                        <input  class="form-input-half" formControlName="fName" type="text" placeholder="First Name"/>
+                        <span *ngIf="cf.fName.touched && cf.fName.invalid">
+                            <p class="text-danger">{{fNameError()}}</p>
+                        </span>
+                    </div>
+                    <div class="col-50">
+                        <input  class="form-input-half" formControlName="lName" type="text" placeholder="Last Name"/>
+                        <span *ngIf="cf.lName.touched && cf.lName.invalid">
+                            <p class="text-danger">{{lNameError()}}</p>
+                        </span>
+                    </div>
+                </div>
+                <div class="row f-row">
+                    <div class="col-50">
+                        <input  class="form-input-half" formControlName="postalCode" type="text" placeholder="Postcode"/>
+                        <span *ngIf="cf.postalCode.touched && cf.postalCode.invalid">
+                            <p class="text-danger">{{postalCodeError()}}</p>
+                        </span>
+                    </div>
+                    <div class="col-50">
+                        <input  class="form-input-half" formControlName="town" type="text" placeholder="place"/>
+                    </div>
+                </div>
+                <div class="row f-row">
+                    <div class="col-50">
+                        <input  class="form-input-half" formControlName="deliverNotes" type="text" placeholder="Delivery Note"/>
+                    </div>
+                    <div class="col-50">
+                        <input  class="form-input-half" formControlName="telePhone" type="text" placeholder="Telephone"/>
+                    </div>
+                </div>
+                <div class="row f-row">
+                    <div class="col-50">
+                        <input  class="form-input-half" formControlName="telePhone2" type="text" placeholder="Telephone 2"/>
+                    </div>
                 </div>
             </div>
-            <div class="row f-row mb-2">
-                <input  class="form-input" type="text" placeholder="Street"/>
-            </div>
-            <div class="row f-row mt-2">
-                <input  class="form-input" type="text" placeholder="Email"/>
-            </div>
-            <div class="row f-row">
-                <div class="col-50">
-                    <input  class="form-input-half " type="text" placeholder="Fax"/>
+        </div>
+        <div class="row p-0 m-0">
+            <div class="col-md-6 p-0 m-0">
+                <h3 class="text-bluish w-full brdr-dash">Bank Details</h3>
+                <div class="row f-row mb-2">
+                    <input  class="form-input" formControlName="bankAccountOwner" type="text" placeholder="Account Owner"/>
                 </div>
-                <div class="col-50">
-                    <input  class="form-input-half" type="text" placeholder="Mobile Number"/>
+                <div class="row f-row mb-2">
+                    <input  class="form-input" formControlName="iban" type="text" placeholder="IBAN"/>
+                </div>
+                <div class="row f-row mb-2">
+                    <input  class="form-input" type="text" placeholder="Free Field"/>
+                </div>
+                <div class="row f-row mb-2">
+                    <select class="form-input" formControlName="code">
+                        <option value="" selected disabled>Customer Code</option>
+                        <option value="">No Marking</option>
+                        <option value="-D">-D &nbsp; Regular Customer</option>
+                        <option value="*D">*D &nbsp; Regular Customer, Terminated</option>
+                        <option value="#D">#D &nbsp; Terminated for resubmission</option>
+                        <option value="-De">-De &nbsp; Ordered when needed</option>
+                        <option value="-X">-X &nbsp; Delivery Stop</option>
+                    </select>
+                </div>
+                <div class="row f-row mb-2" >
+                    <input  class="form-input" type="text" placeholder="Free Field"/>
+                </div>
+                <div class="row f-row mb-2">
+                    <input  class="form-input" type="text" placeholder="Free Field"/>
+                </div>
+            </div>
+
+            <div class="col-md-6 ">
+                <h3 class="text-bluish w-full brdr-dash">Tours</h3>
+                <div class="row f-row mb-2">
+                    <input  class="form-input" formControlName="sortingWeekDays" type="text" placeholder="Sorting on working days"/>
+                </div>
+                <div class="row f-row mb-2">
+                    <select class="form-input" formControlName="tourWeekDays">
+                        <option value="0" disabled>please chose 1 hour</option>
+                        <option value="code">Code</option>
+                        <option value="code">Code</option>
+                        <option value="code">Code</option>
+                        <option value="code">Code</option>
+                        <option value="code">Code</option>
+                    </select>
+                </div>
+                <div class="row f-row mb-2" >
+                    <input  class="form-input" formControlName="sortingSaturday" type="text" placeholder="Sorting on Saturday"/>
+                </div>
+                <div class="row f-row mb-2">
+                    <select class="form-input" formControlName="tourSaturday">
+                        <option value="0" disabled>please chose 1 hour</option>
+                        <option value="code">Code</option>
+                        <option value="code">Code</option>
+                        <option value="code">Code</option>
+                        <option value="code">Code</option>
+                        <option value="code">Code</option>
+                    </select>
+                </div>
+                <div class="row f-row mb-2">
+                    <input  class="form-input" formControlName="sortingSunday" type="text" placeholder="Sorting on Sunday"/>
+                </div>
+                <div class="row f-row mb-2">
+                    <select class="form-input" formControlName="tourSunday">
+                        <option value="0" disabled>please chose 1 hour</option>
+                        <option value="code">Code</option>
+                        <option value="code">Code</option>
+                        <option value="code">Code</option>
+                        <option value="code">Code</option>
+                        <option value="code">Code</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="row p-0 m-0">
+            <div class="col-md-6 ">
+                <h3 class="text-bluish w-full brdr-dash">Fees</h3>
+                <div class="row f-row my-3 form-checkbox">
+                    <input type="checkbox" id="fee" formControlName="isDifferentDeliveryFee">
+                    <label for="fee">Different Delivery Fee</label>
+                </div>
+                <div class="row f-row mb-2">
+                    <label class="lft pt-2 f5">Working Days </label>
+                    <input  class="form-input-mini mx-1" type="text" formControlName="feeWorkingDays"/>
+                    <label class="lft pt-3">EUR </label>
+                </div>
+                <div class="row f-row mb-2">
+                    <label class="lft pt-2 f5">Saturday </label>
+                    <input  class="form-input-mini mx-1" type="text" formControlName="feeSaturday"/>
+                    <label class="lft pt-3">EUR </label>
+                </div>
+                <div class="row f-row mb-2 ">
+                    <label class="lft pt-2 f5">Sunday </label>
+                    <input  class="form-input-mini mx-1" type="text" formControlName="feeSunday"/>
+                    <label class="lft pt-3">EUR </label>
+                </div>
+
+                <h3 class="text-bluish w-full brdr-dash mt-3">Billing Address</h3>
+                <div class="row f-row">
+                    <div class="col-50">
+                        <input  class="form-input-half" formControlName="company" type="text" placeholder="Company (Invoices)"/>
+                    </div>
+                    <div class="col-50">
+                        <input  class="form-input-half" formControlName="companyPostal" type="text" placeholder="Postcose"/>
+                        <span *ngIf="cf.companyPostal.touched && cf.companyPostal.invalid">
+                            <p class="text-danger">{{companyPostalCodeError()}}</p>
+                        </span>
+                    </div>
+                </div>
+                <div class="row f-row">
+                    <div class="col-50">
+                        <input  class="form-input-half" formControlName="companyFName" type="text" placeholder="First Name"/>
+                    </div>
+                    <div class="col-50">
+                        <input  class="form-input-half" formControlName="companyPlace" type="text" placeholder="Place"/>
+                    </div>
+                </div>
+                <div class="row f-row">
+                    <div class="col-50">
+                        <input  class="form-input-half" formControlName="companyLName" type="text" placeholder="Last Name"/>
+                    </div>
+                    <div class="col-50">
+                        <input  class="form-input-half" formControlName="companyHouseStreetNumber" type="text" placeholder="Street + No"/>
+                    </div>
+                </div>
+                <div class="row f-row">
+                    <div class="col-50">
+                    <select class="form-input-half" formControlName="partnerId">
+                        <option value="0" disabled>Customer</option>
+                        <option value="0" >Customer1</option>
+                        <option value="0" >Customer2</option>
+                        <option value="0" >Customer3</option>
+                        <option value="0" >Customer4</option>
+                    </select>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-6 ">
+                <h3 class="text-bluish w-full brdr-dash">Customer Login</h3>
+                <div class="b-01 mt-2 w-full">
+                    <ul>
+                        <li class="lft">
+                            <input type="radio" value=false formControlName="isActive" id="11-option" >
+                            <label for="11-option">Deactivated</label>
+                        </li>
+                        <li class="lft">
+                            <input type="radio" value=true formControlName="isActive" id="22-option">
+                            <label for="22-option">Login Possible</label>
+                        </li>
+                    </ul>
+                </div>
+                <h3 class="text-bluish w-full brdr-dash">payment Type</h3>
+                <div class="b-01 mt-2 w-full">
+                    <ul>
+                        <li class="lft">
+                            <input type="radio" value="direct-debit" formControlName="paymentType" id="33-option">
+                            <label for="33-option">Direct Debit</label>
+                        </li>
+                        <li class="lft">
+                            <input type="radio" value="bank-transfer" formControlName="paymentType" id="44-option">
+                            <label for="44-option">Bank Transfer</label>
+                        </li>
+                    </ul>
+                </div>
+                <div class="row f-row my-3 form-checkbox">
+                    <input type="checkbox" id="fees" formControlName="sendInvoiceByEmail">
+                    <label for="fees">Sending email by invoice is sufficient</label>
+                </div>
+                <h3 class="text-bluish w-full brdr-dash">Discount</h3>
+                <div class="row f-row my-3 form-checkbox">
+                    <input type="checkbox" id="fee3" formControlName="isDiscountActivated">
+                    <label for="fee3">Activated</label>
+                </div>
+                <div class="row f-row">
+                    <div class="col-50">
+                        <input  class="form-input-half" formControlName="discountHeight" type="text" placeholder="Height %"/>
+                    </div>
+                    <div class="col-50">
+                        <input  class="form-input-half" formControlName="discountReason" type="text" placeholder="Discount Reason"/>
+                    </div>
+                </div>
+                <h3 class="text-bluish w-full brdr-dash">Genral Notes</h3>
+                <div class="row f-row">
+                <textarea placeholder="Type Here....." class="form-input-text"></textarea>
                 </div>
             </div>
 
         </div>
-
-        <div class="col-md-6 ">
-            <div class="row f-row">
-                <div class="col-50">
-                    <input  class="form-input-half " type="text" placeholder="First Name"/>
-                </div>
-                <div class="col-50">
-                    <input  class="form-input-half" type="text" placeholder="Last Name"/>
-                </div>
-            </div>
-            <div class="row f-row">
-                <div class="col-50">
-                    <input  class="form-input-half " type="text" placeholder="Postcode"/>
-                </div>
-                <div class="col-50">
-                    <input  class="form-input-half" type="text" placeholder="place"/>
-                </div>
-            </div>
-            <div class="row f-row">
-                <div class="col-50">
-                    <input  class="form-input-half " type="text" placeholder="Delivery Note"/>
-                </div>
-                <div class="col-50">
-                    <input  class="form-input-half" type="text" placeholder="Telephone"/>
-                </div>
-            </div>
-            <div class="row f-row">
-                <div class="col-50">
-                    <input  class="form-input-half " type="text" placeholder="Telephone 2"/>
-                </div>
-            </div>
+        <div class="form-check mt-4">
+            <button class="c-button py-2" (click)="createCustomer()">Create Customer</button>
         </div>
     </div>
-    <div class="row p-0 m-0">
-        <div class="col-md-6 p-0 m-0">
-            <h3 class="text-bluish w-full brdr-dash">Bank Details</h3>
-            <div class="row f-row mb-2">
-                <input  class="form-input" type="text" placeholder="Account Owner"/>
-            </div>
-            <div class="row f-row mb-2">
-                <input  class="form-input" type="text" placeholder="IBAN"/>
-            </div>
-            <div class="row f-row mb-2">
-                <input  class="form-input" type="text" placeholder="Free Field"/>
-            </div>
-            <div class="row f-row mb-2">
-                <select class="form-input">
-                    <option value="code">Code</option>
-                    <option value="code">Code</option>
-                    <option value="code">Code</option>
-                    <option value="code">Code</option>
-                    <option value="code">Code</option>
-                    <option value="code">Code</option>
-                </select>
-            </div>
-            <div class="row f-row mb-2">
-                <input  class="form-input" type="text" placeholder="Free Field"/>
-            </div>
-            <div class="row f-row mb-2">
-                <input  class="form-input" type="text" placeholder="Free Field"/>
-            </div>
-        </div>
-
-        <div class="col-md-6 ">
-            <h3 class="text-bluish w-full brdr-dash">Tours</h3>
-            <div class="row f-row mb-2">
-                <input  class="form-input" type="text" placeholder="Sorting on working days"/>
-            </div>
-            <div class="row f-row mb-2">
-                <select class="form-input">
-                    <option value="0" disabled>please chose 1 hour</option>
-                    <option value="code">Code</option>
-                    <option value="code">Code</option>
-                    <option value="code">Code</option>
-                    <option value="code">Code</option>
-                    <option value="code">Code</option>
-                </select>
-            </div>
-            <div class="row f-row mb-2">
-                <input  class="form-input" type="text" placeholder="Sorting on Saturday"/>
-            </div>
-            <div class="row f-row mb-2">
-                <select class="form-input">
-                    <option value="0" disabled>please chose 1 hour</option>
-                    <option value="code">Code</option>
-                    <option value="code">Code</option>
-                    <option value="code">Code</option>
-                    <option value="code">Code</option>
-                    <option value="code">Code</option>
-                </select>
-            </div>
-            <div class="row f-row mb-2">
-                <input  class="form-input" type="text" placeholder="Sorting on Sunday"/>
-            </div>
-            <div class="row f-row mb-2">
-                <select class="form-input">
-                    <option value="0" disabled>please chose 1 hour</option>
-                    <option value="code">Code</option>
-                    <option value="code">Code</option>
-                    <option value="code">Code</option>
-                    <option value="code">Code</option>
-                    <option value="code">Code</option>
-                </select>
-            </div>
-        </div>
-    </div>
-
-    <div class="row p-0 m-0">
-        <div class="col-md-6 ">
-            <h3 class="text-bluish w-full brdr-dash">Fees</h3>
-            <div class="row f-row my-3 form-checkbox">
-                <input type="checkbox" id="fee">
-                <label for="fee">Different Delivery Fee</label>
-            </div>
-            <div class="row f-row mb-2">
-                <label class="lft pt-2 f5">Working Days </label>
-                <input  class="form-input-mini mx-1" type="text"/>
-                <label class="lft pt-3">EUR </label>
-            </div>
-            <div class="row f-row mb-2">
-                <label class="lft pt-2 f5">Saturday </label>
-                <input  class="form-input-mini mx-1" type="text"/>
-                <label class="lft pt-3">EUR </label>
-            </div>
-            <div class="row f-row mb-2 ">
-                <label class="lft pt-2 f5">Sunday </label>
-                <input  class="form-input-mini mx-1" type="text"/>
-                <label class="lft pt-3">EUR </label>
-            </div>
-
-            <h3 class="text-bluish w-full brdr-dash mt-3">Billing Address</h3>
-            <div class="row f-row">
-                <div class="col-50">
-                    <input  class="form-input-half " type="text" placeholder="Company (Invoices)"/>
-                </div>
-                <div class="col-50">
-                    <input  class="form-input-half" type="text" placeholder="Postcose"/>
-                </div>
-            </div>
-            <div class="row f-row">
-                <div class="col-50">
-                    <input  class="form-input-half " type="text" placeholder="First Name"/>
-                </div>
-                <div class="col-50">
-                    <input  class="form-input-half" type="text" placeholder="Place"/>
-                </div>
-            </div>
-            <div class="row f-row">
-                <div class="col-50">
-                    <input  class="form-input-half " type="text" placeholder="Last Name"/>
-                </div>
-                <div class="col-50">
-                    <input  class="form-input-half" type="text" placeholder="Street + No"/>
-                </div>
-            </div>
-            <div class="row f-row">
-                <div class="col-50">
-                   <select class="form-input-half">
-                       <option value="0" disabled>Customer</option>
-                       <option value="0" >Customer1</option>
-                       <option value="0" >Customer2</option>
-                       <option value="0" >Customer3</option>
-                       <option value="0" >Customer4</option>
-                   </select>
-                </div>
-            </div>
-        </div>
-        
-        <div class="col-md-6 ">
-            <h3 class="text-bluish w-full brdr-dash">Customer Login</h3>
-            <div class="row f-row my-3 form-checkbox">
-                <div class="mr-1">
-                    <input type="checkbox" id="fee1">
-                    <label for="fee1">Deactivated</label>
-                </div>
-                <div class="ml-3">
-                    <input type="checkbox" id="fee2">
-                    <label for="fee2">Login Possible</label>
-                </div>
-            </div>
-            <h3 class="text-bluish w-full brdr-dash">payment Type</h3>
-            <div class="b-01 mt-2 w-full">
-                <ul>
-                  <li class="lft">
-                  <input type="radio" id="11-option" name="selector">
-                  <label for="11-option">Direct Debit</label>
-                </li>
-                <li class="lft">
-                  <input type="radio" id="22-option" name="selector">
-                  <label for="22-option">Bank Transfer</label>
-                </li>
-              </ul>
-              </div>
-            <div class="row f-row my-3 form-checkbox">
-                <input type="checkbox" id="fees">
-                <label for="fees">Sending email by invoice is sufficient</label>
-            </div>
-            <h3 class="text-bluish w-full brdr-dash">Discount</h3>
-            <div class="row f-row my-3 form-checkbox">
-                <input type="checkbox" id="fee3">
-                <label for="fee3">Activated</label>
-            </div>
-            <div class="row f-row">
-                <div class="col-50">
-                    <input  class="form-input-half " type="text" placeholder="Height %"/>
-                </div>
-                <div class="col-50">
-                    <input  class="form-input-half" type="text" placeholder="Discount Reason"/>
-                </div>
-            </div>
-            <h3 class="text-bluish w-full brdr-dash">Genral Notes</h3>
-            <div class="row f-row">
-               <textarea placeholder="Type Here....." class="form-input-text"></textarea>
-            </div>
-        </div>
-
-    </div>
-    <div class="form-check mt-4">
-        <button class="c-button py-2">Create Customer</button>
-    </div>
-</div>
 </form>

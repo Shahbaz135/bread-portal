@@ -10,7 +10,7 @@ import { searchBar } from './shared/routes/search-routes';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: '/dashboard',
+    redirectTo: '/auth/login',
     pathMatch: 'full'
   },
   {

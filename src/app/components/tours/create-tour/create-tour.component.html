@@ -10,10 +10,10 @@
         <input  class="form-input my-2 " type="text" placeholder="Label text "/>
         <input  class="form-input my-2 " type="text" placeholder="Name on Order review "/>
         <select class="form-input" id="inlineFormCustomSelect">
-            <option selected>Billing Mode</option>
-            <option value="1">One</option>
-            <option value="2">Two</option>
-            <option value="3">Three</option>
+            <option value="" disabled selected>Billing Mode</option>
+            <option value="fixedPrice">Fixed Price Per Delivery</option>
+            <option value="atCost">At Cost</option>
+            <option value="perCustomer">Per Customer</option>
           </select>
     </div>
     <div class="col-md-6">
@@ -21,15 +21,15 @@
             <h6 class="mb-2">Delivery Days</h6>
             <ul>
               <li class="lft">
-              <input type="radio" id="1-option" name="selector">
+              <input type="checkbox" id="1-option" name="selector">
               <label for="1-option">Saturday</label>
             </li>
             <li class="lft">
-              <input type="radio" id="2-option" name="selector">
+              <input type="checkbox" id="2-option" name="selector">
               <label for="2-option">Sunday</label>
             </li>
             <li class="lft">
-              <input type="radio" id="6-option" name="selector">
+              <input type="checkbox" id="6-option" name="selector">
               <label for="6-option">Working Days</label>
             </li>
           </ul>
@@ -38,11 +38,11 @@
             <h6 class="mb-2">New Customer Treatment</h6>
             <ul>
               <li class="lft">
-              <input type="radio" id="11-option" name="selector">
+              <input type="checkbox" id="11-option" name="selector">
               <label for="11-option">field tour for new web customers</label>
             </li>
             <li class="lft">
-              <input type="radio" id="22-option" name="selector">
+              <input type="checkbox" id="22-option" name="selector">
               <label for="22-option">Support tour for new web customers who order for first time</label>
             </li>
           </ul>
@@ -51,18 +51,18 @@
             <h6 class="mb-2">All Users</h6>
             <ul>
               <li class="lft">
-              <input type="radio" id="7-option" name="selector">
-              <label for="7-option">All Users </label>
-            </li>
-            <li class="lft">
-              <input type="radio" id="8-option" name="selector">
-              <label for="8-option">Because of partner supervisor</label>
-            </li>
-            <li class="lft">
-              <input type="radio" id="9-option" name="selector">
-              <label for="9-option">Sufi gabriel (owner)</label>
-            </li>
-          </ul>
+                <input type="checkbox" id="7-option" name="selector">
+                <label for="7-option">All Users </label>
+              </li>
+              <li class="lft">
+                <input type="checkbox" id="8-option" name="selector">
+                <label for="8-option">Because of partner supervisor</label>
+              </li>
+              <li class="lft">
+                <input type="checkbox" id="9-option" name="selector">
+                <label for="9-option">Sufi gabriel (owner)</label>
+              </li>
+            </ul>
           </div>
     </div>
     <div class="row bg-white m-0 p-3">

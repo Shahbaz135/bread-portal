@@ -3,21 +3,24 @@ import { Observable } from 'rxjs';
 import { HttpConfig } from '../../../config/http-config';
 import { WrapHttpService } from '../../shared/services/common/wrap-http.service';
 
-
 @Injectable({
   providedIn: 'root'
 })
-export class CustomersService {
-  public readonly apiUrl = HttpConfig.getApiUrl() + '/customer';
+export class TourService {
+  public readonly apiUrl = HttpConfig.getApiUrl() + '/tours';
+  public readonly userApiUrl = HttpConfig.getApiUrl() + '/users';
 
   constructor(public http: WrapHttpService) { }
 
-  createCustomer(data): Observable<any> {
+  create(data): Observable<any> {
     return this.http.post(this.apiUrl + `/create`, data );
   }
 
-  // getOrders(customerId): Observable<any> {
-  //   const conditions: object = { CustomerId : customerId};
-  //   return this.http.get(this.apiUrl + `/get` + WrapHttpService.objToQuery(conditions));
-  // }
+  getAll(): Observable<any> {
+    return this.http.get(this.apiUrl + `/get`);
+  }
+
+  getAllUsers(): Observable<any> {
+    return this.http.get(this.userApiUrl);
+  }
 }

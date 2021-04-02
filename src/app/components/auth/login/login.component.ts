@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HelperService } from 'src/app/shared/services/helper.service';
 import { UserAuthService } from '../user-auth.service';
+import { AuthService } from '../../../shared/services/common/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -22,7 +23,6 @@ export class LoginComponent implements OnInit {
   }
 
   login(): void {
-    console.log(this.user)
     if (!this.user.email || !this.user.password) {
       this.helperService.alertFailure(`Invalid`, `Please enter user name and password`);
     } else {
@@ -35,7 +35,9 @@ export class LoginComponent implements OnInit {
     const data = this.user;
     this.service.login(data)
       .subscribe(response => {
-        console.log(response);
+        AuthService.setLoggedUser(response.data.tokenInfo, {});
+        // this.helperService.alertSuccess(`Success`, `Login Successful`);
+        this.helperService.navigate(`dashboard`);
       }, (error => {
         console.log(error);
         if (error.status === 400) {

@@ -7,6 +7,8 @@ import { ToursOverviewComponent } from './tours-overview/tours-overview.componen
 import { CreateTourComponent } from './create-tour/create-tour.component';
 import { TourSortingComponent } from './tour-sorting/tour-sorting.component';
 import { NgbModule, NgbNavModule } from '@ng-bootstrap/ng-bootstrap';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 
 @NgModule({
@@ -15,7 +17,10 @@ import { NgbModule, NgbNavModule } from '@ng-bootstrap/ng-bootstrap';
     CommonModule,
     ToursRoutingModule,
     NgbNavModule,
-    NgbModule
+    NgbModule,
+    FormsModule,
+    ReactiveFormsModule,
+    NgxSpinnerModule
   ]
 })
 export class ToursModule { }

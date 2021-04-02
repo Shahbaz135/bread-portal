@@ -1,28 +1,82 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { HelperService } from 'src/app/shared/services/helper.service';
 import { FranchiseService } from '../franchise.service';
 
+
 @Component({
-  selector: 'app-create-franchise',
-  templateUrl: './create-franchise.component.html',
-  styleUrls: ['./create-franchise.component.scss']
+  selector: 'app-edit-franchise',
+  templateUrl: './edit-franchise.component.html',
+  styleUrls: ['./edit-franchise.component.scss']
 })
-export class CreateFranchiseComponent implements OnInit {
+export class EditFranchiseComponent implements OnInit {
   public franchiseForm: FormGroup;
 
   public loadingText = ``;
+
+  private franchiseId;
 
   constructor(
     private helperService: HelperService,
     private spinner: NgxSpinnerService,
     private partnerService: FranchiseService,
-    private formBuilder: FormBuilder
-  ) { }
+    private formBuilder: FormBuilder,
+    private route: ActivatedRoute
+  ) {
+    this.renderForm();
+
+    this.route.params.subscribe(params => {
+      if (params[`id`]) {
+        this.franchiseId = params[`id`];
+      }
+    })
+  }
 
   ngOnInit(): void {
-    this.renderForm();
+    if (this.franchiseId) {
+      this.getData();
+    }
+  }
+
+  getData() {
+    this.spinner.show();
+    this.loadingText = `Fetching record, Please wait...`;
+    const data = { id : this.franchiseId};
+    this.partnerService.getById(data)
+      .subscribe((response) => {
+        this.spinner.hide();
+        if (response.status === `Success`) {
+          this.populateForm(response.data);
+        }
+      }, (error) => {
+        this.spinner.hide();
+        console.log(error);
+        if (error.error) {
+          this.helperService.alertFailure(error.error.message[0].message, `Error`);
+        } else {
+          this.helperService.alertFailure(`Something went wrong, Please try again`, `Error`);
+        }
+      });
+  }
+
+  populateForm(data) {
+    if (data) {
+      this.franchiseForm.controls[`name`].setValue(data.name);
+      this.franchiseForm.controls[`email`].setValue(data.email);
+      this.franchiseForm.controls[`town`].setValue(data.town);
+      this.franchiseForm.controls[`houseStreetNumber`].setValue(data.houseStreetNumber);
+      this.franchiseForm.controls[`postalCode`].setValue(data.postalCode);
+      this.franchiseForm.controls[`password`].disable();
+      this.franchiseForm.controls[`iban`].setValue(data.iban);
+      this.franchiseForm.controls[`isName`].setValue(data.isName);
+      this.franchiseForm.controls[`isHouseStreetNumber`].setValue(data.isHouseStreetNumber);
+      this.franchiseForm.controls[`isPostalCode`].setValue(data.isPostalCode);
+      this.franchiseForm.controls[`isEmail`].setValue(data.isEmail);
+      this.franchiseForm.controls[`isPassword`].setValue(data.isPassword);
+      this.franchiseForm.controls[`isIban`].setValue(data.isIban);
+    }
   }
 
   //// initializing form
@@ -34,7 +88,7 @@ export class CreateFranchiseComponent implements OnInit {
       town: [''],
       email: ['', [Validators.required , Validators.email, Validators.maxLength(100)]],
       password: ['', [Validators.required]],
-      iban: [false],
+      iban: [''],
       isName: [false],
       isHouseStreetNumber: [false],
       isPostalCode: [false],
@@ -60,7 +114,7 @@ export class CreateFranchiseComponent implements OnInit {
 
   _submit() {
     const formData = this.franchiseForm.value;
-    this.partnerService.create(formData)
+    this.partnerService.update(formData, this.franchiseId)
       .subscribe((response) => {
         this.spinner.hide();
         if (response.status === `Success`) {
