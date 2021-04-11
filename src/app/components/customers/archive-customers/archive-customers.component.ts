@@ -1,49 +1,49 @@
 import { Component, OnInit } from '@angular/core';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { HelperService } from 'src/app/shared/services/helper.service';
-import { SettingService } from '../../setting.service';
+import { CustomersService } from '../customers.service';
 
 @Component({
-  selector: 'app-inactive-products',
-  templateUrl: './inactive-products.component.html',
-  styleUrls: ['./inactive-products.component.scss']
+  selector: 'app-archive-customers',
+  templateUrl: './archive-customers.component.html',
+  styleUrls: ['./archive-customers.component.scss']
 })
-export class InactiveProductsComponent implements OnInit {
+export class ArchiveCustomersComponent implements OnInit {
   public loadingText = ``;
-
-  allProducts = [];
+  public allCustomers = [];
 
   constructor(
     private helperService: HelperService,
     private spinner: NgxSpinnerService,
-    private settingService: SettingService
+    private customerService: CustomersService,
   ) { }
 
   ngOnInit(): void {
-    this.getProducts();
+    this.getALlCustomers();
   }
 
-  getProducts() {
-    this.loadingText = `fetching record, please wait..`;
+  getALlCustomers() {
+    this.loadingText = `Fetching records, please wait...`;
     this.spinner.show();
     const data = {
-      isActive: false
+      isArchive: true
     };
 
-    this.settingService.getAllProduct(data)
+    this.customerService.getAllCustomers(data)
       .subscribe((response) => {
         this.spinner.hide();
         if (response.status === `Success`) {
-          this.allProducts = response.data;
+          this.allCustomers = response.data;
         }
       }, (error) => {
         this.spinner.hide();
         console.log(error);
-        if (error.error) {
+        if (error.error.message) {
           this.helperService.alertFailure(error.error.message[0].message, `Error`);
         } else {
           this.helperService.alertFailure(`Something went wrong, Please try again`, `Error`);
         }
       });
   }
+
 }

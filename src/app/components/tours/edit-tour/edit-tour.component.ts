@@ -1,16 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { AuthService } from 'src/app/shared/services/common/auth.service';
 import { HelperService } from 'src/app/shared/services/helper.service';
 import { TourService } from '../tour.service';
 
 @Component({
-  selector: 'app-create-tour',
-  templateUrl: './create-tour.component.html',
-  styleUrls: ['./create-tour.component.scss']
+  selector: 'app-edit-tour',
+  templateUrl: './edit-tour.component.html',
+  styleUrls: ['./edit-tour.component.scss']
 })
-export class CreateTourComponent implements OnInit {
+export class EditTourComponent implements OnInit {
   public tourForm: FormGroup;
 
   public loadingText = ``;
@@ -19,17 +20,64 @@ export class CreateTourComponent implements OnInit {
   weekDays = [];
   userIds = [];
 
+  tourId:number;
 
   constructor(
     private helperService: HelperService,
     private spinner: NgxSpinnerService,
     private tourService: TourService,
     private formBuilder: FormBuilder,
-  ) { }
-
-  ngOnInit(): void {
+    private route: ActivatedRoute
+  ) {
     this.renderForm();
     this.getUsers();
+
+    this.route.params.subscribe(params => {
+      if (params[`id`]) {
+        this.tourId = +params[`id`];
+      }
+    })
+  }
+
+  ngOnInit(): void {
+    this.getTourData();
+  }
+
+  getTourData() {
+    this.spinner.show();
+    this.loadingText = `Fetching record, Please wait...`;
+    const data = {id: this.tourId};
+
+    this.tourService.getAll(data)
+      .subscribe((response) => {
+        this.spinner.hide();
+        if (response.status === `Success`) {
+          const tourData = response.data[0];
+          this.populateForm(tourData);
+        }
+      }, (error) => {
+        this.spinner.hide();
+        console.log(error);
+        if (error.error) {
+          this.helperService.alertFailure(error.error.message[0].message, `Error`);
+        } else {
+          this.helperService.alertFailure(`Something went wrong, Please try again`, `Error`);
+        }
+      });
+  }
+
+  populateForm(data) {
+    if (data) {
+      this.weekDays = data.tourDays.map(x => x.id);
+      this.userIds = data.tourUsers.map(x => x.id);
+
+      this.tourForm.controls[`description`].setValue(data.description);
+      this.tourForm.controls[`name`].setValue(data.name);
+      this.tourForm.controls[`label`].setValue(data.label);
+      this.tourForm.controls[`billingMode`].setValue(data.billingMode);
+      this.tourForm.controls[`fieldTour`].setValue(data.fieldTour);
+      this.tourForm.controls[`supportTour`].setValue(data.supportTour);
+    }
   }
 
   getUsers() {
@@ -37,9 +85,9 @@ export class CreateTourComponent implements OnInit {
     this.loadingText = `Fetching record, Please wait...`;
     this.tourService.getAllUsers()
       .subscribe((response) => {
-        this.allUsers = response.data.records;
         this.spinner.hide();
         if (response.status === `Success`) {
+          this.allUsers = response.data.records;
         }
       }, (error) => {
         this.spinner.hide();
@@ -56,7 +104,7 @@ export class CreateTourComponent implements OnInit {
   renderForm(): void {
     this.tourForm = this.formBuilder.group({
       description: ['', [Validators.required]],
-      label: [''],
+      label: ['', [Validators.required]],
       name: ['', [Validators.required ]],
       billingMode: [''],
       fieldTour: [false],
@@ -77,6 +125,10 @@ export class CreateTourComponent implements OnInit {
 
   check(id) {
     return this.userIds.filter(x => id === x).length;
+  }
+
+  checkWeekDays(ids) {
+    return this.weekDays.filter(x => ids === x).length;
   }
 
   onCheckAll(checked) {
@@ -137,7 +189,7 @@ export class CreateTourComponent implements OnInit {
     formData.weekDayIds = this.weekDays;
     formData.userId = userId;
 
-    this.tourService.create(formData)
+    this.tourService.edit(formData, this.tourId)
       .subscribe((response) => {
         this.spinner.hide();
         if (response.status === `Success`) {
@@ -165,7 +217,7 @@ export class CreateTourComponent implements OnInit {
   ///////// ************ validation of form *********** ///////////
   // tslint:disable-next-line: typedef
   descriptionError() {
-    return this.cf.description.hasError('required') ? 'Description is required':
+    return this.cf.description.hasError('required') ? 'Postal Code is required':
       '';
   }
 

@@ -16,8 +16,20 @@ export class TourService {
     return this.http.post(this.apiUrl + `/create`, data );
   }
 
-  getAll(): Observable<any> {
-    return this.http.get(this.apiUrl + `/get`);
+  // getAll(data?): Observable<any> {
+  //   return this.http.get(this.apiUrl + `/get` + WrapHttpService.objToQuery(data));
+  // }
+
+  getAll(data?): Observable<any> {
+    return this.http.post(this.apiUrl + `/get` ,data);
+  }
+
+  edit(data, id): Observable<any> {
+    return this.http.put(this.apiUrl + `/` + id, data);
+  }
+
+  delete(id): Observable<any> {
+    return this.http.delete(this.apiUrl + `/` + id);
   }
 
   getAllUsers(): Observable<any> {

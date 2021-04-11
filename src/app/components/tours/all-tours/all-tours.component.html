@@ -1,221 +1,212 @@
 <div class="row px-3 pt-3 pb-2">
     <h3>All Tours</h3>    
-  </div>
+</div>
+
+<ngx-spinner
+  bdColor="rgba(51,51,51,0.8)"
+  size="medium"
+  color="#fff"
+  type="ball-scale-multiple"
+>
+  <p style="font-size: 20px; color: white">{{ loadingText }}</p>
+</ngx-spinner>
   
-  <div class="row px-3 pt-3 pb-2 ">
+<div class="row px-3 pt-3 pb-2 ">
     <ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs">
-      <li [ngbNavItem]="1">
-        <a ngbNavLink>Working days</a>
-        <ng-template ngbNavContent>
-            <div class="row px-3">
-                <form class="">
-                   <div class="col-md-4 p-0 my-2">
-                       <label>Select </label>
-                          <select>
-                              <option value="All">waldeck twistelat tour</option>
-                              <option value="All">All</option>
-                              <option value="All">All</option>
-                              <option value="All">All</option>
-                              <option value="All">All</option>
-                          </select>   
-                     </div> 
-                     <div class="col-md-2 p-0 my-2">
-                       <button class="c-button">--></button>   
-                     </div>      
-               </form>
-            
-            </div>
-
-            <div class="row p-0 my-2">
-                <div class="col-md-12 P-0">
-                    <table class="b-table table-responsive">
-                        <thead>
-                            <th>SORT</th>
-                            <th>CODE</th>
-                            <th>CUSTOMER</th>
-                            <th>PLACE</th>
-                            <th>POSTCODE</th>
-                            <th>STREET</th>
-                            <th>ACTIONS</th>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>10</td>
-                                <td>-D</td>
-                                <td>waseem abbas</td>
-                                <td>waldeck-selbech</td>
-                                <td>34513</td>
-                                <td>selbech 5</td>
-                                <td>
-                                    <img src="../../../../assets/images/bread/34.png" class="mx-2" />
-                                    <select class="loc-select">
-                                        <option value="All">Karte waldeck twistelat tour</option>
-                                        <option value="All">All</option>
-                                        <option value="All">All</option>
-                                        <option value="All">All</option>
-                                        <option value="All">All</option>
-                                    </select>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+        <li [ngbNavItem]="1" (click)="selectedTab('tourWeekDays')">
+            <a ngbNavLink>Working days</a>
+            <ng-template ngbNavContent>
+                <div class="row px-3">
+                    <form class="">
+                        <div class="col-md-4 p-0 my-2">
+                            <label>Select </label>
+                                <select [(ngModel)]="tourId"  name="tourId">
+                                    <option value="" selected disabled>Select Tour</option>
+                                    <option [value]="tour.id" *ngFor="let tour of workingDayTour">{{tour.label}}</option>
+                                </select>   
+                            </div> 
+                            <div class="col-md-2 p-0 my-2">
+                            <button class="c-button" (click)="getCustomers()">--></button>   
+                            </div>      
+                    </form>
+                
                 </div>
-            </div>
-        </ng-template>
-      </li>
-      <li [ngbNavItem]="2">
-        <a ngbNavLink>Saturday</a>
-        <ng-template ngbNavContent>
-            <div class="row px-3">
-                <form class="">
-                   <div class="col-md-4 p-0 my-2">
-                       <label>Select </label>
-                          <select>
-                              <option value="All">waldeck twistelat tour</option>
-                              <option value="All">All</option>
-                              <option value="All">All</option>
-                              <option value="All">All</option>
-                              <option value="All">All</option>
-                          </select>   
-                     </div> 
-                     <div class="col-md-2 p-0 my-2">
-                       <button class="c-button">--></button>   
-                     </div>      
-               </form>
-            
-            </div>
 
-            <div class="row p-0 my-2">
-                <div class="col-md-12 P-0">
-                    <table class="b-table table-responsive">
-                        <thead>
-                            <th>SORT</th>
-                            <th>CODE</th>
-                            <th>CUSTOMER</th>
-                            <th>PLACE</th>
-                            <th>POSTCODE</th>
-                            <th>STREET</th>
-                            <th>ACTIONS</th>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>10</td>
-                                <td>-D</td>
-                                <td>waseem abbas</td>
-                                <td>waldeck-selbech</td>
-                                <td>34513</td>
-                                <td>selbech 5</td>
-                                <td>
-                                    <img src="../../../../assets/images/bread/34.png" class="mx-2"/>
-                                    <select class="loc-select">
-                                        <option value="All">Karte waldeck twistelat tour</option>
-                                        <option value="All">All</option>
-                                        <option value="All">All</option>
-                                        <option value="All">All</option>
-                                        <option value="All">All</option>
-                                    </select>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+                <div class="row p-0 my-2" *ngIf="allCustomers.length">
+                    <div class="col-md-12 P-0">
+                        <table class="b-table table-responsive">
+                            <thead>
+                                <th>SORT</th>
+                                <th>CODE</th>
+                                <th>CUSTOMER</th>
+                                <th>PLACE</th>
+                                <th>POSTCODE</th>
+                                <th>STREET</th>
+                                <th>ACTIONS</th>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let customer of allCustomers;let i = index">
+                                    <td>{{i+10}}</td>
+                                    <td>{{customer.code}}</td>
+                                    <td>{{customer.fName}} {{customer.lName}}</td>
+                                    <td>{{customer.town}}</td>
+                                    <td>{{customer.postalCode}}</td>
+                                    <td>{{customer.houseStreetNumber}}</td>
+                                    <td>
+                                        <!-- <img src="../../../../assets/images/bread/34.png" class="mx-2" /> -->
+                                        <select class="loc-select" >
+                                            <option value="" selected disabled>Select Tour</option>
+                                            <option [value]="tour.id" [selected]="tourId" *ngFor="let tour of workingDayTour">{{tour.label}}</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
-            </div>
-
-        </ng-template>
-      </li>
-      <li [ngbNavItem]="3">
-        <a ngbNavLink>Sunday</a>
-        <ng-template ngbNavContent>
-            <div class="row px-3">
-                <form class="">
-                   <div class="col-md-4 p-0 my-2">
-                       <label>Select </label>
-                          <select>
-                              <option value="All">waldeck twistelat tour</option>
-                              <option value="All">All</option>
-                              <option value="All">All</option>
-                              <option value="All">All</option>
-                              <option value="All">All</option>
-                          </select>   
-                     </div> 
-                     <div class="col-md-2 p-0 my-2">
-                       <button class="c-button">--></button>   
-                     </div>      
-               </form>
-            
-            </div>
-
-            <div class="row p-0 my-2">
-                <div class="col-md-12 P-0">
-                    <table class="b-table table-responsive">
-                        <thead>
-                            <th>SORT</th>
-                            <th>CODE</th>
-                            <th>CUSTOMER</th>
-                            <th>PLACE</th>
-                            <th>POSTCODE</th>
-                            <th>STREET</th>
-                            <th>ACTIONS</th>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>10</td>
-                                <td>-D</td>
-                                <td>waseem abbas</td>
-                                <td>waldeck-selbech</td>
-                                <td>34513</td>
-                                <td>selbech 5</td>
-                                <td>
-                                    <img src="../../../../assets/images/bread/34.png" class="mx-2"/>
-                                    <select class="loc-select">
-                                        <option value="All">Karte waldeck twistelat tour</option>
-                                        <option value="All">All</option>
-                                        <option value="All">All</option>
-                                        <option value="All">All</option>
-                                        <option value="All">All</option>
-                                    </select>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+            </ng-template>
+        </li>
+        <li [ngbNavItem]="2" (click)="selectedTab('tourSaturday')">
+            <a ngbNavLink>Saturday</a>
+            <ng-template ngbNavContent>
+                <div class="row px-3">
+                    <form class="">
+                        <div class="col-md-4 p-0 my-2">
+                            <label>Select </label>
+                                <select [(ngModel)]="tourId"  name="tourId">
+                                    <option value="" selected disabled>Select Tour</option>
+                                    <option [value]="tour.id" *ngFor="let tour of saturdayTour">{{tour.label}}</option>
+                                </select>   
+                            </div> 
+                            <div class="col-md-2 p-0 my-2">
+                            <button class="c-button" (click)="getCustomers()">--></button>   
+                            </div>      
+                    </form>
+                
                 </div>
-            </div>
-        </ng-template>
-      </li>
-      <li [ngbNavItem]="4">
-        <a ngbNavLink>All Tour</a>
-        <ng-template ngbNavContent>
 
-            <div class="row p-0 my-2">
-                <div class="col-md-12 P-0">
-                    <table class="b-table table-responsive">
-                        <thead>
-                            <th>ID</th>
-                            <th>TOUR DESCRIPTION</th>
-                            <th>LABEL</th>  
-                            <th>ACTIONS</th>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>440</td>
-                                <td>No repeat customers</td>
-                                <td>No repeat customers</td>
-                                <td>
-                                    <img src="../../../../assets/images/bread/1.png" />
-                                    <img src="../../../../assets/images/bread/11.png" class="mx-2" />
-                                    <img src="../../../../assets/images/bread/19.png" />
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+                <div class="row p-0 my-2" *ngIf="allCustomers.length">
+                    <div class="col-md-12 P-0">
+                        <table class="b-table table-responsive">
+                            <thead>
+                                <th>SORT</th>
+                                <th>CODE</th>
+                                <th>CUSTOMER</th>
+                                <th>PLACE</th>
+                                <th>POSTCODE</th>
+                                <th>STREET</th>
+                                <th>ACTIONS</th>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let customer of allCustomers;let i = index">
+                                    <td>{{i+10}}</td>
+                                    <td>{{customer.code}}</td>
+                                    <td>{{customer.fName}} {{customer.lName}}</td>
+                                    <td>{{customer.town}}</td>
+                                    <td>{{customer.postalCode}}</td>
+                                    <td>{{customer.houseStreetNumber}}</td>
+                                    <td>
+                                        <!-- <img src="../../../../assets/images/bread/34.png" class="mx-2" /> -->
+                                        <select class="loc-select" >
+                                            <option value="" selected disabled>Select Tour</option>
+                                            <option [value]="tour.id" [selected]="tourId" *ngFor="let tour of saturdayTour">{{tour.label}}</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
-            </div>
 
-        </ng-template>
-      </li>
-  
+            </ng-template>
+        </li>
+        <li [ngbNavItem]="3" (click)="selectedTab('tourSunday')">
+            <a ngbNavLink>Sunday</a>
+            <ng-template ngbNavContent>
+                <div class="row px-3">
+                    <form class="">
+                        <div class="col-md-4 p-0 my-2">
+                            <label>Select </label>
+                                <select [(ngModel)]="tourId" name="tourId">
+                                    <option value="" selected disabled>Select Tour</option>
+                                    <option [value]="tour.id" *ngFor="let tour of sundayTour">{{tour.label}}</option>
+                                </select>   
+                            </div> 
+                            <div class="col-md-2 p-0 my-2">
+                            <button class="c-button" (click)="getCustomers()">--></button>   
+                            </div>      
+                    </form>
+                
+                </div>
+
+                <div class="row p-0 my-2" *ngIf="allCustomers.length">
+                    <div class="col-md-12 P-0">
+                        <table class="b-table table-responsive">
+                            <thead>
+                                <th>SORT</th>
+                                <th>CODE</th>
+                                <th>CUSTOMER</th>
+                                <th>PLACE</th>
+                                <th>POSTCODE</th>
+                                <th>STREET</th>
+                                <th>ACTIONS</th>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let customer of allCustomers;let i = index">
+                                    <td>{{i+10}}</td>
+                                    <td>{{customer.code}}</td>
+                                    <td>{{customer.fName}} {{customer.lName}}</td>
+                                    <td>{{customer.town}}</td>
+                                    <td>{{customer.postalCode}}</td>
+                                    <td>{{customer.houseStreetNumber}}</td>
+                                    <td>
+                                        <!-- <img src="../../../../assets/images/bread/34.png" class="mx-2" /> -->
+                                        <select class="loc-select" >
+                                            <option value="" selected disabled>Select Tour</option>
+                                            <option [value]="tour.id" [selected]="tourId" *ngFor="let tour of sundayTour">{{tour.label}}</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </ng-template>
+        </li>
+        <li [ngbNavItem]="4">
+            <a ngbNavLink>All Tour</a>
+            <ng-template ngbNavContent>
+
+                <div class="row p-0 my-2">
+                    <div class="col-md-12 P-0">
+                        <table class="b-table table-responsive">
+                            <thead>
+                                <th>Sr #</th>
+                                <th>TOUR DESCRIPTION</th>
+                                <th>LABEL</th>  
+                                <th>ACTIONS</th>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let tour of allTours; let i=index">
+                                    <td>{{i+1}}</td>
+                                    <td>{{tour.description}}</td>
+                                    <td>{{tour.label}}</td>
+                                    <td>
+                                        <img src="../../../../assets/images/bread/1.png" />
+                                        <img [routerLink]="['/tours/edit-tour', tour.id]" src="../../../../assets/images/bread/19.png" />
+                                        <img (click)="deleteTour(tour.id)" src="../../../../assets/images/bread/11.png" class="mx-2" />
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </ng-template>
+        </li>
+
     </ul>
-    
+
     <div [ngbNavOutlet]="nav" class="mt-2"></div>
-  
-  </div>
+
+</div>

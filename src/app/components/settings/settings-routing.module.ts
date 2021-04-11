@@ -17,15 +17,16 @@ import { UsersComponent } from './users/users.component';
 const routes: Routes = [
   { path: `categories/categories-overview`, component: CategoriesOverviewComponent },
   { path: `categories/create-categories`, component: CreateCategoriesComponent },
+  { path: `categories/edit-category/:id`, component: CreateCategoriesComponent },
   { path: `categories/product-categories`, component: ProductCategoriesComponent },
   { path: `delivery-areas/add-delivery-area`, component: AddDeliveryAreaComponent },
   { path: `delivery-areas/delivery-areas-overview`, component: DevlieryAreasOverviewComponent },
-  { path: `delivery-areas/edit-delivery-area`, component: EditDeliveryAreaComponent },
+  { path: `delivery-areas/edit-delivery-area/:id`, component: EditDeliveryAreaComponent },
   { path: `non-delivery-days`, component: NonDeliveryDaysComponent },
   { path: `active-products`, component: ActiveProductsComponent },
   { path: `inactive-products`, component: InactiveProductsComponent },
   { path: `create-product`, component: CreateProductComponent },
-  { path: `edit-product`, component: EditProductComponent },
+  { path: `edit-product/:id`, component: EditProductComponent },
   { path: `users`, component: UsersComponent },
   { path: `account-settings`, component: AccountSettingsComponent },
 ];

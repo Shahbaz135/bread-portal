@@ -1,21 +1,30 @@
 <div class="row px-3 pt-3 pb-0">
     <h3>Customer</h3>    
-  </div>
+</div>
+
+<ngx-spinner
+  bdColor="rgba(51,51,51,0.8)"
+  size="medium"
+  color="#fff"
+  type="ball-scale-multiple"
+>
+  <p style="font-size: 20px; color: white">{{ loadingText }}</p>
+</ngx-spinner>
   
-  <div class="row px-3 pt-1 pb-1">
+<div class="row px-3 pt-1 pb-1">
     <div class="col-md-3 p-0 m-0">
         <label class="c-title">Name:</label>
-        Waseem Abbas
+        {{cf.fName.value}} {{cf.lName.value}}
     </div>   
     <div class="col-md-4 p-0 m-0">
         <label class="c-title">Customer No:</label>
-        123422
+        {{customerId}}
     </div>   
     <div class="col-md-5 p-0 m-0">
         <label class="c-title">Phone No:</label>
-        +1231241241231
+        {{cf.phone.value}}
     </div>   
-  </div>
+</div>
 
 
   <div class="row px-3 pt-1 pb-2 ">
@@ -25,7 +34,273 @@
         <ng-template ngbNavContent>
             <div class="row px-0 pb-4 m-0 bg-white ">
                 <div class="w-full text-center py-5">
-                    <h3 class="txt-bold my-3">Customers Data Section</h3>
+                    <form [formGroup]="customerForm">
+                        <div class="wraper px-3 my-2 py-4 bg-white">
+                            <div class="row p-0 m-0">
+                                <h3 class="text-bluish w-full brdr-dash">Base Data</h3>
+                                <div class="col-md-6 p-0 m-0">
+                                    <div class="row f-row">
+                                        <div class="col-50">
+                                            <div class="row f-row mb-2">
+                                                <select class="form-input" formControlName="salutation">
+                                                    <option value="" selected disabled>Salutation</option>
+                                                    <option value="Mr">Mr</option>
+                                                    <option value="Ms">Ms</option>
+                                                    <option value="Mrs">Mrs</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-50">
+                                            <input  class="form-input-half" formControlName="academicTitle" type="text" placeholder="Academic Title"/>
+                                        </div>
+                                    </div>
+                                    <div class="row f-row mb-2">
+                                        <input  class="form-input" formControlName="houseStreetNumber" type="text" placeholder="Street"/>
+                                        <span *ngIf="cf.houseStreetNumber.touched && cf.houseStreetNumber.invalid">
+                                            <p class="text-danger">{{houseStreetNumberError()}}</p>
+                                        </span>
+                                    </div>
+                                    <div class="row f-row mt-2">
+                                        <input  class="form-input" formControlName="email" type="text" placeholder="Email"/>
+                                        <span *ngIf="cf.email.touched && cf.email.invalid">
+                                            <p class="text-danger">{{emailError()}}</p>
+                                        </span>
+                                    </div>
+                                    <div class="row f-row">
+                                        <div class="col-50">
+                                            <input  class="form-input-half" formControlName="fax" type="text" placeholder="Fax"/>
+                                        </div>
+                                        <div class="col-50">
+                                            <input  class="form-input-half" formControlName="phone" type="text" placeholder="Mobile Number"/>
+                                            <span *ngIf="cf.phone.touched && cf.phone.invalid">
+                                                <p class="text-danger">{{phoneError()}}</p>
+                                            </span>
+                                        </div>
+                                    </div>
+                    
+                                </div>
+                    
+                                <div class="col-md-6 ">
+                                    <div class="row f-row">
+                                        <div class="col-50">
+                                            <input  class="form-input-half" formControlName="fName" type="text" placeholder="First Name"/>
+                                            <span *ngIf="cf.fName.touched && cf.fName.invalid">
+                                                <p class="text-danger">{{fNameError()}}</p>
+                                            </span>
+                                        </div>
+                                        <div class="col-50">
+                                            <input  class="form-input-half" formControlName="lName" type="text" placeholder="Last Name"/>
+                                            <span *ngIf="cf.lName.touched && cf.lName.invalid">
+                                                <p class="text-danger">{{lNameError()}}</p>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="row f-row">
+                                        <div class="col-50">
+                                            <input  class="form-input-half" formControlName="postalCode" type="text" placeholder="Postcode"/>
+                                            <span *ngIf="cf.postalCode.touched && cf.postalCode.invalid">
+                                                <p class="text-danger">{{postalCodeError()}}</p>
+                                            </span>
+                                        </div>
+                                        <div class="col-50">
+                                            <input  class="form-input-half" formControlName="town" type="text" placeholder="place"/>
+                                        </div>
+                                    </div>
+                                    <div class="row f-row">
+                                        <div class="col-50">
+                                            <input  class="form-input-half" formControlName="deliverNotes" type="text" placeholder="Delivery Note"/>
+                                        </div>
+                                        <div class="col-50">
+                                            <input  class="form-input-half" formControlName="telePhone" type="text" placeholder="Telephone"/>
+                                        </div>
+                                    </div>
+                                    <div class="row f-row">
+                                        <div class="col-50">
+                                            <input  class="form-input-half" formControlName="telePhone2" type="text" placeholder="Telephone 2"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row p-0 m-0">
+                                <div class="col-md-6 p-0 m-0">
+                                    <h3 class="text-bluish w-full brdr-dash">Bank Details</h3>
+                                    <div class="row f-row mb-2">
+                                        <input  class="form-input" formControlName="bankAccountOwner" type="text" placeholder="Account Owner"/>
+                                    </div>
+                                    <div class="row f-row mb-2">
+                                        <input  class="form-input" formControlName="iban" type="text" placeholder="IBAN"/>
+                                    </div>
+                                    <!-- <div class="row f-row mb-2">
+                                        <input  class="form-input" type="text" placeholder="Free Field"/>
+                                    </div> -->
+                                    <div class="row f-row mb-2">
+                                        <select class="form-input" formControlName="code">
+                                            <option value="" selected disabled>Customer Code</option>
+                                            <option value="">No Marking</option>
+                                            <option value="-D">-D &nbsp; Regular Customer</option>
+                                            <option value="*D">*D &nbsp; Regular Customer, Terminated</option>
+                                            <option value="#D">#D &nbsp; Terminated for resubmission</option>
+                                            <option value="-De">-De &nbsp; Ordered when needed</option>
+                                            <option value="-X">-X &nbsp; Delivery Stop</option>
+                                        </select>
+                                    </div>
+                                    <!-- <div class="row f-row mb-2" >
+                                        <input  class="form-input" type="text" placeholder="Free Field"/>
+                                    </div>
+                                    <div class="row f-row mb-2">
+                                        <input  class="form-input" type="text" placeholder="Free Field"/>
+                                    </div> -->
+                                </div>
+                    
+                                <div class="col-md-6 ">
+                                    <h3 class="text-bluish w-full brdr-dash">Tours</h3>
+                                    <div class="row f-row mb-2">
+                                        <input  class="form-input" formControlName="sortingWeekDays" type="text" placeholder="Sorting on working days"/>
+                                    </div>
+                                    <div class="row f-row mb-2">
+                                        <select class="form-input" formControlName="tourWeekDays">
+                                            <option value="" disabled selected>Please Select Tour for Week Days</option>
+                                            <option [value]="tour.id" *ngFor="let tour of allTours">{{tour.name}}</option>
+                                        </select>
+                                    </div>
+                                    <div class="row f-row mb-2" >
+                                        <input  class="form-input" formControlName="sortingSaturday" type="text" placeholder="Sorting on Saturday"/>
+                                    </div>
+                                    <div class="row f-row mb-2">
+                                        <select class="form-input" formControlName="tourSaturday">
+                                            <option value="" disabled selected>Please Select Tour for Saturday</option>
+                                            <option [value]="tour.id" *ngFor="let tour of allTours">{{tour.name}}</option>
+                                        </select>
+                                    </div>
+                                    <div class="row f-row mb-2">
+                                        <input  class="form-input" formControlName="sortingSunday" type="text" placeholder="Sorting on Sunday"/>
+                                    </div>
+                                    <div class="row f-row mb-2">
+                                        <select class="form-input" formControlName="tourSunday">
+                                            <option value="" disabled selected>Please Select Tour for Sunday </option>
+                                            <option [value]="tour.id" *ngFor="let tour of allTours">{{tour.name}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                    
+                            <div class="row p-0 m-0">
+                                <div class="col-md-6 ">
+                                    <h3 class="text-bluish w-full brdr-dash">Fees</h3>
+                                    <div class="row f-row my-3 form-checkbox">
+                                        <input type="checkbox" id="fee" formControlName="isDifferentDeliveryFee">
+                                        <label for="fee">Different Delivery Fee</label>
+                                    </div>
+                                    <div class="row f-row mb-2">
+                                        <label class="lft pt-2 f5">Working Days </label>
+                                        <input  class="form-input-mini mx-1" type="text" formControlName="feeWorkingDays"/>
+                                        <label class="lft pt-3">EUR </label>
+                                    </div>
+                                    <div class="row f-row mb-2">
+                                        <label class="lft pt-2 f5">Saturday </label>
+                                        <input  class="form-input-mini mx-1" type="text" formControlName="feeSaturday"/>
+                                        <label class="lft pt-3">EUR </label>
+                                    </div>
+                                    <div class="row f-row mb-2 ">
+                                        <label class="lft pt-2 f5">Sunday </label>
+                                        <input  class="form-input-mini mx-1" type="text" formControlName="feeSunday"/>
+                                        <label class="lft pt-3">EUR </label>
+                                    </div>
+                    
+                                    <h3 class="text-bluish w-full brdr-dash mt-3">Billing Address</h3>
+                                    <div class="row f-row">
+                                        <div class="col-50">
+                                            <input  class="form-input-half" formControlName="company" type="text" placeholder="Company (Invoices)"/>
+                                        </div>
+                                        <div class="col-50">
+                                            <input  class="form-input-half" formControlName="companyPostal" type="text" placeholder="Postcose"/>
+                                            <span *ngIf="cf.companyPostal.touched && cf.companyPostal.invalid">
+                                                <p class="text-danger">{{companyPostalCodeError()}}</p>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="row f-row">
+                                        <div class="col-50">
+                                            <input  class="form-input-half" formControlName="companyFName" type="text" placeholder="First Name"/>
+                                        </div>
+                                        <div class="col-50">
+                                            <input  class="form-input-half" formControlName="companyPlace" type="text" placeholder="Place"/>
+                                        </div>
+                                    </div>
+                                    <div class="row f-row">
+                                        <div class="col-50">
+                                            <input  class="form-input-half" formControlName="companyLName" type="text" placeholder="Last Name"/>
+                                        </div>
+                                        <div class="col-50">
+                                            <input  class="form-input-half" formControlName="companyHouseStreetNumber" type="text" placeholder="Street + No"/>
+                                        </div>
+                                    </div>
+                                    <div class="row f-row">
+                                        <div class="col-50">
+                                        <select class="form-input-half" formControlName="partnerId">
+                                            <option value="" disabled selected>Select Franchise</option>
+                                            <option [value]="franchise.id" *ngFor="let franchise of allFranchises">{{franchise.name}}</option>
+                                        </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="col-md-6 ">
+                                    <h3 class="text-bluish w-full brdr-dash">Customer Login</h3>
+                                    <div class="b-01 mt-2 w-full">
+                                        <ul>
+                                            <li class="lft">
+                                                <input type="radio" [value]="false" formControlName="isActive" id="11-option" >
+                                                <label for="11-option">Deactivated</label>
+                                            </li>
+                                            <li class="lft">
+                                                <input type="radio" [value]="true" formControlName="isActive" id="22-option">
+                                                <label for="22-option">Login Possible</label>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <h3 class="text-bluish w-full brdr-dash">payment Type</h3>
+                                    <div class="b-01 mt-2 w-full">
+                                        <ul>
+                                            <li class="lft">
+                                                <input type="radio" value="direct-debit" formControlName="paymentType" id="33-option">
+                                                <label for="33-option">Direct Debit</label>
+                                            </li>
+                                            <li class="lft">
+                                                <input type="radio" value="bank-transfer" formControlName="paymentType" id="44-option">
+                                                <label for="44-option">Bank Transfer</label>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="row f-row my-3 form-checkbox">
+                                        <input type="checkbox" id="fees" formControlName="sendInvoiceByEmail">
+                                        <label for="fees">Sending email by invoice is sufficient</label>
+                                    </div>
+                                    <h3 class="text-bluish w-full brdr-dash">Discount</h3>
+                                    <div class="row f-row my-3 form-checkbox">
+                                        <input type="checkbox" id="fee3" formControlName="isDiscountActivated">
+                                        <label for="fee3">Activated</label>
+                                    </div>
+                                    <div class="row f-row">
+                                        <div class="col-50">
+                                            <input  class="form-input-half" formControlName="discountHeight" type="text" placeholder="Height %"/>
+                                        </div>
+                                        <div class="col-50">
+                                            <input  class="form-input-half" formControlName="discountReason" type="text" placeholder="Discount Reason"/>
+                                        </div>
+                                    </div>
+                                    <h3 class="text-bluish w-full brdr-dash">Genral Notes</h3>
+                                    <div class="row f-row">
+                                    <textarea placeholder="Type Here....." class="form-input-text"></textarea>
+                                    </div>
+                                </div>
+                    
+                            </div>
+                            <div class="form-check mt-4">
+                                <button class="c-button py-2" (click)="updateCustomer()">Update Customer</button>
+                            </div>
+                        </div>
+                    </form>
                 </div>
             </div>
         </ng-template>
@@ -581,11 +856,11 @@
                 <h4 class="my-2">Change Password</h4>
                 <div class="row f-row mt-2">
                     <div class="col-50">
-                        <input  class="form-input " type="text" placeholder="******"/>
+                        <input  class="form-input" [(ngModel)]="changePassword" type="password" placeholder="******"/>
                     </div>
                 </div>
                 <div class="row f-row mt-2">
-                    <button class="c-button bg-greenish txt-black">
+                    <button class="c-button bg-greenish txt-black" (click)="setPassword()">
                         <img src="../../../../assets/images/bread/27.png" class="mr-2"/>
                         To Change 
                     </button>
@@ -625,54 +900,45 @@
       <li [ngbNavItem]="11">
         <a ngbNavLink>Clear</a>
         <ng-template ngbNavContent>
-            <div class="row px-0 pb-4 m-0 bg-white">
+            <!-- <div class="row px-0 pb-4 m-0 bg-white">
                 <div class="w-full text-center py-5">
                     <img src="../../../../assets/images/bread/25.png"/>
                     <h3 class="txt-bold my-3">Move customers to the archive </h3>
                 </div>
+            </div> -->
+            <div class="row f-row mt-2">
+                <!-- <p class="txt-bold f-big w-full">It os a long established fact that a reader will be by 
+                    the readable content<br> of a pages when: 16874
+                </p>
+                <h4 class="mt-3">Send New Password</h4>
+                <p class="txt-bold f-big w-full">It os a long established fact that a reader will be by 
+                    the readable content<br> of a pages when: abc@gmail.com
+                </p>
+                <p class="txt-bold f-big w-full">It os a long established fact that a reader will be 
+                    by the readable will be <br>distracted by the readable content of a page when
+                    looking at its layout.
+                </p> -->
+                <button class="c-button bg-pink txt-black txt-bold" (click)="deleteCustomer()" *ngIf="cf.code.value !== '-D'">
+                    <img src="../../../../assets/images/bread/11.png" class="mr-2"/>
+                    Permanently Delete Customer
+                </button>
+            </div>
+            <div class="row f-row mt-2">
+                <h5 class="mt-3" *ngIf="isArchived">Customer already moved to archive</h5>
+                <!-- <p class="txt-bold f-big w-full">It os a long established fact that a reader will be 
+                    by the readable will be <br>distracted by the readable content of a page when
+                    looking at its layout.
+                </p> -->
+                <button class="c-button bg-offwhite txt-bold my-2 txt-black" (click)="moveToArchive()"
+                *ngIf="!isArchived"
+                >
+                    <img src="../../../../assets/images/bread/26.png" class="mr-2"/>
+                    Move Customer to Archive
+                </button>
+
             </div>
         </ng-template>
       </li>
-      <li [ngbNavItem]="12">
-        <a ngbNavLink>CUS Archive</a>
-        <ng-template ngbNavContent>
-            <div class="row px-0 pb-4 m-0 ">
-                <table class="b-table table-responsive">
-                    <thead>
-                        <th>#</th>
-                        <th>SURNAME</th>
-                        <th>STREET</th>
-                        <th>POSTCODE</th>
-                        <th>PLACE</th>
-                        <th>EMAIL</th>
-                        <th>CONTACT</th>
-                        <th>TYPE</th>
-                        <th>CREATED</th>
-                        <th>ACTIONS</th>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>9121</td>
-                            <td>Waseem</td>
-                            <td>dargai malkand</td>
-                            <td>12123</td>
-                            <td>dargai</td>
-                            <td>123@gmail.com</td>
-                            <td>12312312</td>
-                            <td>Archive</td>
-                            <td> 12/12/20</td>
-                            <td>
-                                <img src="../../../../assets/images/bread/23.png" />
-                                <img src="../../../../assets/images/bread/27.png" class="mx-1"/>
-                                <img src="../../../../assets/images/bread/11.png"/>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </ng-template>
-      </li>
-  
     </ul>
     
     <div [ngbNavOutlet]="nav" class="mt-2"></div>

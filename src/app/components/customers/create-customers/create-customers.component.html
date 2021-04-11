@@ -105,9 +105,9 @@
                 <div class="row f-row mb-2">
                     <input  class="form-input" formControlName="iban" type="text" placeholder="IBAN"/>
                 </div>
-                <div class="row f-row mb-2">
+                <!-- <div class="row f-row mb-2">
                     <input  class="form-input" type="text" placeholder="Free Field"/>
-                </div>
+                </div> -->
                 <div class="row f-row mb-2">
                     <select class="form-input" formControlName="code">
                         <option value="" selected disabled>Customer Code</option>
@@ -119,12 +119,12 @@
                         <option value="-X">-X &nbsp; Delivery Stop</option>
                     </select>
                 </div>
-                <div class="row f-row mb-2" >
+                <!-- <div class="row f-row mb-2" >
                     <input  class="form-input" type="text" placeholder="Free Field"/>
                 </div>
                 <div class="row f-row mb-2">
                     <input  class="form-input" type="text" placeholder="Free Field"/>
-                </div>
+                </div> -->
             </div>
 
             <div class="col-md-6 ">
@@ -134,12 +134,8 @@
                 </div>
                 <div class="row f-row mb-2">
                     <select class="form-input" formControlName="tourWeekDays">
-                        <option value="0" disabled>please chose 1 hour</option>
-                        <option value="code">Code</option>
-                        <option value="code">Code</option>
-                        <option value="code">Code</option>
-                        <option value="code">Code</option>
-                        <option value="code">Code</option>
+                        <option value="" disabled selected>Please Select Tour for Week Days</option>
+                        <option [value]="tour.id" *ngFor="let tour of allTours">{{tour.name}}</option>
                     </select>
                 </div>
                 <div class="row f-row mb-2" >
@@ -147,12 +143,8 @@
                 </div>
                 <div class="row f-row mb-2">
                     <select class="form-input" formControlName="tourSaturday">
-                        <option value="0" disabled>please chose 1 hour</option>
-                        <option value="code">Code</option>
-                        <option value="code">Code</option>
-                        <option value="code">Code</option>
-                        <option value="code">Code</option>
-                        <option value="code">Code</option>
+                        <option value="" disabled selected>Please Select Tour for Saturday</option>
+                        <option [value]="tour.id" *ngFor="let tour of allTours">{{tour.name}}</option>
                     </select>
                 </div>
                 <div class="row f-row mb-2">
@@ -160,12 +152,8 @@
                 </div>
                 <div class="row f-row mb-2">
                     <select class="form-input" formControlName="tourSunday">
-                        <option value="0" disabled>please chose 1 hour</option>
-                        <option value="code">Code</option>
-                        <option value="code">Code</option>
-                        <option value="code">Code</option>
-                        <option value="code">Code</option>
-                        <option value="code">Code</option>
+                        <option value="" disabled selected>Please Select Tour for Sunday </option>
+                        <option [value]="tour.id" *ngFor="let tour of allTours">{{tour.name}}</option>
                     </select>
                 </div>
             </div>
@@ -225,11 +213,8 @@
                 <div class="row f-row">
                     <div class="col-50">
                     <select class="form-input-half" formControlName="partnerId">
-                        <option value="0" disabled>Customer</option>
-                        <option value="0" >Customer1</option>
-                        <option value="0" >Customer2</option>
-                        <option value="0" >Customer3</option>
-                        <option value="0" >Customer4</option>
+                        <option value="" disabled selected>Select Franchise</option>
+                        <option [value]="franchise.id" *ngFor="let franchise of allFranchises">{{franchise.name}}</option>
                     </select>
                     </div>
                 </div>

@@ -2,6 +2,15 @@
     <h3>Delivery Areas Overview</h3>    
 </div>
 
+<ngx-spinner
+  bdColor="rgba(51,51,51,0.8)"
+  size="medium"
+  color="#fff"
+  type="ball-scale-multiple"
+>
+  <p style="font-size: 20px; color: white">{{ loadingText }}</p>
+</ngx-spinner>
+
 <div class="row px-3 my-3">
     <table class="b-table table-responsive bg-white">
         <thead >
@@ -12,16 +21,18 @@
             <th>ACTIONS</th>
         </thead>
         <tbody>
-            <tr>
-                <td>TWIST VALLY</td>
-                <td>12345</td>
-                <td>HASSAN</td>
-                <td>Mo, Tue, Fri</td>
+            <tr *ngFor="let area of allAreas">
+                <td>{{area.description}}</td>
+                <td>{{area.postCode}}</td>
+                <td>{{area.state}}</td>
                 <td>
-                    <img src="../../../../assets/images/bread/33.png" />
-                    <img src="../../../../assets/images/bread/34.png" class="s-img" />
-                    <img src="../../../../assets/images/bread/19.png" />
-                    <img src="../../../../assets/images/bread/11.png" class="s-img" />
+                    <span *ngFor="let day of area.regularDeliveryDay">{{day.day}},</span>
+                </td>
+                <td>
+                    <!-- <img src="../../../../assets/images/bread/33.png" /> -->
+                    <!-- <img src="../../../../assets/images/bread/34.png" class="s-img" /> -->
+                    <img [routerLink]="['/settings/delivery-areas/edit-delivery-area/', area.id]" src="../../../../assets/images/bread/19.png" />
+                    <img (click)="deleteArea(area)" src="../../../../assets/images/bread/11.png" class="s-img" />
                 </td>
             </tr>
         </tbody>

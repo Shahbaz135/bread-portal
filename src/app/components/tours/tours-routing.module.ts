@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AllToursComponent } from './all-tours/all-tours.component';
 import { CreateTourComponent } from './create-tour/create-tour.component';
+import { EditTourComponent } from './edit-tour/edit-tour.component';
 import { TourSortingComponent } from './tour-sorting/tour-sorting.component';
 import { ToursOverviewComponent } from './tours-overview/tours-overview.component';
 
@@ -12,7 +13,8 @@ const routes: Routes = [
   { path: `all-tours`, component: AllToursComponent },
   { path: `tours-overview`, component: ToursOverviewComponent },
   { path: `create-tours`, component: CreateTourComponent },
-  { path: `tour-sorting`, component: TourSortingComponent }
+  { path: `tour-sorting`, component: TourSortingComponent },
+  { path: `edit-tour/:id`, component: EditTourComponent }
 ];
 
 @NgModule({

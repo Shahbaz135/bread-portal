@@ -7,15 +7,12 @@
         [class.navigation-bordered]="customize.data.borderNavigation"
         [class.navigation-rightside]="customize.data.rightSidebarIcon"
         [class.native-image-bg]="customize.data.backgroungImage"
-        [class.native-default]="customize.data.defaultNavigation">
+        >
         <app-searchbar></app-searchbar>
-        </div>
-   
-   
-
-        <div class="page-body ">
-            <router-outlet></router-outlet>
-        </div>
+    </div>
+    <div class="page-body ">
+        <router-outlet></router-outlet>
+    </div>
     <!--Page Body End-->
 </div>
 <!--page-wrapper End-->

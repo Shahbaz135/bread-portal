@@ -1,73 +1,83 @@
 <div class="row px-3 pt-3 pb-2">
-    <h3>Create Tour</h3>    
-  </div>
-<form>
-<div class="row bg-white m-0 p-3">
-    
+  <h3>Create Tour</h3>    
+</div>
+
+<ngx-spinner
+  bdColor="rgba(51,51,51,0.8)"
+  size="medium"
+  color="#fff"
+  type="ball-scale-multiple"
+>
+  <p style="font-size: 20px; color: white">{{ loadingText }}</p>
+</ngx-spinner>
+
+<form [formGroup]="tourForm">
+  <div class="row bg-white m-0 p-3">
     <div class="col-md-6">
-        <h6 class="">Create Tour</h6>
-        <input  class="form-input my-2 " type="text" placeholder="Tour Description "/>
-        <input  class="form-input my-2 " type="text" placeholder="Label text "/>
-        <input  class="form-input my-2 " type="text" placeholder="Name on Order review "/>
-        <select class="form-input" id="inlineFormCustomSelect">
-            <option value="" disabled selected>Billing Mode</option>
-            <option value="fixedPrice">Fixed Price Per Delivery</option>
-            <option value="atCost">At Cost</option>
-            <option value="perCustomer">Per Customer</option>
-          </select>
+      <h6 class="">Create Tour</h6>
+      <input  class="form-input my-2 " type="text" formControlName="description" placeholder="Tour Description "/>
+      <span *ngIf="cf.description.touched && cf.description.invalid">
+        <p class="text-danger">{{descriptionError()}}</p>
+      </span>
+      <input  class="form-input my-2 " type="text" formControlName="label" placeholder="Label text "/>
+      <input  class="form-input my-2 " type="text" formControlName="name" placeholder="Name on Order review "/>
+      <span *ngIf="cf.name.touched && cf.name.invalid">
+        <p class="text-danger">{{nameError()}}</p>
+      </span>
+      <select class="form-input" id="inlineFormCustomSelect" formControlName="billingMode">
+        <option value="" disabled selected>Billing Mode</option>
+        <option value="fixedPrice">Fixed Price Per Delivery</option>
+        <option value="atCost">At Cost</option>
+        <option value="perCustomer">Per Customer</option>
+      </select>
     </div>
     <div class="col-md-6">
-        <div class="b-01 mt-2 w-full">
-            <h6 class="mb-2">Delivery Days</h6>
-            <ul>
-              <li class="lft">
-              <input type="checkbox" id="1-option" name="selector">
-              <label for="1-option">Saturday</label>
-            </li>
-            <li class="lft">
-              <input type="checkbox" id="2-option" name="selector">
-              <label for="2-option">Sunday</label>
-            </li>
-            <li class="lft">
-              <input type="checkbox" id="6-option" name="selector">
-              <label for="6-option">Working Days</label>
-            </li>
-          </ul>
-          </div>
-          <div class="b-01 mt-2 w-full">
-            <h6 class="mb-2">New Customer Treatment</h6>
-            <ul>
-              <li class="lft">
-              <input type="checkbox" id="11-option" name="selector">
-              <label for="11-option">field tour for new web customers</label>
-            </li>
-            <li class="lft">
-              <input type="checkbox" id="22-option" name="selector">
-              <label for="22-option">Support tour for new web customers who order for first time</label>
-            </li>
-          </ul>
-          </div>
-          <div class="b-01 mt-2 w-full">
-            <h6 class="mb-2">All Users</h6>
-            <ul>
-              <li class="lft">
-                <input type="checkbox" id="7-option" name="selector">
-                <label for="7-option">All Users </label>
-              </li>
-              <li class="lft">
-                <input type="checkbox" id="8-option" name="selector">
-                <label for="8-option">Because of partner supervisor</label>
-              </li>
-              <li class="lft">
-                <input type="checkbox" id="9-option" name="selector">
-                <label for="9-option">Sufi gabriel (owner)</label>
-              </li>
-            </ul>
-          </div>
+      <div class="b-01 mt-2 w-full">
+        <h6 class="mb-2">Delivery Days</h6>
+        <ul>
+          <li class="lft">
+            <input type="checkbox" id="1-option" (click)="onAddWeekDays($event.target.checked, 'Saturday')" name="selector">
+            <label for="1-option">Saturday</label>
+          </li>
+          <li class="lft">
+            <input type="checkbox" id="2-option" name="selector" (click)="onAddWeekDays($event.target.checked, 'Sunday')">
+            <label for="2-option">Sunday</label>
+          </li>
+          <li class="lft">
+            <input type="checkbox" id="6-option" name="selector" (click)="onAddWeekDays($event.target.checked, 'WorkingDays')">
+            <label for="6-option">Working Days</label>
+          </li>
+        </ul>
+      </div>
+      <div class="b-01 mt-2 w-full">
+        <h6 class="mb-2">New Customer Treatment</h6>
+        <ul>
+          <li class="lft">
+          <input type="checkbox" id="11-option" name="selector" formControlName="fieldTour">
+          <label for="11-option">field tour for new web customers</label>
+        </li>
+        <li class="lft">
+          <input type="checkbox" id="22-option" name="selector" formControlName="supportTour">
+          <label for="22-option">Support tour for new web customers who order for first time</label>
+        </li>
+      </ul>
+      </div>
+      <div class="b-01 mt-2 w-full">
+        <h6 class="mb-2">All Users</h6>
+        <ul>
+          <li class="lft">
+            <input type="checkbox" id="7-option" name="selector" (change)="onCheckAll($event.target.checked)">
+            <label for="7-option">All Users </label>
+          </li>
+          <li class="lft" *ngFor="let user of allUsers">
+            <input type="checkbox" id="8-option" name="selector" [checked]="check(user.id)" (change)="onCheckUser($event.target.checked, user)">
+            <label for="8-option">{{user.fName}} {{user.lName}}</label>
+          </li>
+        </ul>
+      </div>
     </div>
     <div class="row bg-white m-0 p-3">
-        <button class="c-button">Create Tour</button>
-      </div>
-    
-</div>
+      <button class="c-button" (click)="submit()">Create Tour</button>
+    </div>
+  </div>
 </form>

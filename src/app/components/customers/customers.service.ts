@@ -16,8 +16,23 @@ export class CustomersService {
     return this.http.post(this.apiUrl + `/create`, data );
   }
 
-  // getOrders(customerId): Observable<any> {
-  //   const conditions: object = { CustomerId : customerId};
-  //   return this.http.get(this.apiUrl + `/get` + WrapHttpService.objToQuery(conditions));
-  // }
+  getAllCustomers(data?): Observable<any> {
+    return this.http.get(this.apiUrl + `/getAll` + WrapHttpService.objToQuery(data));
+  }
+
+  getCustomerData(data?): Observable<any> {
+    return this.http.get(this.apiUrl + `/getById` + WrapHttpService.objToQuery(data));
+  }
+
+  updateCustomer(data, id): Observable<any> {
+    return this.http.put(this.apiUrl + `/update/` + id, data );
+  }
+
+  setPassword(data): Observable<any> {
+    return this.http.post(this.apiUrl + `/changePassword`, data );
+  }
+
+  deleteCustomer(id): Observable<any> {
+    return this.http.delete(this.apiUrl + `/delete/` + id );
+  }
 }

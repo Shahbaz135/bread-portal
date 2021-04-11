@@ -9,10 +9,10 @@ import { Location } from "@angular/common";
 export class HelperService {
   ConfirmationAlert = Swal.mixin({
     customClass: {
-      confirmButton: "btn btn-success",
-      cancelButton: "btn btn-danger",
+      confirmButton: "btn btn-danger",
+      cancelButton: "btn btn-light",
     },
-    buttonsStyling: false,
+    buttonsStyling: true,
   });
 
   constructor(
@@ -28,11 +28,11 @@ export class HelperService {
     });
   }
 
-  alertFailure(message, title = "") {
+  alertFailure(message, title = ``) {
     Swal.fire({
       title,
       text: message,
-      icon: "error",
+      icon: `error`,
     });
   }
 

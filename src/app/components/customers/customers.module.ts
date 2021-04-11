@@ -10,9 +10,10 @@ import { NgbModule, NgbNavModule } from '@ng-bootstrap/ng-bootstrap';
 import { SearchCustomersComponent } from './search-customers/search-customers.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { ArchiveCustomersComponent } from './archive-customers/archive-customers.component';
 
 @NgModule({
-  declarations: [CustomersComponent, TrailCustomersComponent, WebCustomersComponent, CreateCustomersComponent, SearchCustomersComponent],
+  declarations: [CustomersComponent, TrailCustomersComponent, WebCustomersComponent, CreateCustomersComponent, SearchCustomersComponent, ArchiveCustomersComponent],
   imports: [
     CommonModule,
     CustomersRoutingModule,

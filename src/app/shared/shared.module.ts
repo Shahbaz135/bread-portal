@@ -6,13 +6,15 @@ import { FooterComponent } from './components/footer/footer.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { ToggleFullscreenDirective } from "./directives/fullscreen.directive";
 import { SearchbarComponent } from './components/searchbar/searchbar.component';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
   declarations: [ HeaderComponent, FooterComponent, SidebarComponent, ToggleFullscreenDirective, SearchbarComponent ],
   imports: [
     CommonModule,
-    RouterModule
+    RouterModule,
+    FormsModule
   ],
   exports:[ HeaderComponent, FooterComponent, SidebarComponent, SearchbarComponent ]
 })

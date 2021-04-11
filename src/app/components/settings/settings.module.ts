@@ -16,14 +16,32 @@ import { InactiveProductsComponent } from './products/inactive-products/inactive
 import { UsersComponent } from './users/users.component';
 import { NgbModule, NgbNavModule } from '@ng-bootstrap/ng-bootstrap';
 import { AccountSettingsComponent } from './account-settings/account-settings.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 @NgModule({
-  declarations: [CategoriesOverviewComponent, CreateCategoriesComponent, ProductCategoriesComponent, AddDeliveryAreaComponent, DevlieryAreasOverviewComponent, EditDeliveryAreaComponent, NonDeliveryDaysComponent, ActiveProductsComponent, CreateProductComponent, EditProductComponent, InactiveProductsComponent, UsersComponent, AccountSettingsComponent],
+  declarations: [
+    CategoriesOverviewComponent,
+    CreateCategoriesComponent,
+    ProductCategoriesComponent,
+    AddDeliveryAreaComponent,
+    DevlieryAreasOverviewComponent,
+    EditDeliveryAreaComponent,
+    NonDeliveryDaysComponent,
+    ActiveProductsComponent,
+    CreateProductComponent,
+    EditProductComponent,
+    InactiveProductsComponent,
+    UsersComponent,
+    AccountSettingsComponent],
   imports: [
     CommonModule,
     SettingsRoutingModule,
     NgbNavModule,
-    NgbModule
+    NgbModule,
+    FormsModule,
+    ReactiveFormsModule,
+    NgxSpinnerModule
   ]
 })
 export class SettingsModule { }

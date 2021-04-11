@@ -12,6 +12,15 @@
 
 </div>
 
+<ngx-spinner
+  bdColor="rgba(51,51,51,0.8)"
+  size="medium"
+  color="#fff"
+  type="ball-scale-multiple"
+>
+  <p style="font-size: 20px; color: white">{{ loadingText }}</p>
+</ngx-spinner>
+
 <div class="row px-3 my-3">
     <table class="b-table table-responsive bg-white">
         <thead>
@@ -25,18 +34,18 @@
             <th>ACTIONS</th>
         </thead>
         <tbody>
-            <tr>
-                <td>12/12/20</td>
-                <td>10</td>
-                <td>10</td>
-                <td>Fittybrotchen</td>
-                <td>0,40€</td>
-                <td>0,19000€</td>
-                <td>Sa, So, planet, active, online, sample</td>
+            <tr *ngFor="let product of allProducts">
+                <td>{{product.createdAt | date: 'shortDate'}}</td>
+                <td>{{product.label}}</td>
+                <td>{{product.articleNo}}</td>
+                <td>{{product.name}}</td>
+                <td>{{product.productPrice}}€</td>
+                <td>{{product.purchasingPrice}}€</td>
+                <td>Sa, So, inactive, online, sample</td>
                 <td>
-                    <img src="../../../../assets/images/bread/23.png" />
-                    <img src="../../../../assets/images/bread/19.png" class="s-img" />
-                    <img src="../../../../assets/images/bread/33.png" />
+                    <!-- <img src="../../../../assets/images/bread/23.png" /> -->
+                    <img [routerLink]="['/settings/edit-product/', product.id]" src="../../../../assets/images/bread/19.png" class="s-img" />
+                    <!-- <img src="../../../../assets/images/bread/33.png" /> -->
                 </td>
             </tr>
         </tbody>

@@ -34,7 +34,7 @@ export class CreateFranchiseComponent implements OnInit {
       town: [''],
       email: ['', [Validators.required , Validators.email, Validators.maxLength(100)]],
       password: ['', [Validators.required]],
-      iban: [false],
+      iban: [``],
       isName: [false],
       isHouseStreetNumber: [false],
       isPostalCode: [false],

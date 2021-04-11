@@ -9,10 +9,11 @@ import { TourSortingComponent } from './tour-sorting/tour-sorting.component';
 import { NgbModule, NgbNavModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { EditTourComponent } from './edit-tour/edit-tour.component';
 
 
 @NgModule({
-  declarations: [AllToursComponent, ToursOverviewComponent, CreateTourComponent, TourSortingComponent],
+  declarations: [AllToursComponent, ToursOverviewComponent, CreateTourComponent, TourSortingComponent, EditTourComponent],
   imports: [
     CommonModule,
     ToursRoutingModule,

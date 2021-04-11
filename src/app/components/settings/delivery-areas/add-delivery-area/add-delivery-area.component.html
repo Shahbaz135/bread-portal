@@ -1,85 +1,113 @@
 <div class="row px-3 pt-3 pb-2">
     <h3>Add Delivery Area</h3>    
 </div>
+<ngx-spinner
+  bdColor="rgba(51,51,51,0.8)"
+  size="medium"
+  color="#fff"
+  type="ball-scale-multiple"
+>
+  <p style="font-size: 20px; color: white">{{ loadingText }}</p>
+</ngx-spinner>
 <div class="row px-3 pt-3 pb-2 bg-white">
     <div class="col-md-6">
         <h6 class="w-full">Details</h6>
         <div class="row f-row mb-2 mx-0 ">
-            <input  class="form-input" type="text" placeholder="Postcode"/>
+            <input [(ngModel)]="deliveryArea.postCode" class="form-input" type="tel" placeholder="Postcode"/>
+            <span *ngIf="isSubmitted && !deliveryArea.postCode">
+                <p class="text-danger">Post Code is required</p>
+            </span>
+            <span *ngIf="isSubmitted && this.deliveryArea.postCode.length !== 5">
+                <p class="text-danger">Invalid Post Code</p>
+            </span>
         </div>
         <div class="row f-row mx-0 ">
-            <textarea placeholder="Description" class="form-input-text"></textarea>
+            <textarea [(ngModel)]="deliveryArea.description" placeholder="Description" class="form-input-text"></textarea>
         </div>
         <div class="row f-row my-2 mx-0 ">
-            <select class="form-input">
-                <option value="0">State</option>
-                <option value="code">Code</option>
-                <option value="code">Code</option>
-                <option value="code">Code</option>
-                <option value="code">Code</option>
-                <option value="code">Code</option>
+            <select class="form-input" [(ngModel)]="deliveryArea.state">
+                <option value="" selected disabled>Select State</option>
+                <option value="Baden-Wuerttemberg">Baden-Wuerttemberg</option>
+                <option value="Bavaria">Bavaria</option>
+                <option value="Berlin">Berlin</option>
+                <option value="Brandenburg">Brandenburg</option>
+                <option value="Bremen">Bremen</option>
+                <option value="Hamburg">Hamburg</option>
+                <option value="Hesse">Hesse</option>
+                <option value="Mecklenburg-Western Pomerania">Mecklenburg-Western Pomerania</option>
+                <option value="Lower Saxony">Lower Saxony</option>
+                <option value="North Rhine-Westphalia">North Rhine-Westphalia</option>
+                <option value="Rhineland-Palatinate">Rhineland-Palatinate</option>
+                <option value="Saarland">Saarland</option>
+                <option value="Saxony">Saxony</option>
+                <option value="Saxony-Anhalt">Saxony-Anhalt</option>
+                <option value="Schleswig-Holstein">Schleswig-Holstein</option>
+                <option value="Thuringia">Thuringia</option>
             </select>
+            <span *ngIf="isSubmitted && !deliveryArea.state">
+                <p class="text-danger">state is required</p>
+            </span>
         </div>
     </div>
     <div class="col-md-3">
         <h6 class="w-full">Regular Delivery Days</h6>
         <div class="row f-row my-1 mx-0 form-checkbox">
-            <input type="checkbox" id="mon1">
+            <input type="checkbox" id="mon1" (click)="onAddRegularWeekDays($event.target.checked, 1)">
             <label for="mon1">Monday</label>
         </div>
         <div class="row f-row my-1 mx-0 form-checkbox">
-            <input type="checkbox" id="tue1">
+            <input type="checkbox" id="tue1" (click)="onAddRegularWeekDays($event.target.checked, 2)">
             <label for="tue1">Tuesday</label>
         </div>
         <div class="row f-row my-1 mx-0 form-checkbox">
-            <input type="checkbox" id="wed1">
+            <input type="checkbox" id="wed1" (click)="onAddRegularWeekDays($event.target.checked, 3)">
             <label for="wed1">Wednesday</label>
         </div>
         <div class="row f-row my-1 mx-0 form-checkbox">
-            <input type="checkbox" id="thu1">
+            <input type="checkbox" id="thu1" (click)="onAddRegularWeekDays($event.target.checked, 4)">
             <label for="thu1">thursday</label>
         </div>
         <div class="row f-row my-1 mx-0 form-checkbox">
-            <input type="checkbox" id="fri1">
+            <input type="checkbox" id="fri1" (click)="onAddRegularWeekDays($event.target.checked, 5)">
             <label for="fri1">Friday</label>
         </div>
         <div class="row f-row my-1 mx-0 form-checkbox">
-            <input type="checkbox" id="sat1">
+            <input type="checkbox" id="sat1" (click)="onAddRegularWeekDays($event.target.checked, 6)">
             <label for="sat1">Saturday</label>
         </div>
         <div class="row f-row my-1 mx-0 form-checkbox">
-            <input type="checkbox" id="sun1">
+            <input type="checkbox" id="sun1" (click)="onAddRegularWeekDays($event.target.checked, 7)">
             <label for="sun1">Sunday</label>
         </div>
     </div>
     <div class="col-md-3">
         <h6 class="w-full">Sample Delivery Days</h6>
         <div class="row f-row my-1 mx-0 form-checkbox">
-            <input type="checkbox" id="mon2">
+            <input type="checkbox" id="mon2" (click)="onAddSampleWeekDays($event.target.checked, 1)">
             <label for="mon2">Monday</label>
         </div>
         <div class="row f-row my-1 mx-0 form-checkbox">
-            <input type="checkbox" id="tue2">
-            <label for="tue2">Tuesday</label>
+            <input type="checkbox" id="tue2" (click)="onAddSampleWeekDays($event.target.checked, 2)">
+            <label for="tue2">Tuesday</label>\
         </div>
         <div class="row f-row my-1 mx-0 form-checkbox">
-            <input type="checkbox" id="wed2">
+            <input type="checkbox" id="wed2" (click)="onAddSampleWeekDays($event.target.checked, 3)">
             <label for="wed2">Wednesday</label>
         </div>
         <div class="row f-row my-1 mx-0 form-checkbox">
-            <input type="checkbox" id="thu2">
+            <input type="checkbox" id="thu2" (click)="onAddSampleWeekDays($event.target.checked, 4)">
             <label for="thu2">thursday</label>
         </div>
         <div class="row f-row my-1 mx-0 form-checkbox">
-            <input type="checkbox" id="fri2">
+            <input type="checkbox" id="fri2" (click)="onAddSampleWeekDays($event.target.checked, 5)">
             <label for="fri2">Friday</label>
         </div>
         <div class="row f-row my-1 mx-0 form-checkbox">
-            <input type="checkbox" id="sat2">
+            <input type="checkbox" id="sat2" (click)="onAddSampleWeekDays($event.target.checked, 6)">
             <label for="sat2">Saturday</label>
         </div>
         <div class="row f-row my-1 mx-0 form-checkbox">
-            <input type="checkbox" id="sun2">
+            <input type="checkbox" id="sun2" (click)="onAddSampleWeekDays($event.target.checked, 7)">
             <label for="sun2">Sunday</label>
         </div>
     </div>
@@ -88,7 +116,7 @@
     <div class="col-md-6 m-0">
         <h6 class="w-full">Order refrence regular ordr</h6>
         <div class="row f-row mx-0 ">
-            <textarea placeholder="Type Here....." class="form-input-text"></textarea>
+            <textarea [(ngModel)]="deliveryArea.regularReference" placeholder="Type Here....." class="form-input-text"></textarea>
         </div>
         <p class="text-bold my-3">
             It is a long established fact that a reader will be distracte
@@ -98,7 +126,7 @@
     <div class="col-md-6 m-0">
         <h6 class="w-full">Ordering information trail order</h6>
         <div class="row f-row mx-0 ">
-            <textarea placeholder="Type Here....." class="form-input-text"></textarea>
+            <textarea [(ngModel)]="deliveryArea.trailInformation" placeholder="Type Here....." class="form-input-text"></textarea>
         </div>
         <p class="text-bold my-3">
             It is a long established fact that a reader will be distracte
@@ -107,5 +135,5 @@
     </div>
 </div>
 <div class="row px-4 pt-3 pb-4 mb-5 bg-white">
-    <button class="c-button py-2">Create Delivery Area</button>
+    <button (click)="submit()" class="c-button py-2">Create Delivery Area</button>
 </div>

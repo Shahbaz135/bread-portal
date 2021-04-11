@@ -29,7 +29,7 @@ import { NgxSpinnerModule } from 'ngx-spinner';
     NgbModule,
     NgbModule,
     HttpClientModule,
-    NgxSpinnerModule
+    NgxSpinnerModule,
   ],
   providers: [WrapHttpService],
   bootstrap: [AppComponent]

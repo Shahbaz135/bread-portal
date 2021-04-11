@@ -1,40 +1,41 @@
 <div class="searchbar">
-   <form class="mt-5">
-    <div class="row f-row mb-2">
-        <input  class="form-input" type="text" placeholder="First Name"/>
-    </div>
-    <div class="row f-row mb-2">
-        <input  class="form-input" type="text" placeholder="Last Name"/>
-    </div>
-    <div class="row f-row mb-2">
-        <input  class="form-input" type="text" placeholder="Road  "/>
-    </div>
-    <div class="row f-row mb-2">
-        <input  class="form-input" type="text" placeholder="Postcode "/>
-    </div>
-    <div class="row f-row mb-2">
-        <input  class="form-input" type="text" placeholder=" District"/>
-    </div>
-    <div class="row f-row mb-2">
-        <input  class="form-input" type="text" placeholder=" email"/>
-    </div>
-    <div class="row f-row mb-2">
-        <input  class="form-input" type="text" placeholder=" phone Number"/>
-    </div>
-    <div class="row f-row mb-2">
-        <input  class="form-input" type="text" placeholder="Customer Number "/>
-    </div>
-    <div class="row f-row mb-2">
-        <select class="form-input">
-            <option value="">Code</option>
-            <option value="">Code</option>
-            <option value="">Code</option>
-            <option value="">Code</option>
-            <option value="">Code</option>
-        </select>
-    </div>
-    <div class="row f-row my-4 text-center">
-        <button class="s-button">Start Search</button>
-    </div>
-   </form>
+   <!-- <form class="mt-5"> -->
+        <div class="row f-row mb-2">
+            <input  class="form-input" [(ngModel)]="customer.fName" type="text" placeholder="First Name"/>
+        </div>
+        <div class="row f-row mb-2">
+            <input  class="form-input" [(ngModel)]="customer.lName" type="text" placeholder="Last Name"/>
+        </div>
+        <div class="row f-row mb-2">
+            <input  class="form-input" [(ngModel)]="customer.houseStreetNumber" type="text" placeholder="Road  "/>
+        </div>
+        <div class="row f-row mb-2">
+            <input  class="form-input" [(ngModel)]="customer.postalCode" type="text" placeholder="Postcode "/>
+        </div>
+        <div class="row f-row mb-2">
+            <input  class="form-input" [(ngModel)]="customer.town" type="text" placeholder=" District"/>
+        </div>
+        <div class="row f-row mb-2">
+            <input  class="form-input" [(ngModel)]="customer.email" type="text" placeholder=" email"/>
+        </div>
+        <div class="row f-row mb-2">
+            <input  class="form-input" type="text" [(ngModel)]="customer.phone" placeholder=" phone Number"/>
+        </div>
+        <div class="row f-row mb-2">
+            <input  class="form-input" [(ngModel)]="customer.id" type="text" placeholder="Customer Number "/>
+        </div>
+        <div class="row f-row mb-2">
+            <select class="form-input form-input-select" [(ngModel)]="customer.code">
+                <option value="" disabled selected>Select Code</option>
+                <option value="-D">-D &nbsp; Regular Customer</option>
+                <option value="*D">*D &nbsp; Regular Customer, Terminated</option>
+                <option value="#D">#D &nbsp; Terminated for resubmission</option>
+                <option value="-De">-De &nbsp; Ordered when needed</option>
+                <option value="-X">-X &nbsp; Delivery Stop</option>
+            </select>
+        </div>
+        <div class="row f-row my-4 text-center">
+            <a class="s-button" (click)="searchCustomer()">Start Search</a>
+        </div>
+   <!-- </form> -->
 </div>

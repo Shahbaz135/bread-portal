@@ -14,19 +14,20 @@
 <div class="row px-3 my-3">
     <table class="b-table table-responsive">
         <thead>
-            <th>DELIVERY DATE</th>
+            <th>#</th>
             <th>CUSTOMER</th>
             <th>POSTCODE</th>
-            <th>STREET & HOUSE NO</th>
+            <th>STREET</th>
             <th>DISTRICT </th>
             <th>PHONE</th>
             <th>EMAIL</th>
-            <th>NOTE</th>
-            <th>STATUS</th>
+            <th>TYPE</th>
+            <th>CREATED</th>
+            <th>ACTIONS</th>
         </thead>
         <tbody>
             <tr *ngFor="let customer of allCustomers">
-                <td>{{customer.desiredDate | date}}</td>
+                <td>{{customer.id}}</td>
                 <td>
                     <a style="color: black;" [routerLink]="['/customers/view/', customer.id]">
                         {{customer.fName}} {{customer.lName}}
@@ -37,9 +38,14 @@
                 <td>{{customer.town}}</td>
                 <td>{{customer.phone}}</td>
                 <td>{{customer.email}}</td>
-                <td>{{customer.deliverNotes}}</td>
-                <td><label class="text-green pt-2" *ngIf="customer.isTrail">Sample</label></td>
-                <td><label class="text-green pt-2" *ngIf="!customer.isTrail">Regular</label></td>
+                <td><label class="text-green pt-2" *ngIf="customer.isArchive">Archive</label></td>
+                <!-- <td><label class="text-green pt-2" *ngIf="!customer.isArchive">Regular</label></td> -->
+                <td>{{customer.createdAt | date}}</td>
+                <td>
+                    <img [routerLink]="['/customers/view/', customer.id]" src="../../../../assets/images/bread/23.png" />
+                    <img src="../../../../assets/images/bread/27.png" class="mx-1"/>
+                    <img src="../../../../assets/images/bread/11.png"/>
+                </td>
             </tr>
         </tbody>
     </table>

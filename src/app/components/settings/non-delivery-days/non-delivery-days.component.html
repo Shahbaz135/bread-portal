@@ -2,27 +2,39 @@
     <h3 class="w-full">Non-Delivery Days</h3> 
 </div>
 
+<ngx-spinner
+  bdColor="rgba(51,51,51,0.8)"
+  size="medium"
+  color="#fff"
+  type="ball-scale-multiple"
+>
+  <p style="font-size: 20px; color: white">{{ loadingText }}</p>
+</ngx-spinner>
+
 <div class="row  p-3 mx-0 my-3 bg-white ">
     <h6 class="w-full mb-3">Add Non-Delivery Days</h6>
     <div class="col-md-6 p-0 pb-5">
         <div class="row f-row mb-2 mx-0 ">
-            <input  class="form-input" type="text" placeholder="New Non-Delivery Days"/>
+            <input  class="form-input" [(ngModel)]="nonDeliveryDay.day" type="date" placeholder="New Non-Delivery Days"/>
         </div>
-        <button class="c-button py-2 my-3">Create Non-Delivery Days</button>
+        <button class="c-button py-2 my-3" (click)="submit()">Create Non-Delivery Days</button>
         <div class="row f-row my-1 mx-0 form-checkbox">
-            <input type="checkbox" id="non" checked>
+            <input type="checkbox" id="non" [(ngModel)]="nonDeliveryDay.showOnCustomerPortal">
             <label for="non">show non-delivery day in the customer portal</label>
         </div>
     </div>
     <div class="col-md-6 ">
         <div class="row p-0 m-0">
-            <table class="b-table table-responsive">
+            <table class="b-table table-responsive" *ngIf="allDays.length">
                 <tbody>
-                    <tr class="tr1 bg-bluish">
-                        <td>12/12/20</td>
-                        <td><img src="../../../../assets/images/bread/11.png"/></td>
-                    </tr>
-                    <tr class="tr1 ">
+                    <ng-container *ngFor="let day of allDays; let i = index">
+                        <tr class="tr1" [class.bg-bluish] = "(i+1)%2 != 0" >
+                            <td>{{day.day | date: 'shortDate'}}</td>
+                            <td><img (click)="deleteArea(day)" src="../../../../assets/images/bread/11.png"/></td>
+                        </tr>
+                    </ng-container>
+                    
+                    <!-- <tr class="tr1 ">
                         <td>12/12/20</td>
                         <td><img src="../../../../assets/images/bread/11.png"/></td>
                     </tr>
@@ -37,7 +49,7 @@
                     <tr class="tr1 bg-bluish">
                         <td>12/12/20</td>
                         <td><img src="../../../../assets/images/bread/11.png"/></td>
-                    </tr>   
+                    </tr>    -->
                 </tbody>
             </table>
         </div>

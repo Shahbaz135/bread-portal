@@ -51,10 +51,11 @@ export class NavService {
 		{
 			title: 'customers', icon: 'headphones', type: 'sub', children:
 			[
-				{ path: '/customers/customers', title: 'customers', type: 'link' },
+				{ path: '/customers/search-customers', title: 'Search Customers', type: 'link' },
 				{ path: '/customers/create-customer', title: 'Create Customers', type: 'link' },
 				{ path: '/customers/trail-customers', title: 'trail Customers', type: 'link' },
 				{ path: '/customers/web-customers', title: 'Web Customers', type: 'link' },
+				{ path: '/customers/archive-customer', title: 'Customers Archive', type: 'link' },
 			]
 		},
 		{
@@ -111,7 +112,6 @@ export class NavService {
 						title: 'Delivery Areas', type: 'sub', active: false, children: [
 							{ path: '/settings/delivery-areas/add-delivery-area', title: 'Add Delivery Area', type: 'link' },
 							{ path: '/settings/delivery-areas/delivery-areas-overview', title: 'Delivery Areas Overview', type: 'link', },
-							{ path: '/settings/delivery-areas/edit-delivery-area', title: 'Edit Delivery Area', type: 'link' },
 						]
 					},
 					{
@@ -121,7 +121,6 @@ export class NavService {
 						title: 'Products', type: 'sub', active: false, children: [
 							{ path: '/settings/active-products', title: 'Active Products', type: 'link' },
 							{ path: '/settings/create-product', title: 'Create a Product', type: 'link' },
-							{ path: '/settings/edit-product', title: 'Edit Product', type: 'link', },
 							{ path: '/settings/inactive-products', title: 'Inactive Products', type: 'link' },
 						]
 					},
@@ -133,7 +132,6 @@ export class NavService {
 					}
 				]
 		},
-		
 	]
 	// tslint:disable-next-line: member-ordering
 	items = new BehaviorSubject<Menu[]>(this.MENUITEMS);

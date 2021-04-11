@@ -2,6 +2,15 @@
     <h3>Web Customers</h3>    
 </div>
 
+<ngx-spinner
+  bdColor="rgba(51,51,51,0.8)"
+  size="medium"
+  color="#fff"
+  type="ball-scale-multiple"
+>
+  <p style="font-size: 20px; color: white">{{ loadingText }}</p>
+</ngx-spinner>
+
 <div class="row px-3 my-3">
     <table class="b-table table-responsive">
         <thead>
@@ -17,14 +26,19 @@
             <th>CONFIRM</th>
         </thead>
         <tbody>
-            <tr>
-                <td>123</td>
-                <td>Zain Ali</td>
-                <td>Glasscow, street 5</td>
-                <td>09321</td>
-                <td>Housten</td>
-                <td>+21312412</td>
-                <td><label class="text-green pt-2">Regular</label></td>
+            <tr *ngFor="let customer of allCustomers">
+                <td>{{customer.id}}</td>
+                <td>
+                    <a style="color: black;" [routerLink]="['/customers/view/', customer.id]">
+                        {{customer.fName}} {{customer.lName}}
+                    </a>
+                </td>
+                <td>{{customer.houseStreetNumber}}</td>
+                <td>{{customer.postalCode}}</td>
+                <td>{{customer.town}}</td>
+                <td>{{customer.phone}}</td>
+                <td *ngIf="customer.isTrail"><label class="text-green pt-2" >Sample</label></td>
+                <td *ngIf="!customer.isTrail"><label class="text-green pt-2" >Regular</label></td>
                 <td>Clear</td>
                 <td class="text-center"><label class="text-green pt-2">✓</label></td>
             </tr>

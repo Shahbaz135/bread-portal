@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { AuthService } from 'src/app/shared/services/common/auth.service';
 import { HelperService } from 'src/app/shared/services/helper.service';
+import { FranchiseService } from '../../franchises/franchise.service';
+import { TourService } from '../../tours/tour.service';
 import { CustomersService } from '../customers.service';
 
 @Component({
@@ -13,16 +16,63 @@ export class CreateCustomersComponent implements OnInit {
   public customerForm: FormGroup;
 
   public loadingText = ``;
+  public allTours = [];
+  public allFranchises = [];
 
   constructor(
     private helperService: HelperService,
     private formBuilder: FormBuilder,
     private spinner: NgxSpinnerService,
-    private customerService: CustomersService
+    private customerService: CustomersService,
+    private tourService: TourService,
+    private franchiseService: FranchiseService
   ) { }
 
   ngOnInit(): void {
+    this.getALlTours();
+    this.getAllFranchises();
     this.renderForm();
+  }
+
+  getALlTours() {
+    this.loadingText = `Fetching records, please wait...`;
+    this.spinner.show();
+    this.tourService.getAll()
+      .subscribe((response) => {
+        this.spinner.hide();
+        if (response.status === `Success`) {
+          this.allTours = response.data;
+        }
+      }, (error) => {
+        this.spinner.hide();
+        console.log(error);
+        if (error.error.message) {
+          this.helperService.alertFailure(error.error.message[0].message, `Error`);
+        } else {
+          this.helperService.alertFailure(`Something went wrong, Please try again`, `Error`);
+        }
+      });
+  }
+
+  getAllFranchises() {
+    this.loadingText = `Fetching records, Please Wait...`;
+    this.spinner.show();
+
+    this.franchiseService.getAll()
+      .subscribe((response) => {
+        this.spinner.hide();
+        if (response.status === `Success`) {
+          this.allFranchises = response.data;
+        }
+      }, (error) => {
+        this.spinner.hide();
+        console.log(error);
+        if (error.error) {
+          this.helperService.alertFailure(error.error.message[0].message, `Error`);
+        } else {
+          this.helperService.alertFailure(`Something went wrong, Please try again`, `Error`);
+        }
+      });
   }
 
   //// initializing form
@@ -62,10 +112,10 @@ export class CreateCustomersComponent implements OnInit {
       feeWorkingDays: [``],
       feeSaturday: [``],
       feeSunday: [``],
-      paymentType: [``],
+      paymentType: [`direct-debit`],
       sendInvoiceByEmail: [false],
       isDiscountActivated: [false],
-      partnerId: ['', [Validators.required]],
+      partnerId: [''],
       isTrail: [false],
       isActive: [true],
       isWeb: [false]
@@ -75,19 +125,32 @@ export class CreateCustomersComponent implements OnInit {
   createCustomer() {
     this.loadingText = `Submitting Form, Please Wait ..`;
     this.spinner.show();
-    console.log(this.customerForm.value);
     if (this.customerForm.invalid) {
       this.customerForm.markAllAsTouched();
       this.spinner.hide();
       this.helperService.alertFailure(`Please Fill all required fields`, `Invalid`);
       return;
     } else {
-      this._submit();
+      if (this.customerForm.value.tourWeekDays === `` && this.customerForm.value.tourSaturday === ``
+        && this.customerForm.value.sortingSaturday === ``
+      ) {
+        this.helperService.alertFailure(`Please Assign a tour`, `Invalid`);
+        this.spinner.hide();
+      } else if (this.customerForm.value.paymentType === `direct-debit` &&
+      (this.customerForm.value.bankAccountOwner === `` || this.customerForm.value.iban  === ``) ) {
+        this.helperService.alertFailure(`Please Enter account details`, `Invalid`);
+        this.spinner.hide();
+      } else {
+        this._submit();
+      }
     }
   }
 
   _submit() {
+    //// getting logged user
+    const UserId = AuthService.getLoggedUser().data.id;
     const formData = this.customerForm.value;
+    formData.UserId = UserId;
     this.customerService.createCustomer(formData)
       .subscribe((response) => {
         this.spinner.hide();
