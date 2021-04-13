@@ -9,6 +9,8 @@ import { WrapHttpService } from '../../shared/services/common/wrap-http.service'
 })
 export class CustomersService {
   public readonly apiUrl = HttpConfig.getApiUrl() + '/customer';
+  public readonly orderApiUrl = HttpConfig.getApiUrl() + '/order';
+  public readonly interruptionApiUrl = HttpConfig.getApiUrl() + '/interruption';
 
   constructor(public http: WrapHttpService) { }
 
@@ -34,5 +36,25 @@ export class CustomersService {
 
   deleteCustomer(id): Observable<any> {
     return this.http.delete(this.apiUrl + `/delete/` + id );
+  }
+
+  getCustomerOrder(data?): Observable<any> {
+    return this.http.get(this.orderApiUrl + `/get` + WrapHttpService.objToQuery(data));
+  }
+
+  getAdditionalOrder(data?): Observable<any> {
+    return this.http.get(this.orderApiUrl + `/addition/get` + WrapHttpService.objToQuery(data));
+  }
+
+  getAdditionalDetail(data?): Observable<any> {
+    return this.http.get(this.orderApiUrl + `/addition/getById` + WrapHttpService.objToQuery(data));
+  }
+
+  getOrderDetail(data?): Observable<any> {
+    return this.http.get(this.orderApiUrl + `/getById` + WrapHttpService.objToQuery(data));
+  }
+
+  getOrderInterruption(data?): Observable<any> {
+    return this.http.get(this.interruptionApiUrl + `/get` + WrapHttpService.objToQuery(data));
   }
 }

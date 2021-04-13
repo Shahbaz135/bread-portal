@@ -305,18 +305,32 @@
             </div>
         </ng-template>
       </li>
-      <li [ngbNavItem]="2">
+      <li [ngbNavItem]="2" (click)="selectedTab('orders')">
         <a ngbNavLink>Order</a>
         <ng-template ngbNavContent>
             <div class="row px-0 pb-4 m-0 ">
                 <div class="col-md-4">
                     <h6>Orders</h6>
                     <div class="c-box bg-white">
-                        <div class="orders txt-bold">valid from 08/01/20 until unlimited</div>
-                        <div class="orders txt-bold">valid from 08/01/20 until unlimited</div>
-                        <div class="orders txt-bold">valid from 08/01/20 until unlimited</div>
+                        <div (click)="selectedOrder(order)" class="orders txt-bold" *ngFor="let order of orders">
+                            valid from {{order.validFrom | date: 'shortDate'}} until 
+                            <span *ngIf="!order.expiryDate">unlimited</span>
+                            <span *ngIf="order.expiryDate">{{order.expiryDate | date: 'shortDate'}}</span>
+                        </div>
+                        <!-- <div class="orders txt-bold">valid from 08/01/20 until unlimited</div>
+                        <div class="orders txt-bold">valid from 08/01/20 until unlimited</div> -->
                     </div>
-                    <div class="row f-row mb-2">
+                    <h6>Order Breakage</h6>
+                    <div class="c-box bg-white">
+                        <div  class="orders txt-bold" *ngFor="let order of orderInterruption">
+                            valid from {{order.validFrom | date: 'shortDate'}} until 
+                            <span *ngIf="!order.expiryDate">unlimited</span>
+                            <span *ngIf="order.expiryDate">{{order.expiryDate | date: 'shortDate'}}</span>
+                        </div>
+                        <!-- <div class="orders txt-bold">valid from 08/01/20 until unlimited</div>
+                        <div class="orders txt-bold">valid from 08/01/20 until unlimited</div> -->
+                    </div>
+                    <!-- <div class="row f-row mb-2">
                         <select class="form-select">
                             <option value="0" >Enter Order</option>
                             <option value="code">Code</option>
@@ -347,8 +361,8 @@
                     </div>
                     <div class="row f-row my-2 ">
                         <button class="c-button w-full">Capture</button>
-                    </div>
-                    <div class="row f-row mb-2">
+                    </div> -->
+                    <!-- <div class="row f-row mb-2">
                         <select class="form-select">
                             <option value="0" >Order Breakage</option>
                             <option value="code">Code</option>
@@ -357,8 +371,8 @@
                             <option value="code">Code</option>
                             <option value="code">Code</option>
                         </select>
-                    </div>
-                    <div class="row f-row mb-2">
+                    </div> -->
+                    <!-- <div class="row f-row mb-2">
                         <select class="form-select">
                             <option value="0" >Additional Order</option>
                             <option value="code">Code</option>
@@ -367,23 +381,27 @@
                             <option value="code">Code</option>
                             <option value="code">Code</option>
                         </select>
-                    </div>
+                    </div> -->
                 </div>
-                <div class="col-md-8 bg-white">
+                <div class="col-md-8 bg-white" *ngIf="orderDetails.id">
                     <div class="row px-2 py-3 m-0">
                         <div class="col-md-7 p-0">
-                            <p class="m-0 txt-bold">Order Number: 1231412</p>
-                            <p class="m-0 txt-bold">Valid from 09/12/20 until unlimited</p>
-                            <p class="m-0 txt-bold">This order runs undefinitely</p>
+                            <p class="m-0 txt-bold">Order Number: {{orderDetails.id}}</p>
+                            <p class="m-0 txt-bold">Valid from {{orderDetails.validFrom}} until 
+                                <span *ngIf="!orderDetails.expiryDate">unlimited</span>
+                                <span *ngIf="orderDetails.expiryDate">{{orderDetails.expiryDate | date: 'shortDate'}}        
+                                </span>    
+                            </p>
+                            <p class="m-0 txt-bold" *ngIf="!orderDetails.expiryDate">This order runs undefinitely</p>
                             <p class="m-0 txt-bold">Mode: Evry Week</p>
                         </div>
                         <div class="col-md-5 p-0 text-right">
                             <button class="c-button bg-offwhite my-2 txt-black">
                                 <img src="../../../../assets/images/bread/26.png" class="mr-2"/>
                                 Stop Deliveries</button>
-                            <button class="c-button bg-greenish txt-black">
+                            <!-- <button class="c-button bg-greenish txt-black">
                                 <img src="../../../../assets/images/bread/27.png" class="mr-2"/>
-                                Change View</button>
+                                Change View</button> -->
                         </div>
                     </div>
                     <div class="row p-2 m-0">
@@ -393,26 +411,31 @@
                                 <th></th>
                                 <th></th>
                                 <th>MO</th>
-                                <th>DI</th>
-                                <th>MI</th>
-                                <th>DO</th>
+                                <th>TUE</th>
+                                <th>WED</th>
+                                <th>THU</th>
                                 <th>FR</th>
                                 <th>SA</th>
                                 <th>SO</th>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>Crosistant</td>
-                                    <td>0,01</td>
-                                    <td><i class="fa fa-heart txt-red" aria-hidden="true"></i></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td>2</td>
-                                    <td>3</td>
-                                </tr>
+                                <ng-container *ngFor="let detail of orderDetails.details">
+                                    <tr >
+                                        <td>
+                                            {{detail.product}}
+                                        </td>
+                                        <td>{{detail.price}}</td>
+                                        <td><i class="fa fa-heart txt-red" aria-hidden="true"></i></td>
+                                            <td>{{checkQuantity(detail, 'Monday')}}</td>
+                                            <td>{{checkQuantity(detail, 'Tuesday')}}</td>
+                                            <td>{{checkQuantity(detail, 'Wednesday')}}</td>
+                                            <td>{{checkQuantity(detail, 'Thursday')}}</td>
+                                            <td>{{checkQuantity(detail, 'Friday')}}</td>
+                                            <td>{{checkQuantity(detail, 'Saturday')}}</td>
+                                            <td>{{checkQuantity(detail, 'Sunday')}}</td>
+                                    </tr>
+                                </ng-container>
+                                
                             </tbody>
                         </table>
                     </div>
@@ -420,24 +443,83 @@
             </div>
         </ng-template>
       </li>
-      <li [ngbNavItem]="3">
+      <li [ngbNavItem]="3" (click)="selectedTab('trail')">
         <a ngbNavLink>trail Order</a>
         <ng-template ngbNavContent>
             <div class="row px-0 pb-4 m-0 ">
                 <div class="col-md-4">
-                    <div class="row f-row mt-2">
+                    <!-- <div class="row f-row mt-2">
                         <label class="c-title lbl">Valid From</label>
                         <input type="date" placeholder="date"/> 
-                    </div>
-                    <div class="row f-row my-4 ">
+                    </div> -->
+                    <!-- <div class="row f-row my-4 ">
                         <button class="c-button w-full">Capture</button>
-                    </div>
+                    </div> -->
                     <h6>Orders</h6>
                     <div class="c-box bg-white ">
-                        <div class="orders txt-bold">Trail order valid from 12/1/20</div>
+                        <div class="orders txt-bold" (click)="selectedOrder(order)" *ngFor="let order of trailOrders">Trail order valid from {{order.validFrom}}</div>
                     </div>
                 </div>
-                <div class="col-md-8 bg-white p-0">
+
+                <div class="col-md-8 bg-white" *ngIf="orderDetails.id">
+                    <div class="row px-2 py-3 m-0">
+                        <div class="col-md-7 p-0">
+                            <p class="m-0 txt-bold">Order Number: {{orderDetails.id}}</p>
+                            <p class="m-0 txt-bold">Valid from {{orderDetails.validFrom}} until 
+                                <span *ngIf="!orderDetails.expiryDate">unlimited</span>
+                                <span *ngIf="orderDetails.expiryDate">{{orderDetails.expiryDate | date: 'shortDate'}}        
+                                </span>    
+                            </p>
+                            <p class="m-0 txt-bold" *ngIf="!orderDetails.expiryDate">This order runs undefinitely</p>
+                            <p class="m-0 txt-bold">Mode: Evry Week</p>
+                        </div>
+                        <div class="col-md-5 p-0 text-right">
+                            <button class="c-button bg-offwhite my-2 txt-black">
+                                <img src="../../../../assets/images/bread/26.png" class="mr-2"/>
+                                Stop Deliveries</button>
+                            <!-- <button class="c-button bg-greenish txt-black">
+                                <img src="../../../../assets/images/bread/27.png" class="mr-2"/>
+                                Change View</button> -->
+                        </div>
+                    </div>
+                    <div class="row p-2 m-0">
+                        <table class="b-table table-responsive">
+                            <thead class="thead1">
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th>MO</th>
+                                <th>TUE</th>
+                                <th>WED</th>
+                                <th>THU</th>
+                                <th>FR</th>
+                                <th>SA</th>
+                                <th>SO</th>
+                            </thead>
+                            <tbody>
+                                <ng-container *ngFor="let detail of orderDetails.details">
+                                    <tr >
+                                        <td>
+                                            {{detail.product}}
+                                        </td>
+                                        <td>{{detail.price}}</td>
+                                        <td><i class="fa fa-heart txt-red" aria-hidden="true"></i></td>
+                                            <td>{{checkQuantity(detail, 'Monday')}}</td>
+                                            <td>{{checkQuantity(detail, 'Tuesday')}}</td>
+                                            <td>{{checkQuantity(detail, 'Wednesday')}}</td>
+                                            <td>{{checkQuantity(detail, 'Thursday')}}</td>
+                                            <td>{{checkQuantity(detail, 'Friday')}}</td>
+                                            <td>{{checkQuantity(detail, 'Saturday')}}</td>
+                                            <td>{{checkQuantity(detail, 'Sunday')}}</td>
+                                    </tr>
+                                </ng-container>
+                                
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                
+                <!-- <div class="col-md-8 bg-white p-0">
                     <div class="row p-0 m-0">
                         <table class="b-table table-responsive">
                             <thead >
@@ -474,17 +556,17 @@
                             <button class="c-button ml-3">Create Order</button>
                         </div>
                     </div>
-                </div>
+                </div> -->
             </div>
 
         </ng-template>
       </li>
-      <li [ngbNavItem]="4">
+      <li [ngbNavItem]="4" (click)="selectedTab('additional')">
         <a ngbNavLink>Additional Order</a>
         <ng-template ngbNavContent>
             <div class="row px-0 pb-4 m-0 ">
                 <div class="col-md-4">
-                    <div class="row f-row mt-2">
+                    <!-- <div class="row f-row mt-2">
                         <label class="c-title lbl">Valid From</label>
                         <input type="date" placeholder="date"/> 
                     </div>
@@ -494,13 +576,72 @@
                     </div>
                     <div class="row f-row my-4 ">
                         <button class="c-button w-full">Capture</button>
-                    </div>
-                    <h6>Addional Orders</h6>
+                    </div> -->
+                    <h6>Additional Orders</h6>
                     <div class="c-box bg-white py-5 ">
-                        <!-- <div class="orders txt-bold">Trail order valid from 12/1/20</div> -->
+                        <div class="orders txt-bold" *ngFor="let order of additionalOrders" (click)="selectedAdditionalOrder(order)">
+                            Additional order valid from  {{order.deliveryDate}}
+                        </div>
                     </div>
                 </div>
-                <div class="col-md-8 bg-white p-0">
+                <div class="col-md-8 bg-white" *ngIf="orderDetails.id">
+                    <div class="row px-2 py-3 m-0">
+                        <div class="col-md-7 p-0">
+                            <p class="m-0 txt-bold">Order Number: {{orderDetails.id}}</p>
+                            <p class="m-0 txt-bold">Valid from {{orderDetails.validFrom}} until 
+                                <span *ngIf="!orderDetails.expiryDate">unlimited</span>
+                                <span *ngIf="orderDetails.expiryDate">{{orderDetails.expiryDate | date: 'shortDate'}}        
+                                </span>    
+                            </p>
+                            <p class="m-0 txt-bold" *ngIf="!orderDetails.expiryDate">This order runs undefinitely</p>
+                            <p class="m-0 txt-bold">Mode: Evry Week</p>
+                        </div>
+                        <div class="col-md-5 p-0 text-right">
+                            <button class="c-button bg-offwhite my-2 txt-black">
+                                <img src="../../../../assets/images/bread/26.png" class="mr-2"/>
+                                Stop Deliveries</button>
+                            <!-- <button class="c-button bg-greenish txt-black">
+                                <img src="../../../../assets/images/bread/27.png" class="mr-2"/>
+                                Change View</button> -->
+                        </div>
+                    </div>
+                    <div class="row p-2 m-0">
+                        <table class="b-table table-responsive">
+                            <thead class="thead1">
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th>MO</th>
+                                <th>TUE</th>
+                                <th>WED</th>
+                                <th>THU</th>
+                                <th>FR</th>
+                                <th>SA</th>
+                                <th>SO</th>
+                            </thead>
+                            <tbody>
+                                <ng-container *ngFor="let detail of orderDetails.details">
+                                    <tr >
+                                        <td>
+                                            {{detail.product}}
+                                        </td>
+                                        <td>{{detail.price}}</td>
+                                        <td><i class="fa fa-heart txt-red" aria-hidden="true"></i></td>
+                                            <td>{{checkQuantity(detail, 'Monday')}}</td>
+                                            <td>{{checkQuantity(detail, 'Tuesday')}}</td>
+                                            <td>{{checkQuantity(detail, 'Wednesday')}}</td>
+                                            <td>{{checkQuantity(detail, 'Thursday')}}</td>
+                                            <td>{{checkQuantity(detail, 'Friday')}}</td>
+                                            <td>{{checkQuantity(detail, 'Saturday')}}</td>
+                                            <td>{{checkQuantity(detail, 'Sunday')}}</td>
+                                    </tr>
+                                </ng-container>
+                                
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <!-- <div class="col-md-8 bg-white p-0">
                     <div class="row p-0 m-0">
                         <table class="b-table table-responsive">
                             <thead >
@@ -531,7 +672,7 @@
                             </tbody>
                         </table>
                     </div>
-                </div>
+                </div> -->
             </div>
         </ng-template>
       </li>
@@ -611,7 +752,7 @@
                             <tr>
                                 <td>   </td>
                                 <td>   </td>
-                                <td></td>
+                                <td>{{checkQuantity(detail, 'Monday')}}</td>
                                 <td></td>
                             </tr>
                         </tbody>

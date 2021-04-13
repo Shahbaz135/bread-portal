@@ -23,8 +23,17 @@ export class CustomersComponent implements OnInit {
   public allTours = [];
   public allFranchises = [];
 
+  public orders = [];
+  public orderInterruption = [];
+  public orderDetails: any = {};
+  public trailOrders = [];
+  public additionalOrders = [];
+  public orderInterruptions = [];
+
   public changePassword;
   public isArchived = false;
+
+  productName;
 
   constructor(
     private helperService: HelperService,
@@ -47,7 +56,7 @@ export class CustomersComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getCustomerData()
+    this.getCustomerData();
   }
 
   getCustomerData() {
@@ -252,6 +261,245 @@ export class CustomersComponent implements OnInit {
           this.helperService.alertFailure(`Something went wrong, Please try again`, `Error`);
         }
       });
+  }
+
+  selectedTab(tab) {
+    if (tab === `orders`) {
+      this.getOrders();
+      this.getInterruption();
+    } else if (tab === `trail`) {
+      this.getTrailOrders();
+    } else if (tab === `additional`) {
+      this.getAdditionalOrders();
+    }
+    this.orderDetails = {};
+  }
+
+  maintainOrderDetail(order) {
+    if (order) {
+      const data = [];
+      let name = ``;
+      for (const detail of order.OrderDetail) {
+        // console.log(detail);
+        name = detail.product;
+
+        const index = data.findIndex( x => x.product === name);
+
+        if (index > -1) {
+          const dayObj = {
+            quantity: detail.quantity,
+            day: detail.OrderDay.day
+          };
+          data[index].detail.push(dayObj);
+        } else {
+          const obj = {
+            product: detail.product,
+            price: detail.price,
+            detail: []
+          };
+          const dayObj = {
+            quantity: detail.quantity,
+            day: detail.OrderDay.day
+          };
+          obj.detail.push(dayObj);
+          data.push(obj);
+        }
+      }
+
+      this.orderDetails.details = data;
+    }
+  }
+
+  maintainAdditionalOrderDetail(order) {
+    if (order) {
+      const data = [];
+      let name = ``;
+      for (const detail of order.AdditionalOrderDetail) {
+        // console.log(detail);
+        name = detail.product;
+
+        const index = data.findIndex( x => x.product === name);
+
+        if (index > -1) {
+          const dayObj = {
+            quantity: detail.quantity,
+            day: detail.OrderDay.day
+          };
+          data[index].detail.push(dayObj);
+        } else {
+          const obj = {
+            product: detail.product,
+            price: detail.price,
+            detail: []
+          };
+          const dayObj = {
+            quantity: detail.quantity,
+            day: detail.OrderDay.day
+          };
+          obj.detail.push(dayObj);
+          data.push(obj);
+        }
+      }
+
+      this.orderDetails.details = data;
+    }
+  }
+
+  checkQuantity(product, day) {
+    const found = product.detail.find(x => x.day === day);
+    if (found) {
+      return found.quantity
+    } else {
+      return null
+    }
+  }
+
+  getOrders() {
+    this.loadingText = `Fetching records, Please Wait...`;
+    this.spinner.show();
+    const data = {
+      CustomerId: this.customerId,
+      isTrail: false
+    }
+
+    this.customerService.getCustomerOrder(data)
+      .subscribe((response) => {
+        this.spinner.hide();
+        if (response.status === `Success`) {
+          this.orders = response.data;
+        }
+      }, (error) => {
+        this.spinner.hide();
+        console.log(error);
+        if (error.error) {
+          this.helperService.alertFailure(error.error.message[0].message, `Error`);
+        } else {
+          this.helperService.alertFailure(`Something went wrong, Please try again`, `Error`);
+        }
+      });
+  }
+
+  getInterruption() {
+    this.loadingText = `Fetching records, Please Wait...`;
+    this.spinner.show();
+    const data = {
+      CustomerId: this.customerId,
+    }
+
+    this.customerService.getOrderInterruption(data)
+      .subscribe((response) => {
+        this.spinner.hide();
+        if (response.status === `Success`) {
+          this.orderInterruption = response.data;
+        }
+      }, (error) => {
+        this.spinner.hide();
+        console.log(error);
+        if (error.error) {
+          this.helperService.alertFailure(error.error.message[0].message, `Error`);
+        } else {
+          this.helperService.alertFailure(`Something went wrong, Please try again`, `Error`);
+        }
+      });
+  }
+
+  getTrailOrders() {
+    this.loadingText = `Fetching records, Please Wait...`;
+    this.spinner.show();
+    const data = {
+      CustomerId: this.customerId,
+      isTrail: true
+    }
+
+    this.customerService.getCustomerOrder(data)
+      .subscribe((response) => {
+        this.spinner.hide();
+        if (response.status === `Success`) {
+          this.trailOrders = response.data;
+        }
+      }, (error) => {
+        this.spinner.hide();
+        console.log(error);
+        if (error.error) {
+          this.helperService.alertFailure(error.error.message[0].message, `Error`);
+        } else {
+          this.helperService.alertFailure(`Something went wrong, Please try again`, `Error`);
+        }
+      });
+  }
+
+  getAdditionalOrders() {
+    this.loadingText = `Fetching records, Please Wait...`;
+    this.spinner.show();
+    const data = {
+      CustomerId: this.customerId
+    }
+
+    this.customerService.getAdditionalOrder(data)
+      .subscribe((response) => {
+        this.spinner.hide();
+        if (response.status === `Success`) {
+          this.additionalOrders = response.data;
+        }
+      }, (error) => {
+        this.spinner.hide();
+        console.log(error);
+        if (error.error) {
+          this.helperService.alertFailure(error.error.message[0].message, `Error`);
+        } else {
+          this.helperService.alertFailure(`Something went wrong, Please try again`, `Error`);
+        }
+      });
+  }
+
+  selectedOrder(order) {
+    this.loadingText = `Fetching records, Please Wait...`;
+    this.spinner.show();
+    const data = {
+      id: order.id
+    }
+
+    this.customerService.getOrderDetail(data)
+      .subscribe((response) => {
+        this.spinner.hide();
+        if (response.status === `Success`) {
+          this.orderDetails = response.data;
+          this.maintainOrderDetail(response.data);
+        }
+      }, (error) => {
+        this.spinner.hide();
+        console.log(error);
+        if (error.error) {
+          this.helperService.alertFailure(error.error.message[0].message, `Error`);
+        } else {
+          this.helperService.alertFailure(`Something went wrong, Please try again`, `Error`);
+        }
+      })
+  }
+
+  selectedAdditionalOrder(order) {
+    this.loadingText = `Fetching records, Please Wait...`;
+    this.spinner.show();
+    const data = {
+      id: order.id
+    }
+
+    this.customerService.getAdditionalDetail(data)
+      .subscribe((response) => {
+        this.spinner.hide();
+        if (response.status === `Success`) {
+          this.orderDetails = response.data;
+          this.maintainAdditionalOrderDetail(response.data);
+        }
+      }, (error) => {
+        this.spinner.hide();
+        console.log(error);
+        if (error.error) {
+          this.helperService.alertFailure(error.error.message[0].message, `Error`);
+        } else {
+          this.helperService.alertFailure(`Something went wrong, Please try again`, `Error`);
+        }
+      })
   }
 
   setPassword() {

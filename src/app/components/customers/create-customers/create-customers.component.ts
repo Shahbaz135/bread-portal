@@ -84,7 +84,7 @@ export class CreateCustomersComponent implements OnInit {
       academicTitle: [''],
       email: ['', [Validators.required , Validators.email, Validators.maxLength(100)]],
       phone: ['', [Validators.required, Validators.minLength(11), Validators.maxLength(11)]],
-      postalCode: ['', [Validators.pattern("^[0-9]*$"), Validators.minLength(5), Validators.maxLength(5)]],
+      postalCode: ['', [Validators.required, Validators.pattern("^[0-9]*$"), Validators.minLength(5), Validators.maxLength(5)]],
       town: ['', []],
       houseStreetNumber: ['', [Validators.required]],
       deliverNotes: [``],
@@ -115,7 +115,7 @@ export class CreateCustomersComponent implements OnInit {
       paymentType: [`direct-debit`],
       sendInvoiceByEmail: [false],
       isDiscountActivated: [false],
-      partnerId: [''],
+      partnerId: ['', Validators.required],
       isTrail: [false],
       isActive: [true],
       isWeb: [false]
@@ -181,7 +181,8 @@ export class CreateCustomersComponent implements OnInit {
   ///////// ************ validation of form *********** ///////////
   // tslint:disable-next-line: typedef
   postalCodeError() {
-    return this.cf.postalCode.hasError('minlength') ? 'Please Enter Valid Postal Code' :
+    return this.cf.postalCode.hasError('required') ? 'Post Code is required':
+    this.cf.postalCode.hasError('minlength') ? 'Please Enter Valid Postal Code' :
       this.cf.postalCode.hasError('maxlength') ? 'Please Enter Valid Postal Code' :
         this.cf.postalCode.hasError('pattern') ? 'Please Enter Valid Postal Code' :
           '';
@@ -235,7 +236,7 @@ export class CreateCustomersComponent implements OnInit {
 
    // tslint:disable-next-line: typedef
   partnerIdError() {
-    return this.cf.partnerId.hasError('required') ? 'Please select partner' :
+    return this.cf.partnerId.hasError('required') ? 'Please select Franchise' :
       '';
   }
 
