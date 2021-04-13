@@ -6,6 +6,7 @@ import { SearchComponent } from './layouts/search/search.component';
 import { auth } from './shared/routes/auth-routes';
 import { content } from "./shared/routes/content-routes";
 import { searchBar } from './shared/routes/search-routes';
+import { AuthGuard } from './shared/services/common/auth.guard';
 
 const routes: Routes = [
   {
@@ -15,11 +16,13 @@ const routes: Routes = [
   },
   {
     path: '',
+    canActivate: [AuthGuard],
     component: SearchComponent,
     children: searchBar
   },
   {
     path: '',
+    canActivate: [AuthGuard],
     component: ContentComponent,
     children: content
   },
