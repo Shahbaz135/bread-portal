@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { AuthService } from 'src/app/shared/services/common/auth.service';
 import { HelperService } from 'src/app/shared/services/helper.service';
+import { environment } from 'src/environments/environment';
 import { FranchiseService } from '../franchise.service';
 
 
@@ -17,6 +19,9 @@ export class EditFranchiseComponent implements OnInit {
   public loadingText = ``;
 
   private franchiseId;
+
+  image: any;
+  existingImage = false;
 
   constructor(
     private helperService: HelperService,
@@ -77,6 +82,26 @@ export class EditFranchiseComponent implements OnInit {
       this.franchiseForm.controls[`isPassword`].setValue(data.isPassword);
       this.franchiseForm.controls[`isIban`].setValue(data.isIban);
     }
+
+    this.image = data.image;
+    if (this.image) {
+      this.existingImage = true;
+    }
+  }
+
+  onFileAttach(file) {
+    if (file && file.length) {
+      const fileObj = file[0];
+      if (fileObj.type !== 'application/pdf') {
+        const reader = new FileReader();
+        reader.readAsDataURL(fileObj);
+        reader.onload = (_event) => {
+          fileObj.src = reader.result;
+        };
+        this.existingImage = false;
+        this.image = fileObj;
+      }
+    }
   }
 
   //// initializing form
@@ -113,7 +138,22 @@ export class EditFranchiseComponent implements OnInit {
   }
 
   _submit() {
-    const formData = this.franchiseForm.value;
+    const userId = AuthService.getLoggedUser().data.id;
+
+    const formData = new FormData();
+
+    // to append form Data
+    const productFormData = this.franchiseForm.value
+    for (const key in productFormData) {
+      if (productFormData.hasOwnProperty(key)) {
+        formData.append(key, productFormData[key]);
+      }
+    }
+
+    formData.append('userId', userId);
+    if (this.image && !this.existingImage) {
+      formData.append('picture', this.image, this.image['name']);
+    }
     this.partnerService.update(formData, this.franchiseId)
       .subscribe((response) => {
         this.spinner.hide();
@@ -140,6 +180,9 @@ export class EditFranchiseComponent implements OnInit {
     return this.franchiseForm.controls;
   }
 
+  absPath(file) {
+    return environment.fileBaseUrl + file;
+  }
 
   ///////// ************ validation of form *********** ///////////
   // tslint:disable-next-line: typedef

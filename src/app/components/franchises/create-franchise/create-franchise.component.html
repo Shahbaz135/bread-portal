@@ -57,6 +57,23 @@
                 <input  class="form-input " type="text" formControlName="iban" placeholder="IBAN"/>
             </div>
         </div>
+        <div class="col-md-6 mt-4">
+            <div class="row">
+                <div >
+                    <input #fileInput type="file" (change)="onFileAttach(fileInput.files)" accept="image/*"
+                    style="display:none;" />
+                </div>
+                <div class="img col-md-4" (click)="fileInput.click()">
+                    <div>
+                        <p>Click Here To Upload Image</p>
+                    </div>
+                </div>
+                <div class="col-md-6 selected-img" *ngIf="image">
+                    <img height="100px" width="150px" [src]="image?.src">
+                </div>
+            </div>
+            
+        </div>
         <div class="row f-row px-3 my-2 ">
             <h5 class="text-bluish w-full text-left">Access To</h5>
             <div class="form-check mt-2">

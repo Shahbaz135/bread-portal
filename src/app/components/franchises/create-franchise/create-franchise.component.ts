@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { AuthService } from 'src/app/shared/services/common/auth.service';
 import { HelperService } from 'src/app/shared/services/helper.service';
 import { FranchiseService } from '../franchise.service';
 
@@ -13,6 +14,7 @@ export class CreateFranchiseComponent implements OnInit {
   public franchiseForm: FormGroup;
 
   public loadingText = ``;
+  image: any;
 
   constructor(
     private helperService: HelperService,
@@ -45,6 +47,20 @@ export class CreateFranchiseComponent implements OnInit {
     });
   }
 
+  onFileAttach(file) {
+    if (file && file.length) {
+      const fileObj = file[0];
+      if (fileObj.type !== 'application/pdf') {
+        const reader = new FileReader();
+        reader.readAsDataURL(fileObj);
+        reader.onload = (_event) => {
+          fileObj.src = reader.result;
+        };
+        this.image = fileObj;
+      }
+    }
+  }
+
   submit() {
     this.loadingText = `Submitting Form, Please Wait ..`;
     this.spinner.show();
@@ -59,7 +75,23 @@ export class CreateFranchiseComponent implements OnInit {
   }
 
   _submit() {
-    const formData = this.franchiseForm.value;
+    const userId = AuthService.getLoggedUser().data.id;
+
+    const formData = new FormData();
+
+    // to append form Data
+    const productFormData = this.franchiseForm.value
+    for (const key in productFormData) {
+      if (productFormData.hasOwnProperty(key)) {
+        formData.append(key, productFormData[key]);
+      }
+    }
+
+    formData.append('userId', userId);
+    if (this.image) {
+      formData.append('picture', this.image, this.image['name']);
+    }
+
     this.partnerService.create(formData)
       .subscribe((response) => {
         this.spinner.hide();

@@ -87,7 +87,19 @@
     transform: rotate(45deg);
   }
 
-
+  .img {
+    height: 100px;
+    background-color: antiquewhite;
+    width: 100px;
+    text-align: center;
+    cursor: pointer;
+    margin-left: 15px;
+    padding: 30px;
+  }
+  
+  .selected-img {
+    margin-left: 50px;
+  }
 
 @media only screen and (max-width: 520px){
     .col-50{
