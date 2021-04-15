@@ -4,6 +4,7 @@
 
 export const environment = {
   production: false,
+  // url: 'https://bread.brightmedium.com',
   url: 'http://localhost:3000',
   fileBaseUrl: 'http://localhost:3000/'
 };

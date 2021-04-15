@@ -35,14 +35,14 @@
                         </div>
                     </div>
                     <ul class="profile-dropdown onhover-show-div p-20">
-                        <li>
+                        <!-- <li>
                             <a [routerLink]="['/users/edit']">
                                 <i class="icon-user"></i>
                                 Edit Profile
                             </a>
-                        </li>
+                        </li> -->
                         <li>
-                            <a href="javascript:void(0)">
+                            <a (click)="logOut()">
                                 <i class="icon-power-off"></i>
                                 Logout
                             </a>

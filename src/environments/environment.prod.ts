@@ -1,5 +1,5 @@
 export const environment = {
   production: true,
-  url: 'http://localhost:3000',
-  fileBaseUrl: 'http://localhost:3000/',
+  url: 'https://bread.brightmedium.com',
+  fileBaseUrl: 'https://bread.brightmedium.com/',
 };
