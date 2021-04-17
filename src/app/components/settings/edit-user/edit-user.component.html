@@ -1,0 +1,50 @@
+<div class="row px-3 pt-3 pb-2">
+    <h3>Edit User</h3>    
+</div>
+
+<ngx-spinner
+  bdColor="rgba(51,51,51,0.8)"
+  size="medium"
+  color="#fff"
+  type="ball-scale-multiple"
+>
+  <p style="font-size: 20px; color: white">{{ loadingText }}</p>
+</ngx-spinner>
+  
+<div class="row px-3 pt-2 pb-2 ">
+    <div class="row bg-white m-0 p-3">
+        <h5 class="mb-3 w-full">Edit User</h5>
+        <div class="col-md-12 p-0">
+            <div class="row f-row mb-2 mx-0 ">
+                <input  class="form-input" [(ngModel)]="user.fName" type="text" placeholder="First Name"/>
+            </div>
+            <div class="row f-row mb-2 mx-0 ">
+                <input  class="form-input" [(ngModel)]="user.lName" type="text" placeholder="Last Name"/>
+            </div>
+            <h6 class="my-2">VAT rate</h6>
+            <div class="b-01 w-full">
+                <ul>
+                    <li class="lft" *ngFor="let role of allRoles">
+                        <input [value]="role.id" [(ngModel)]="user.RoleId" type="radio" [id]="role.id" name="selector">
+                        <label [for]="role.id">{{role.name}}</label>
+                    </li>
+                </ul>
+            </div>
+            <div class="row f-row mb-2 mx-0 ">
+                <input  class="form-input" [(ngModel)]="user.email" type="text" placeholder="Email"/>
+            </div>
+            <div class="row f-row mb-2 mx-0 ">
+                <input  class="form-input" disabled  type="text" placeholder="*********"/>
+            </div>
+            <div class="row f-row my-1 mx-0 form-checkbox">
+                <input [(ngModel)]="user.isReceiveEmail" type="checkbox" id="mon2" checked>
+                <label for="mon2">Chat messages can also be recive by email</label>
+            </div>
+            <div class="row px-4 pt-3 pb-4 mb-5 bg-white">
+                <button class="c-button py-2" (click)="submit()">Update User</button>
+            </div>
+        </div>
+       
+    </div>
+    
+</div>

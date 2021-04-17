@@ -1,5 +1,6 @@
 import { Component,ViewEncapsulation } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
+import { AuthService } from '../../services/common/auth.service';
 import { NavService, Menu } from '../../services/nav.service';
 
 @Component({
@@ -14,11 +15,14 @@ export class SidebarComponent {
   public url: any;
   public fileurl: any;
 
+  public userInfo: any = {};
+
   constructor(private router: Router, public navServices: NavService) {
     this.navServices.items.subscribe(menuItems => {
-      this.menuItems = menuItems
-    
+      this.menuItems = menuItems;
     })
+
+    this.userInfo = AuthService.getLoggedUser().data;
   }
 
   // Active Nave state

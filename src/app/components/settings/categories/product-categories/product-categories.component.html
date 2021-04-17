@@ -1,6 +1,6 @@
 <div class="row px-3 pt-3 pb-2">
     <h3 class="w-full">Product in this Category</h3>    
-    <h6 class="my-2 w-full">Associations</h6>
+    <!-- <h6 class="my-2 w-full">Associations</h6>
 
     <div class="btns my-2">
         <button class="c-button bg-white txt-black mr-3 txt-bold">
@@ -9,34 +9,42 @@
         <button class="c-button bg-white txt-black txt-bold">
             Connect with a product
         </button>
-    </div>
-
+    </div> -->
 </div>
+
+<ngx-spinner
+  bdColor="rgba(51,51,51,0.8)"
+  size="medium"
+  color="#fff"
+  type="ball-scale-multiple"
+>
+  <p style="font-size: 20px; color: white">{{ loadingText }}</p>
+</ngx-spinner>
 
 <div class="row  pb-4 mx-0 my-3  ">
     <div class="col-md-4 bg-white pb-5">
-        <h4 class="w-full text-bluish py-3">Offer of the month</h4>
+        <h4 class="w-full text-bluish py-3">{{categoryData.title}}</h4>
         <table class="b-table table-responsive">
             <tbody>
                 <tr class="tr1 bg-bluish">
                     <td>Id</td>
-                    <td>123</td>
+                    <td>{{categoryData.id}}</td>
                 </tr>
                 <tr class="tr1 ">
                     <td>Name</td>
-                    <td>Offer of the mounth</td>
+                    <td>{{categoryData.title}}</td>
                 </tr>
                 <tr class="tr1 bg-bluish">
                     <td>Description</td>
-                    <td></td>
+                    <td>{{categoryData.description}}</td>
                 </tr>
                 <tr class="tr1">
                     <td>Created</td>
-                    <td>11/11/20</td>
+                    <td>{{categoryData.createdAt | date: 'shortDate'}}</td>
                 </tr>
                 <tr class="tr1 bg-bluish">
                     <td>Modified</td>
-                    <td>12/12/20</td>
+                    <td>{{categoryData.updatedAt | date: 'shortDate'}}</td>
                 </tr>   
             </tbody>
         </table>
@@ -49,15 +57,15 @@
                     <th></th>
                 </thead>
                 <tbody>
-                    <tr> 
+                    <tr *ngFor="let product of categoryData.relatedProducts"> 
                         <td>
-                            <img src="../../../../assets/images/bread/30.png" class="mr-2"/>
-                            Offer-5 burgur rolls
+                            <img height="100px" width="100px" [src]="absPath(product.image)" class="mr-2"/>
+                            {{product.name}}
                         </td>
                         <td class="text-right">
-                            <button class="c-button bg-gray txt-black txt-bold">
+                            <!-- <button class="c-button bg-gray txt-black txt-bold">
                                 Disconnect
-                            </button>
+                            </button> -->
                         </td>
                     </tr>
                 </tbody>

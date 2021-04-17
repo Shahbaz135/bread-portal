@@ -1,16 +1,18 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { HelperService } from 'src/app/shared/services/helper.service';
 import { SettingService } from '../setting.service';
 
 @Component({
-  selector: 'app-users',
-  templateUrl: './users.component.html',
-  styleUrls: ['./users.component.scss']
+  selector: 'app-edit-user',
+  templateUrl: './edit-user.component.html',
+  styleUrls: ['./edit-user.component.scss']
 })
-export class UsersComponent implements OnInit {
+export class EditUserComponent implements OnInit {
   public loadingText = ``;
-  active = 1;
+  userId;
+  allRoles = [];
 
   public user = {
     fName: null,
@@ -21,18 +23,22 @@ export class UsersComponent implements OnInit {
     RoleId: null
   };
 
-  allRoles = [];
-  allUsers = [];
-
   constructor(
     private settingService: SettingService,
     private helperService: HelperService,
     private spinner: NgxSpinnerService,
-  ) { }
+    private route: ActivatedRoute
+  ) {
+    route.params.subscribe(params => {
+      if (params[`id`]) {
+        this.userId = params[`id`];
+        this.getRoles();
+        this.getUserData();
+      }
+    })
+  }
 
   ngOnInit(): void {
-    this.getUsers();
-    this.getRoles();
   }
 
   getRoles() {
@@ -55,14 +61,18 @@ export class UsersComponent implements OnInit {
       });
   }
 
-  getUsers() {
+  getUserData() {
     this.loadingText = `fetching record, please wait..`;
     this.spinner.show();
-    this.settingService.getUsers()
+    const data = {
+      id: this.userId
+    };
+
+    this.settingService.getUsers(data)
       .subscribe((response) => {
         this.spinner.hide();
         if (response.status === `Success`) {
-          this.allUsers = response.data.data;
+          this.setData(response.data.data[0]);
         }
       }, (error) => {
         this.spinner.hide();
@@ -75,11 +85,22 @@ export class UsersComponent implements OnInit {
       });
   }
 
+  setData(data) {
+    if (data) {
+      this.user.fName = data.fName;
+      this.user.lName = data.lName;
+      this.user.email = data.email;
+      this.user.RoleId = data.RoleId;
+      this.user.password = data.password;
+      this.user.isReceiveEmail = data.isReceiveEmail;
+    }
+  }
+
   submit() {
     this.loadingText = `Submitting Form, Please Wait ..`;
     this.spinner.show();
     if (!this.user.fName || !this.user.lName|| !this.user.email
-        || !this.user.password || !this.user.RoleId
+        || !this.user.RoleId
       ) {
       this.spinner.hide();
       this.helperService.alertFailure(`Please Fill All Required Fields`, `Invalid`);
@@ -92,14 +113,13 @@ export class UsersComponent implements OnInit {
   _submit() {
     const formData: any = this.user;
 
-    this.settingService.createUser(formData)
+    this.settingService.updateUser(formData, this.userId)
       .subscribe((response) => {
         this.spinner.hide();
         if (response.status === `Success`) {
           // console.log(response);
           this.helperService.alertSuccess(response.message, response.status);
-          this.getUsers();
-          this.active = 1
+          this.helperService.navigate(`/settings/users`)
         }
       }, (error) => {
         this.spinner.hide();
@@ -110,41 +130,6 @@ export class UsersComponent implements OnInit {
           this.helperService.alertFailure(`Something went wrong, Please try again`, `Error`);
         }
       });
-  }
-
-  deleteUser(user) {
-    ///// conform here first
-    const confirmation = this.helperService.ConfirmationAlert;
-    confirmation.fire({
-      text: `This User will be permanently deleted..`,
-      title: `Are you sure?`
-    })
-      .then(res => {
-        if (res.isConfirmed) {
-          this.loadingText = `Deleting record, please wait..`;
-          this.spinner.show();
-          this.settingService.deleteUser(user.id)
-            .subscribe((response) => {
-              this.spinner.hide();
-              if (response.status === `Success`) {
-                this.helperService.alertSuccess(response.message, response.status);
-                this.getUsers();
-              }
-            }, (error) => {
-              this.spinner.hide();
-              console.log(error);
-              if (error.error) {
-                this.helperService.alertFailure(error.error.message[0].message, `Error`);
-              } else {
-                this.helperService.alertFailure(`Something went wrong, Please try again`, `Error`);
-              }
-            });
-        }
-      })
-      .catch(error => {
-        console.log(error);
-        // this.s
-      })
   }
 
 }

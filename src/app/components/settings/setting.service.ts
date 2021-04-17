@@ -11,6 +11,8 @@ export class SettingService {
   public readonly productUrl = HttpConfig.getApiUrl() + '/products';
   public readonly deliveryAreaUrl = HttpConfig.getApiUrl() + '/deliveryArea';
   public readonly nonDeliveryDayUrl = HttpConfig.getApiUrl() + '/nonDelivery';
+  public readonly roleUrl = HttpConfig.getApiUrl() + '/role';
+  public readonly userUrl = HttpConfig.getApiUrl() + '/user';
 
   constructor(public http: WrapHttpService) { }
 
@@ -68,5 +70,25 @@ export class SettingService {
 
   deleteNonDeliveryDay(id): Observable<any> {
     return this.http.delete(this.nonDeliveryDayUrl + `/clear/` + id);
+  }
+
+  getAllRoles(data?): Observable<any> {
+    return this.http.get(this.roleUrl + `/get` + WrapHttpService.objToQuery(data));
+  }
+
+  createUser(data): Observable<any> {
+    return this.http.post(this.userUrl + `/create`, data );
+  }
+
+  getUsers(data?): Observable<any> {
+    return this.http.get(this.userUrl + `/getAll` + WrapHttpService.objToQuery(data));
+  }
+
+  updateUser(data, id): Observable<any> {
+    return this.http.put(this.userUrl + `/` + id, data);
+  }
+
+  deleteUser(id): Observable<any> {
+    return this.http.delete(this.userUrl + `/` + id);
   }
 }

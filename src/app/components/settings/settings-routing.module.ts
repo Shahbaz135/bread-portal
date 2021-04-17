@@ -7,6 +7,7 @@ import { ProductCategoriesComponent } from './categories/product-categories/prod
 import { AddDeliveryAreaComponent } from './delivery-areas/add-delivery-area/add-delivery-area.component';
 import { DevlieryAreasOverviewComponent } from './delivery-areas/devliery-areas-overview/devliery-areas-overview.component';
 import { EditDeliveryAreaComponent } from './delivery-areas/edit-delivery-area/edit-delivery-area.component';
+import { EditUserComponent } from './edit-user/edit-user.component';
 import { NonDeliveryDaysComponent } from './non-delivery-days/non-delivery-days.component';
 import { ActiveProductsComponent } from './products/active-products/active-products.component';
 import { CreateProductComponent } from './products/create-product/create-product.component';
@@ -18,7 +19,7 @@ const routes: Routes = [
   { path: `categories/categories-overview`, component: CategoriesOverviewComponent },
   { path: `categories/create-categories`, component: CreateCategoriesComponent },
   { path: `categories/edit-category/:id`, component: CreateCategoriesComponent },
-  { path: `categories/product-categories`, component: ProductCategoriesComponent },
+  { path: `categories/:id`, component: ProductCategoriesComponent },
   { path: `delivery-areas/add-delivery-area`, component: AddDeliveryAreaComponent },
   { path: `delivery-areas/delivery-areas-overview`, component: DevlieryAreasOverviewComponent },
   { path: `delivery-areas/edit-delivery-area/:id`, component: EditDeliveryAreaComponent },
@@ -28,6 +29,7 @@ const routes: Routes = [
   { path: `create-product`, component: CreateProductComponent },
   { path: `edit-product/:id`, component: EditProductComponent },
   { path: `users`, component: UsersComponent },
+  { path: `users/:id`, component: EditUserComponent },
   { path: `account-settings`, component: AccountSettingsComponent },
 ];
 

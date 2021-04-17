@@ -25,6 +25,7 @@
                 <td>{{category.title}}</td>
                 <td>{{category.createdAt | date:'shortDate'}}</td>
                 <td>
+                    <img [routerLink]="['/settings/categories/', category.id]" src="../../../../assets/images/bread/23.png" />
                     <img [routerLink]="['/settings/categories/edit-category/', category.id]" src="../../../../assets/images/bread/19.png" />
                     <img (click)="deleteCategory(category)" src="../../../../assets/images/bread/11.png" class="s-img" />
                 </td>

@@ -18,6 +18,7 @@ import { NgbModule, NgbNavModule } from '@ng-bootstrap/ng-bootstrap';
 import { AccountSettingsComponent } from './account-settings/account-settings.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { EditUserComponent } from './edit-user/edit-user.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { NgxSpinnerModule } from 'ngx-spinner';
     EditProductComponent,
     InactiveProductsComponent,
     UsersComponent,
-    AccountSettingsComponent],
+    AccountSettingsComponent,
+    EditUserComponent],
   imports: [
     CommonModule,
     SettingsRoutingModule,

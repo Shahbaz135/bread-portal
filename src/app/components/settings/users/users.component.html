@@ -1,123 +1,88 @@
 <div class="row px-3 pt-3 pb-2">
     <h3>Users</h3>    
-  </div>
-  
-  <div class="row px-3 pt-2 pb-2 ">
-    <ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs">
-      <li [ngbNavItem]="1">
-        <a ngbNavLink>Users</a>
-        <ng-template ngbNavContent>
-            <div class="row px-3 my-3">
-                <table class="b-table table-responsive bg-white">
-                    <thead>
-                        <th>NAME</th>
-                        <th>EMAIL</th>
-                        <th>CREATED</th>
-                        <th>LAST LOGIN</th>
-                        <th>ACTIONS</th>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Zain Ali</td>
-                            <td>zain@email.com</td>
-                            <td>12/1/2021</td>
-                            <td>127.2.20 - 12/1/2021</td>
-                            <td>
-                                <img src="../../../../assets/images/bread/11.png" />
-                                <img src="../../../../assets/images/bread/19.png" class="mx-2"/>
-                                <img src="../../../../assets/images/bread/23.png" />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Zain Ali</td>
-                            <td>zain@email.com</td>
-                            <td>12/1/2021</td>
-                            <td>127.2.20 - 12/1/2021</td>
-                            <td>
-                                <img src="../../../../assets/images/bread/11.png" />
-                                <img src="../../../../assets/images/bread/19.png" class="mx-2"/>
-                                <img src="../../../../assets/images/bread/23.png" />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Zain Ali</td>
-                            <td>zain@email.com</td>
-                            <td>12/1/2021</td>
-                            <td>127.2.20 - 12/1/2021</td>
-                            <td>
-                                <img src="../../../../assets/images/bread/11.png" />
-                                <img src="../../../../assets/images/bread/19.png" class="mx-2"/>
-                                <img src="../../../../assets/images/bread/23.png" />
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </ng-template>
-      </li>
-      <li [ngbNavItem]="2">
-        <a ngbNavLink>Create User</a>
-        <ng-template ngbNavContent>
-          <div class="row bg-white m-0 p-3">
-              <h5 class="mb-3 w-full">Creat a User</h5>
-              <div class="col-md-6 p-0">
-                <div class="row f-row mb-2 mx-0 ">
-                    <input  class="form-input" type="text" placeholder="Name"/>
-                </div>
-                <h6 class="my-2">VAT rate</h6>
-                <div class="b-01 w-full">
-                    <ul>
-                    <li class="lft">
-                    <input type="radio" id="rd1" name="selector">
-                    <label for="rd1">Logistic Manager</label>
-                    </li>
-                    <li class="lft">
-                    <input type="radio" id="rd2" name="selector">
-                    <label for="rd2">Driver</label>
-                    </li>
-                    <li class="lft">
-                    <input type="radio" id="rd3" name="selector">
-                    <label for="rd3">Telephone Operator</label>
-                    </li>
-                    <li class="lft">
-                    <input type="radio" id="rd4" name="selector">
-                    <label for="rd4">Accounting</label>
-                    </li>
-                    <li class="lft">
-                    <input type="radio" id="rd5" name="selector">
-                    <label for="rd5">Superadmin</label>
-                    </li>
-                    <li class="lft">
-                    <input type="radio" id="rd6" name="selector">
-                    <label for="rd6">Bakery</label>
-                    </li>
-                    <li class="lft">
-                    <input type="radio" id="rd7" name="selector">
-                    <label for="rd7">Tour Planner</label>
-                    </li>
-                </ul>
-                </div>
-                <div class="row f-row mb-2 mx-0 ">
-                    <input  class="form-input" type="text" placeholder="Email"/>
-                </div>
-                <div class="row f-row mb-2 mx-0 ">
-                    <input  class="form-input" type="text" placeholder="Password"/>
-                </div>
-                <div class="row f-row my-1 mx-0 form-checkbox">
-                    <input type="checkbox" id="mon2" checked>
-                    <label for="mon2">Chat messages can also be recive by email</label>
-                </div>
+</div>
 
-              </div>
-          </div>
-          <div class="row px-4 pt-3 pb-4 mb-5 bg-white">
-            <button class="c-button py-2">Create User</button>
-        </div>
-        </ng-template>
-      </li>
+<ngx-spinner
+  bdColor="rgba(51,51,51,0.8)"
+  size="medium"
+  color="#fff"
+  type="ball-scale-multiple"
+>
+  <p style="font-size: 20px; color: white">{{ loadingText }}</p>
+</ngx-spinner>
   
+<div class="row px-3 pt-2 pb-2 ">
+    <ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs">
+        <li [ngbNavItem]="1">
+            <a ngbNavLink>Users</a>
+            <ng-template ngbNavContent>
+                <div class="row px-3 my-3">
+                    <table class="b-table table-responsive bg-white">
+                        <thead>
+                            <th>NAME</th>
+                            <th>EMAIL</th>
+                            <th>CREATED</th>
+                            <th>LAST LOGIN</th>
+                            <th>ACTIONS</th>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let user of allUsers">
+                                <td>{{user.fName}} {{user.lName}}</td>
+                                <td>{{user.email}}</td>
+                                <td>{{user.createdAt | date: 'shortDate'}}</td>
+                                <td>{{user.lastLogin | date: 'shortDate'}}</td>
+                                <td>
+                                    <img (click)="deleteUser(user)" src="../../../../assets/images/bread/11.png" />
+                                    <img [routerLink]="['/settings/users/', user.id]" src="../../../../assets/images/bread/19.png" class="mx-2"/>
+                                    <!-- <img src="../../../../assets/images/bread/23.png" /> -->
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </ng-template>
+        </li>
+        <li [ngbNavItem]="2">
+            <a ngbNavLink>Create User</a>
+            <ng-template ngbNavContent>
+                <div class="row bg-white m-0 p-3">
+                    <h5 class="mb-3 w-full">Creat a User</h5>
+                    <div class="col-md-6 p-0">
+                        <div class="row f-row mb-2 mx-0 ">
+                            <input  class="form-input" [(ngModel)]="user.fName" type="text" placeholder="First Name"/>
+                        </div>
+                        <div class="row f-row mb-2 mx-0 ">
+                            <input  class="form-input" [(ngModel)]="user.lName" type="text" placeholder="Last Name"/>
+                        </div>
+                        <h6 class="my-2">VAT rate</h6>
+                        <div class="b-01 w-full">
+                            <ul>
+                                <li class="lft" *ngFor="let role of allRoles">
+                                    <input [value]="role.id" [(ngModel)]="user.RoleId" type="radio" [id]="role.id" name="selector">
+                                    <label [for]="role.id">{{role.name}}</label>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="row f-row mb-2 mx-0 ">
+                            <input  class="form-input" [(ngModel)]="user.email" type="text" placeholder="Email"/>
+                        </div>
+                        <div class="row f-row mb-2 mx-0 ">
+                            <input  class="form-input" [(ngModel)]="user.password" type="text" placeholder="Password"/>
+                        </div>
+                        <div class="row f-row my-1 mx-0 form-checkbox">
+                            <input [(ngModel)]="user.isReceiveEmail" type="checkbox" id="mon2" checked>
+                            <label for="mon2">Chat messages can also be recive by email</label>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="row px-4 pt-3 pb-4 mb-5 bg-white">
+                    <button class="c-button py-2" (click)="submit()">Create User</button>
+                </div>
+            </ng-template>
+        </li>
     </ul>
-    
+
     <div [ngbNavOutlet]="nav" class="mt-2"></div>
-  
-  </div>
+
+</div>

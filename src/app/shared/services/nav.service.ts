@@ -105,7 +105,6 @@ export class NavService {
 						title: 'Categories', type: 'sub', children: [
 							{ path: '/settings/categories/categories-overview', title: 'Categories Overview', type: 'link' },
 							{ path: '/settings/categories/create-categories', title: 'Create a Category', type: 'link' },
-							{ path: '/settings/categories/product-categories', title: 'Product in this Category', type: 'link' }
 						]
 					},
 					{
