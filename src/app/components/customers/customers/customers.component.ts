@@ -265,14 +265,16 @@ export class CustomersComponent implements OnInit {
 
   selectedTab(tab) {
     if (tab === `orders`) {
+      this.orderDetails = {};
       this.getOrders();
       this.getInterruption();
     } else if (tab === `trail`) {
+      this.orderDetails = {};
       this.getTrailOrders();
     } else if (tab === `additional`) {
+      this.orderDetails = {};
       this.getAdditionalOrders();
     }
-    this.orderDetails = {};
   }
 
   maintainOrderDetail(order) {
