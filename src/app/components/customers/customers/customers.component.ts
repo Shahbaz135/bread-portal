@@ -33,6 +33,8 @@ export class CustomersComponent implements OnInit {
   public changePassword;
   public isArchived = false;
 
+  public invoiceHistory = [];
+
   productName;
 
   constructor(
@@ -274,7 +276,55 @@ export class CustomersComponent implements OnInit {
     } else if (tab === `additional`) {
       this.orderDetails = {};
       this.getAdditionalOrders();
+    } else if (tab === `documents`) {
+      this.orderDetails = {};
+      this.getAllInvoices();
     }
+  }
+
+  getAllInvoices() {
+    this.spinner.show();
+    const data = {
+      CustomerId: this.customerId
+    };
+
+    this.customerService.getInvoices(data)
+      .subscribe(response => {
+        this.spinner.hide();
+        if (response.status === `Success`) {
+          this.invoiceHistory = response.data;
+        }
+      }, error => {
+        console.log(error);
+        this.spinner.hide();
+        if (error.error) {
+          this.helperService.alertFailure(error.error.message[0].message, `Error`);
+        } else {
+          this.helperService.alertFailure(`Something went wrong, Please try again`, `Error`);
+        }
+      });
+  }
+
+  getPDF(invoice): void {
+    this.spinner.show();
+    const data = {
+      id: invoice.id
+    };
+
+    this.customerService.getInvoicePDF(data)
+      .subscribe(response => {
+        this.spinner.hide();
+        if (response.status === `Success`) {
+        }
+      }, error => {
+        console.log(error);
+        this.spinner.hide();
+        if (error.error) {
+          this.helperService.alertFailure(error.error.message[0].message, `Error`);
+        } else {
+          this.helperService.alertFailure(`Something went wrong, Please try again`, `Error`);
+        }
+      });
   }
 
   maintainOrderDetail(order) {

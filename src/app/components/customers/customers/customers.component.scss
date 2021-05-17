@@ -76,6 +76,12 @@ input[type="date"] {
     width: 100%;
 }
 
+.order-sp:hover {
+  cursor: pointer;
+  background-color: #555;
+  color: #fff;
+}
+
 input[type="date"]:after {
     font-family: "Font Awesome 5 Free";
     font-weight: 900; 

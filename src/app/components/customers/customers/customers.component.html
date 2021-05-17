@@ -312,17 +312,16 @@
                 <div class="col-md-4">
                     <h6>Orders</h6>
                     <div class="c-box bg-white">
-                        <div (click)="selectedOrder(order)" class="orders txt-bold" *ngFor="let order of orders">
+                        <div (click)="selectedOrder(order)" class="orders txt-bold order-sp" *ngFor="let order of orders">
                             valid from {{order.validFrom | date: 'shortDate'}} until 
                             <span *ngIf="!order.expiryDate">unlimited</span>
                             <span *ngIf="order.expiryDate">{{order.expiryDate | date: 'shortDate'}}</span>
                         </div>
-                        <!-- <div class="orders txt-bold">valid from 08/01/20 until unlimited</div>
-                        <div class="orders txt-bold">valid from 08/01/20 until unlimited</div> -->
                     </div>
+
                     <h6>Order Breakage</h6>
                     <div class="c-box bg-white">
-                        <div  class="orders txt-bold" *ngFor="let order of orderInterruption">
+                        <div  class="orders txt-bold order-sp" *ngFor="let order of orderInterruption">
                             valid from {{order.validFrom | date: 'shortDate'}} until 
                             <span *ngIf="!order.expiryDate">unlimited</span>
                             <span *ngIf="order.expiryDate">{{order.expiryDate | date: 'shortDate'}}</span>
@@ -457,7 +456,9 @@
                     </div> -->
                     <h6>Orders</h6>
                     <div class="c-box bg-white ">
-                        <div class="orders txt-bold" (click)="selectedOrder(order)" *ngFor="let order of trailOrders">Trail order valid from {{order.validFrom}}</div>
+                        <div class="orders txt-bold order-sp" (click)="selectedOrder(order)" *ngFor="let order of trailOrders">
+                            Trail order valid from {{order.validFrom | date: 'shortDate'}}
+                        </div>
                     </div>
                 </div>
 
@@ -465,7 +466,7 @@
                     <div class="row px-2 py-3 m-0">
                         <div class="col-md-7 p-0">
                             <p class="m-0 txt-bold">Order Number: {{orderDetails.id}}</p>
-                            <p class="m-0 txt-bold">Valid from {{orderDetails.validFrom}} until 
+                            <p class="m-0 txt-bold">Valid from {{orderDetails.validFrom | date: 'shortDate'}} until 
                                 <span *ngIf="!orderDetails.expiryDate">unlimited</span>
                                 <span *ngIf="orderDetails.expiryDate">{{orderDetails.expiryDate | date: 'shortDate'}}        
                                 </span>    
@@ -579,8 +580,8 @@
                     </div> -->
                     <h6>Additional Orders</h6>
                     <div class="c-box bg-white py-5 ">
-                        <div class="orders txt-bold" *ngFor="let order of additionalOrders" (click)="selectedAdditionalOrder(order)">
-                            Additional order valid from  {{order.deliveryDate}}
+                        <div class="orders txt-bold order-sp" *ngFor="let order of additionalOrders" (click)="selectedAdditionalOrder(order)">
+                            Additional order valid from  {{order.deliveryDate | date: 'shortDate'}}
                         </div>
                     </div>
                 </div>
@@ -588,13 +589,13 @@
                     <div class="row px-2 py-3 m-0">
                         <div class="col-md-7 p-0">
                             <p class="m-0 txt-bold">Order Number: {{orderDetails.id}}</p>
-                            <p class="m-0 txt-bold">Valid from {{orderDetails.validFrom}} until 
-                                <span *ngIf="!orderDetails.expiryDate">unlimited</span>
+                            <p class="m-0 txt-bold">Delivery date {{orderDetails.deliveryDate | date: 'shortDate'}} 
+                                <!-- <span *ngIf="!orderDetails.expiryDate">unlimited</span>
                                 <span *ngIf="orderDetails.expiryDate">{{orderDetails.expiryDate | date: 'shortDate'}}        
-                                </span>    
+                                </span>     -->
                             </p>
-                            <p class="m-0 txt-bold" *ngIf="!orderDetails.expiryDate">This order runs undefinitely</p>
-                            <p class="m-0 txt-bold">Mode: Evry Week</p>
+                            <!-- <p class="m-0 txt-bold" *ngIf="!orderDetails.expiryDate">This order runs undefinitely</p>
+                            <p class="m-0 txt-bold">Mode: Evry Week</p> -->
                         </div>
                         <div class="col-md-5 p-0 text-right">
                             <button class="c-button bg-offwhite my-2 txt-black">
@@ -676,7 +677,7 @@
             </div>
         </ng-template>
       </li>
-      <li [ngbNavItem]="5">
+      <li [ngbNavItem]="5" (click)="selectedTab('documents')">
         <a ngbNavLink>Documents</a>
         <ng-template ngbNavContent>
             <div class="row p-0 m-0">
@@ -691,13 +692,13 @@
                             <th></th>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>12/1/2021</td>
-                                <td>12/1/2022</td>
-                                <td>#23423</td>
-                                <td>0,72</td>
+                            <tr *ngFor="let invoice of invoiceHistory">
+                                <td>{{invoice.dateFrom}}</td>
+                                <td>{{invoice.dateTo}}</td>
+                                <td>#{{invoice.invoiceNumber}}</td>
+                                <td>{{invoice.totalAmount}}</td>
                                 <td>
-                                    <img src="../../../../assets/images/bread/10.png" class="mr-2"/>
+                                    <img (click)="getPDF(invoice)" src="../../../../assets/images/bread/10.png" class="mr-2"/>
                                 </td>
                             </tr>
                         </tbody>
@@ -711,10 +712,10 @@
                             <th>SUBJECT</th>
                         </thead>
                         <tbody>
-                            <tr>
+                            <!-- <tr>
                                 <td>12/1/2021</td>
                                 <td>lOREMIPSUM SJASKBBKJJ</td>
-                            </tr>
+                            </tr> -->
                         </tbody>
                     </table>
                 </div>
@@ -731,11 +732,11 @@
                             <th>STATUS</th>
                         </thead>
                         <tbody>
-                            <tr>
+                            <!-- <tr>
                                 <td>12/1/2021</td>
                                 <td>0,72</td>
                                 <td>Active</td>
-                            </tr>
+                            </tr> -->
                         </tbody>
                     </table>
                 </div>

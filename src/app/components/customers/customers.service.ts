@@ -11,6 +11,7 @@ export class CustomersService {
   public readonly apiUrl = HttpConfig.getApiUrl() + '/customer';
   public readonly orderApiUrl = HttpConfig.getApiUrl() + '/order';
   public readonly interruptionApiUrl = HttpConfig.getApiUrl() + '/interruption';
+  public readonly invoiceUrl = HttpConfig.getApiUrl() + '/invoice';
 
   constructor(public http: WrapHttpService) { }
 
@@ -56,5 +57,13 @@ export class CustomersService {
 
   getOrderInterruption(data?): Observable<any> {
     return this.http.get(this.interruptionApiUrl + `/get` + WrapHttpService.objToQuery(data));
+  }
+
+  getInvoices(data?): Observable<any> {
+    return this.http.get(this.invoiceUrl + `/get` + WrapHttpService.objToQuery(data));
+  }
+
+  getInvoicePDF(data?): Observable<any> {
+    return this.http.get(this.invoiceUrl + `/get/pdf` + WrapHttpService.objToQuery(data));
   }
 }

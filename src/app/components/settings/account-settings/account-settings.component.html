@@ -1,10 +1,19 @@
 <div class="row px-3 pt-3 pb-2">
     <h3>Settings</h3>    
-  </div>
+</div>
+
+<ngx-spinner
+  bdColor="rgba(51,51,51,0.8)"
+  size="medium"
+  color="#fff"
+  type="ball-scale-multiple"
+>
+  <p style="font-size: 20px; color: white">{{ loadingText }}</p>
+</ngx-spinner>
   
-  <div class="row px-3 pt-3 pb-2 ">
-    <ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs">
-      <li [ngbNavItem]="1">
+<div class="row px-3 pt-3 pb-2 ">
+    <ul ngbNav #nav="ngbNav"  [(activeId)]="active" class="nav-tabs">
+      <li [ngbNavItem]="1" (click)="onChange(active)">
         <a ngbNavLink>Bank Details</a>
         <ng-template ngbNavContent>
             <div class="bg-white">
@@ -63,7 +72,7 @@
             </div>
         </ng-template>
       </li>
-      <li [ngbNavItem]="2">
+      <li [ngbNavItem]="2" (click)="onChange(active)">
         <a ngbNavLink>Base Data</a>
         <ng-template ngbNavContent>
           
@@ -73,31 +82,31 @@
                     <div class="col-md-6">
                         <div class="row f-row">
                             <div class="col-50">
-                                <input  class="form-input-half " type="text" value="waseem"/>
+                                <input placeholder="First Name"  class="form-input-half" [(ngModel)]="userDetails.fName" type="text"/>
                             </div>
                             <div class="col-50">
-                                <input  class="form-input-half" type="text" value="Abbas"/>
+                                <input placeholder="Last Name" class="form-input-half" type="text" [(ngModel)]="userDetails.lName"/>
                             </div>
                         </div>
                         <div class="row f-row">
                             <div class="col-50">
-                                <input  class="form-input-half " type="text" value="23253"/>
+                                <input placeholder="Post Code" class="form-input-half" type="tel" [(ngModel)]="userDetails.postalCode"/>
                             </div>
                             <div class="col-50">
-                                <input  class="form-input-half" type="text" value="islamabad"/>
+                                <input  class="form-input-half" placeholder="Town" type="text" [(ngModel)]="userDetails.town"/>
                             </div>
                         </div>
                         <div class="row f-row my-2">
-                            <input  class="form-input" type="text" value="abbas@email.com"/>
+                            <input  class="form-input" type="text" [(ngModel)]="userDetails.email"/>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="row f-row my-2">
-                            <input  class="form-input" type="text" value="address 1"/>
+                            <input placeholder="Address"  class="form-input" [(ngModel)]="userDetails.houseStreetNumber" type="text"/>
                         </div>
-                        <div class="row f-row mt-3">
+                        <!-- <div class="row f-row mt-3">
                             <input  class="form-input" type="text" value="address 1"/>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
 
@@ -105,35 +114,35 @@
                     <h5 class="text-black w-full px-3">Backery Details</h5>
                     <div class="col-md-6">
                         <div class="row f-row my-2">
-                            <input  class="form-input" type="text" placeholder="waseem"/>
+                            <input  class="form-input" type="text" [(ngModel)]="bakeryInfo.name" placeholder="Name"/>
                         </div>
                         <div class="row f-row">
                             <div class="col-50">
-                                <input  class="form-input-half " type="text" placeholder="21322"/>
+                                <input  class="form-input-half" [(ngModel)]="bakeryInfo.postalCode" type="tel" placeholder="Post Code"/>
                             </div>
                             <div class="col-50">
-                                <input  class="form-input-half" type="text" placeholder="Islamabad"/>
+                                <input  class="form-input-half" type="text" [(ngModel)]="bakeryInfo.town" placeholder="Town"/>
                             </div>
                         </div>
                         <div class="row f-row my-2">
-                            <input  class="form-input" type="text" placeholder="123142123"/>
+                            <input  class="form-input" [(ngModel)]="bakeryInfo.phone" type="text" placeholder="Phone Number"/>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="row f-row my-2">
-                            <input  class="form-input" type="text" placeholder="123 Street abc"/>
+                            <input  class="form-input" [(ngModel)]="bakeryInfo.houseStreetNumber" type="text" placeholder="Street/Road Number"/>
                         </div>
                         <div class="row f-row mt-3">
-                            <input  class="form-input" type="text" placeholder="abas@email.com"/>
+                            <input  class="form-input" [(ngModel)]="bakeryInfo.email" type="email" placeholder="Email"/>
                         </div>
                         <div class="row f-row mt-3">
-                            <input  class="form-input" type="text" placeholder="12312312"/>
+                            <input  class="form-input" [(ngModel)]="bakeryInfo.fax" type="text" placeholder="Fax Number"/>
                         </div>
                     </div>
                 </div>
 
                 <div class="row p-3">
-                    <h5 class="text-black w-full px-3">Sttings</h5>
+                    <h5 class="text-black w-full px-3">Settings</h5>
                     <div class="col-md-6">
                         <div class="row f-row my-2">
                             <input  class="form-input" type="text" placeholder="Number of sample products"/>
@@ -141,17 +150,17 @@
                         <h5 class="text-black w-full p-0 my-3">Global Delivery Charges</h5>
                         <div class="row f-row mb-2">
                             <label class="lft pt-3 f5">Working Days </label>
-                            <input  class="form-input-mini mx-1" value="1.1"/>
+                            <input  class="form-input-mini mx-1" [(ngModel)]="deliveryChargeInfo.workingDays"/>
                             <label class="lft pt-3">EUR </label>
                         </div>
                         <div class="row f-row mb-2">
                             <label class="lft pt-3 f5">Saturday </label>
-                            <input  class="form-input-mini mx-1" value="1.45"/>
+                            <input  class="form-input-mini mx-1" [(ngModel)]="deliveryChargeInfo.saturday"/>
                             <label class="lft pt-3">EUR </label>
                         </div>
                         <div class="row f-row mb-2 ">
                             <label class="lft pt-3 f5">Sunday </label>
-                            <input  class="form-input-mini mx-1" value="1.45"/>
+                            <input  class="form-input-mini mx-1" [(ngModel)]="deliveryChargeInfo.sunday"/>
                             <label class="lft pt-3">EUR </label>
                         </div>
                     </div>
@@ -159,14 +168,14 @@
                         
                     </div>
                     <div class="form-check mt-4">
-                        <button class="c-button py-2">Accept Changes</button>
+                        <button (click)="baseDataSubmit()" class="c-button py-2">Accept Changes</button>
                     </div>
                 </div>
             </div>
 
         </ng-template>
       </li>
-      <li [ngbNavItem]="3">
+      <li [ngbNavItem]="3" (click)="onChange(active)">
         <a ngbNavLink>Billing Details</a>
         <ng-template ngbNavContent>
           <div class="bg-white">
@@ -269,7 +278,7 @@
           </div>
         </ng-template>
       </li>
-      <li [ngbNavItem]="4">
+      <li [ngbNavItem]="4" (click)="onChange(active)">
         <a ngbNavLink>Auto, Fax & Mail</a>
         <ng-template ngbNavContent>
             <div class="bg-white">
@@ -376,7 +385,7 @@
             </div>
         </ng-template>
       </li>
-      <li [ngbNavItem]="5">
+      <li [ngbNavItem]="5" (click)="onChange(active)">
         <a ngbNavLink>Deadline </a>
         <ng-template ngbNavContent>
             <div class="bg-white">
@@ -443,7 +452,7 @@
             </div>
         </ng-template>
       </li>
-      <li [ngbNavItem]="6">
+      <li [ngbNavItem]="6" (click)="onChange(active)">
         <a ngbNavLink>Remainder</a>
         <ng-template ngbNavContent>
             <div class="bg-white">
@@ -537,7 +546,7 @@
               </div>
         </ng-template>
       </li>
-      <li [ngbNavItem]="7">
+      <li [ngbNavItem]="7" (click)="onChange(active)">
         <a ngbNavLink>Serial Letter</a>
         <ng-template ngbNavContent>
             <div class="bg-white">
@@ -592,9 +601,6 @@
               </div>
         </ng-template>
       </li>
-  
     </ul>
-    
     <div [ngbNavOutlet]="nav" class="mt-2"></div>
-  
-  </div>
+</div>
