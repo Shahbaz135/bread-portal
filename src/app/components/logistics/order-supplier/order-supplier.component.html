@@ -1,24 +1,26 @@
 <div class="row px-3 pt-3 pb-2">
     <h3>Order Supplier</h3>    
 </div>
+<ngx-spinner
+  bdColor="rgba(51,51,51,0.8)"
+  size="medium"
+  color="#fff"
+  type="ball-scale-multiple"
+>
+  <p style="font-size: 20px; color: white">{{ loadingText }}</p>
+</ngx-spinner>
 <div class="row px-3">
-     <form class="">
+    <!-- <form class=""> -->
         <div class="col-md-4 p-0 my-2">
-            <label>Mode</label>
-               <select>
-                   <option value="Alll">All</option>
-                   <option value="Alll">All</option>
-                   <option value="Alll">All</option>
-                   <option value="Alll">All</option>
-                   <option value="Alll">All</option>
-               </select>   
-          </div> 
-          <div class="col-md-4 p-0 my-2">
-            <label>For</label>
-                <input type="date" placeholder="date"/>    
-          </div>  
-          <div class="col-md-4 p-0 my-2">
-            <button class="c-button">Generate exit list</button>   
-          </div>      
-    </form>
+            <label>From</label>
+            <input [(ngModel)]="orderSupplier.fromDate" type="date" placeholder="date"/>    
+        </div> 
+        <div class="col-md-4 p-0 my-2">
+            <label>To</label>
+            <input type="date"  [(ngModel)]="orderSupplier.toDate" placeholder="date"/>    
+        </div>  
+        <div class="col-md-4 p-0 my-2">
+            <div class="c-button" (click)="getSupplierOrders()">Create Delivery Order</div>   
+        </div>      
+    <!-- </form> -->
 </div>
