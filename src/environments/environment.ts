@@ -7,6 +7,8 @@ export const environment = {
   // url: 'https://bread.brightmedium.com',
   url: 'http://localhost:3000',
   fileBaseUrl: 'http://localhost:3000/'
+  // url: 'https://nodeserver.broetchengold.de',
+  // fileBaseUrl: 'https://nodeserver.broetchengold.de/',
 };
 
 /*
