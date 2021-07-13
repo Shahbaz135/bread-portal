@@ -57,6 +57,20 @@ input[type="date"]::-webkit-clear-button {
     z-index: 1;
 }
 
+.b-table > thead{
+    background-color:#214369 ;
+    color: rgb(192,192,192);
+    font-weight: 500;
+}
+.b-table > thead >th{
+    padding: .7rem 1rem;
+}
+.b-table >tbody > tr >td{
+    padding: 0.3rem .6rem !important ;
+    font-weight: 500;
+    border-bottom: 1px solid rgb(197, 188, 188);
+}
+
 @media only screen and (max-width: 768px) {
     form {
         display: inline-block;

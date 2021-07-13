@@ -27,7 +27,6 @@ export class OrderSupplierComponent implements OnInit {
   }
 
   getSupplierOrders() {
-    console.log(this.orderSupplier);
     this.loadingText = `Submitting Form, Please Wait ..`;
     this.spinner.show();
     if (this.orderSupplier.fromDate && this.orderSupplier.toDate) {
@@ -45,7 +44,7 @@ export class OrderSupplierComponent implements OnInit {
         console.log(response);
         this.spinner.hide();
         if (response.status === `Success`) {
-          // this.allFranchises = response.data;
+          this.allOrderSuppliers = response.data;
         }
       }, (error) => {
         this.spinner.hide();
@@ -56,6 +55,18 @@ export class OrderSupplierComponent implements OnInit {
           this.helperService.alertFailure(`Something went wrong, Please try again`, `Error`);
         }
       });
+  }
+
+  getPDF(order): void {
+    console.log(order);
+    this.spinner.show();
+    const data = {
+      date: order.date,
+      day: order.day
+    };
+
+    this.logisticsService.getSupplierPDF(data);
+    this.spinner.hide();
   }
 
 }

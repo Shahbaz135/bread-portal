@@ -19,4 +19,8 @@ export class LogisticsService {
     return this.http.get(this.apiUrl + `/deliveryList` + WrapHttpService.objToQuery(data));
   }
 
+  getSupplierPDF(data) {
+    window.open(this.apiUrl + `/orderSupplier/getPDF` + WrapHttpService.objToQuery(data));
+  }
+
 }
