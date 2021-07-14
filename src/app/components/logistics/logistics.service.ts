@@ -23,4 +23,8 @@ export class LogisticsService {
     window.open(this.apiUrl + `/orderSupplier/getPDF` + WrapHttpService.objToQuery(data));
   }
 
+  getDeliveryPDF(data) {
+    window.open(this.apiUrl + `/deliveryList/getPDF` + WrapHttpService.objToQuery(data));
+  }
+
 }

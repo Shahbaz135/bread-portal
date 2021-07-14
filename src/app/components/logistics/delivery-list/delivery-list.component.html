@@ -1,35 +1,21 @@
 <div class="row px-3 pt-3 pb-2">
-  <h3>Delivery List</h3>    
+  <h3>Delivery List</h3>
 </div>
 <div class="row px-3">
-  <form class="">
-    <div class="col-md-4 p-0 my-2">
-      <label>Mode</label>
-      <select>
-          <option value="Alll">All</option>
-          <option value="Alll">All</option>
-          <option value="Alll">All</option>
-          <option value="Alll">All</option>
-          <option value="Alll">All</option>
-      </select>   
-  </div> 
   <div class="col-md-4 p-0 my-2">
-      <label>For</label>
-      <input type="date" placeholder="date"/>    
-  </div>  
-  <div class="col-md-4 p-0 my-2">
-      <button class="c-button">Generate exit list</button>   
+    <label>Mode</label>
+    <select [(ngModel)]="deliveryList.tour">
+      <option value="all">All</option>
+      <option [value]="tour.id" *ngFor="let tour of allTours">
+        {{ tour.name }}
+      </option>
+    </select>
   </div>
-    <!-- <div class="col-md-4 p-0 my-2">
-      <label>From</label>
-      <input type="date" placeholder="date"/>    
-    </div> 
-    <div class="col-md-4 p-0 my-2">
-      <label>To</label>
-      <input type="date" placeholder="date"/>    
-    </div>  
-    <div class="col-md-4 p-0 my-2">
-      <div class="c-button">Create Delivery Order</div>   
-    </div>       -->
-  </form>
+  <div class="col-md-4 p-0 my-2">
+    <label>For</label>
+    <input type="date" [(ngModel)]="deliveryList.date" placeholder="date" />
+  </div>
+  <div class="col-md-4 p-0 my-2">
+    <button class="c-button" (click)="getDeliveryList()">Generate exit list</button>
+  </div>
 </div>

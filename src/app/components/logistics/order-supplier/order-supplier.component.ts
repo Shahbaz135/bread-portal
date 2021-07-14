@@ -41,7 +41,6 @@ export class OrderSupplierComponent implements OnInit {
     const formData = this.orderSupplier;
     this.logisticsService.getOrderSupplier(formData)
       .subscribe((response) => {
-        console.log(response);
         this.spinner.hide();
         if (response.status === `Success`) {
           this.allOrderSuppliers = response.data;
@@ -58,7 +57,6 @@ export class OrderSupplierComponent implements OnInit {
   }
 
   getPDF(order): void {
-    console.log(order);
     this.spinner.show();
     const data = {
       date: order.date,
