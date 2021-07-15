@@ -1,15 +1,23 @@
+<ngx-spinner
+  bdColor="rgba(51,51,51,0.8)"
+  size="medium"
+  color="#fff"
+  type="ball-scale-multiple"
+>
+  <p style="font-size: 20px; color: white">{{ loadingText }}</p>
+</ngx-spinner>
+
 <div class="row px-3 pt-3 pb-2">
-    
     <div class="col-md-6">
-        <h3>Reminders</h3> 
+        <h3>Open Item List</h3> 
     </div>   
     <div class="col-md-6 text-right">
         <select>
+            <!-- <option value="Alll">All</option>
             <option value="Alll">All</option>
             <option value="Alll">All</option>
             <option value="Alll">All</option>
-            <option value="Alll">All</option>
-            <option value="Alll">All</option>
+            <option value="Alll">All</option> -->
         </select> 
         <button class="c-button ml-3">--></button>   
 
@@ -37,35 +45,44 @@
             <th>ALL</th>
         </thead>
         <tbody>
-            <!-- <tr>
-                <td>#123</td>
-                <td>12/1/2021</td>
-                <td>-D</td>
-                <td>M2  </td>
-                <td>waseem abbas</td>
-                <td>Open</td>
-                <td>transfer</td>
-                <td>AC:12141<br>
+            <tr *ngFor="let invoice of allInvoices">
+                <td>#{{invoice.invoiceNumber}}</td>
+                <td>{{invoice.createdAt | date: 'shortDate'}}</td>
+                <td></td>
+                <td> </td>
+                <td>{{invoice.CustomerInvoice.fName}} {{invoice.CustomerInvoice.lName}}</td>
+                <td>
+                    <ng-container *ngIf="invoice.CustomerInvoice.paymentType !== 'Direct debit'">
+                        Open
+                    </ng-container>
+                    <ng-container *ngIf="invoice.CustomerInvoice.paymentType == 'Direct debit'">
+                        Return debit
+                    </ng-container>
+                </td>
+                <td>{{invoice.CustomerInvoice.paymentType}}</td>
+                <!-- <td>AC:12141<br>
                 BLZ:324235<br>
                 OWN: waseem </td>
-                <td>3.722€</td>
+                <td>3.722€</td> -->
+                <td>iban: {{invoice.CustomerInvoice.iban}}</td>
+                <td>{{invoice.totalAmount}}</td>
                 <td>
                     <img src="../../../../assets/images/bread/6.png"/>
                 </td>
                 <td></td>
                 <td>
-                    <img src="../../../../assets/images/bread/31.png" />
+                    <img (click)="getPDF(invoice)" src="../../../../assets/images/bread/31.png" />
                 </td>
-                <td><img src="../../../../assets/images/bread/8.png" />
+                <td><img (click)="updateStatus(invoice)" src="../../../../assets/images/bread/8.png" />
                 </td>
-                <td><img src="../../../../assets/images/bread/9.png" />
+                <td><img (click)="sendEmail(invoice)" src="../../../../assets/images/bread/9.png" />
                 </td>
                 <td>
                     <form>
                         <input type="checkbox" id="all" name="all">
                     </form>
                 </td>
-            </tr> -->
+            </tr>
         </tbody>
     </table>
 </div>

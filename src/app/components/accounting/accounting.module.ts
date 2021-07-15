@@ -6,13 +6,15 @@ import { BillingComponent } from './billing/billing.component';
 import { OpenItemListComponent } from './open-item-list/open-item-list.component';
 import { RemindersComponent } from './reminders/reminders.component';
 import { CostPerformanceAccountingComponent } from './cost-performance-accounting/cost-performance-accounting.component';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 
 @NgModule({
   declarations: [BillingComponent, OpenItemListComponent, RemindersComponent, CostPerformanceAccountingComponent],
   imports: [
     CommonModule,
-    AccountingRoutingModule
+    AccountingRoutingModule,
+    NgxSpinnerModule
   ]
 })
 export class AccountingModule { }

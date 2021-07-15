@@ -21,16 +21,16 @@
                     <div class="col-md-6">
                         <h5 class="mb-3 w-full"> Account of transfers</h5>
                         <div class="row f-row mb-2 mx-0 ">
-                            <input  class="form-input" type="text" placeholder="Account Owner"/>
+                            <input  class="form-input" [(ngModel)]="bankTransfer.accountOwner" type="text" placeholder="Account Owner"/>
                         </div>
                         <div class="row f-row mb-2 mx-0 ">
-                            <input  class="form-input" type="text" placeholder="Bank name"/>
+                            <input  class="form-input" [(ngModel)]="bankTransfer.bankName" type="text" placeholder="Bank name"/>
                         </div>
                         <div class="row f-row mb-2 mx-0 ">
-                            <input  class="form-input" type="text" placeholder="Bank code"/>
+                            <input  class="form-input" [(ngModel)]="bankTransfer.bankCode" type="text" placeholder="Bank code"/>
                         </div>
                         <div class="row f-row mb-2 mx-0 ">
-                            <input  class="form-input" type="text" placeholder="Bank Account number"/>
+                            <input  class="form-input" [(ngModel)]="bankTransfer.bankAccountNumber" type="text" placeholder="Bank Account number"/>
                         </div>
                     </div>
                     <div class="col-md-6">
@@ -53,21 +53,21 @@
                     <div class="col-md-6">
                         <h5 class="mb-3 w-full"> Account for SEPA direct debits</h5>
                         <div class="row f-row mb-2 mx-0 ">
-                            <input  class="form-input" type="text" placeholder="IBAN"/>
+                            <input  class="form-input" [(ngModel)]="bankSEPADebit.iban" type="text" placeholder="IBAN"/>
                         </div>
                         <div class="row f-row mb-2 mx-0 ">
-                            <input  class="form-input" type="text" placeholder="BIC"/>
+                            <input  class="form-input" type="text" [(ngModel)]="bankSEPADebit.bic" placeholder="BIC"/>
                         </div>
                         <div class="row f-row mb-2 mx-0 ">
-                            <input  class="form-input" type="text" placeholder="Cridet ID"/>
+                            <input  class="form-input" type="text" [(ngModel)]="bankSEPADebit.creditorId" placeholder="Cridet ID"/>
                         </div>
                         <div class="row f-row mb-2 mx-0 ">
-                            <textarea class="form-input-text" placeholder="Usage"></textarea>
+                            <textarea class="form-input-text" [(ngModel)]="bankSEPADebit.usage" placeholder="Usage"></textarea>
                         </div>
                     </div>
                 </div>
                 <div class="row px-4 pt-3 pb-4 mb-5 bg-white">
-                    <button class="c-button py-2">Accept Changes</button>
+                    <button class="c-button py-2" (click)="bankDetailSubmit()">Accept Changes</button>
                 </div>
             </div>
         </ng-template>

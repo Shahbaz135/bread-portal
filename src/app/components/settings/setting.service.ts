@@ -109,4 +109,12 @@ export class SettingService {
   getBakery(data): Observable<any> {
     return this.http.get(this.bakeryUrl + `/get` + WrapHttpService.objToQuery(data) );
   }
+
+  updateBankDetails(data): Observable<any> {
+    return this.http.post(this.userUrl + `/bank/update`, data );
+  }
+
+  getBankDetails(data?): Observable<any> {
+    return this.http.get(this.userUrl + `/bank/get` + WrapHttpService.objToQuery(data) );
+  }
 }

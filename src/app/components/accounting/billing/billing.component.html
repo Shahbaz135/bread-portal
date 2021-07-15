@@ -1,7 +1,15 @@
+<ngx-spinner
+  bdColor="rgba(51,51,51,0.8)"
+  size="medium"
+  color="#fff"
+  type="ball-scale-multiple"
+>
+  <p style="font-size: 20px; color: white">{{ loadingText }}</p>
+</ngx-spinner>
 <div class="row px-3 pt-3 pb-2">
     <h3>Billing</h3>    
 </div>
-<div class="row px-3">
+<!-- <div class="row px-3">
      <form class="">
         <div class="col-md-3 p-0 my-2 mr-4">
             <button class="c-button">Create Invoice run</button>   
@@ -11,7 +19,7 @@
                 <input type="date" placeholder="date"/>    
           </div>    
     </form>
-</div>
+</div> -->
 
 <div class="row px-3 my-3">
     <table class="b-table table-responsive bg-white">
@@ -28,21 +36,21 @@
             <th>ACTIONS</th>
         </thead>
         <tbody>
-            <!-- <tr>
-                <td>912</td>
-                <td>12/1/2021</td>
-                <td>12/3/2021</td>
-                <td>3.711,50</td>
-                <td>3.711,50</td>
-                <td>3.711</td>
-                <td>20</td>
-                <td>3.711,50</td>
-                <td> All First Episode</td>
+            <tr *ngFor="let invoice of allInvoices">
+                <td>{{invoice.id}}</td>
+                <td>{{invoice.dateFrom}}</td>
+                <td>{{invoice.dateTo}}</td>
+                <td>{{invoice.grossAmount}}</td>
+                <td>{{invoice.net}}</td>
+                <td>{{invoice.vat}}</td>
+                <td>{{invoice.sepaCustomers}}</td>
+                <td>{{invoice.sepaAmount}}</td>
+                <td> <span style="cursor: pointer;" (click)="generateXML(invoice)">All </span></td>
                 <td>
                     <img src="../../../../assets/images/bread/1.png" class="mr-2" />
                     <img src="../../../../assets/images/bread/2.png" />
                 </td>
-            </tr> -->
+            </tr>
         </tbody>
     </table>
 </div>

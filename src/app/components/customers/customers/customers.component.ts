@@ -314,20 +314,6 @@ export class CustomersComponent implements OnInit {
     this.customerService.getInvoicePDF(data);
     this.spinner.hide();
 
-    // this.customerService.getInvoicePDF(data)
-    //   .subscribe(response => {
-    //     this.spinner.hide();
-    //     if (response.status === `Success`) {
-    //     }
-    //   }, error => {
-    //     console.log(error);
-    //     this.spinner.hide();
-    //     if (error.error) {
-    //       this.helperService.alertFailure(error.error.message[0].message, `Error`);
-    //     } else {
-    //       this.helperService.alertFailure(`Something went wrong, Please try again`, `Error`);
-    //     }
-    //   });
   }
 
   maintainOrderDetail(order) {

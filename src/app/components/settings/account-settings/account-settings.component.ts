@@ -20,7 +20,7 @@ export class AccountSettingsComponent implements OnInit {
     bankName: ``,
     bankCode: ``,
     bankAccountNumber: ``,
-    accountType: ``,
+    accountType: `Transfer`,
   };
 
   bankDTADebit = {
@@ -28,7 +28,7 @@ export class AccountSettingsComponent implements OnInit {
     bankName: ``,
     bankCode: ``,
     bankAccountNumber: ``,
-    accountType: ``,
+    accountType: `DTA debit`,
   };
 
   bankSEPADebit = {
@@ -36,7 +36,7 @@ export class AccountSettingsComponent implements OnInit {
     bic: ``,
     creditorId: ``,
     usage: ``,
-    accountType: ``,
+    accountType: `Direct debit`,
   };
 
   userDetails = {
@@ -74,9 +74,13 @@ export class AccountSettingsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.getBankDetail();
   }
 
   onChange(current) {
+    if (current === 1) {
+      this.getBankDetail();
+    }
     if (current === 2) {
       this.getDeliveryCharge();
       this.getBakery();
@@ -155,6 +159,34 @@ export class AccountSettingsComponent implements OnInit {
       });
   }
 
+  getBankDetail() {
+    this.loadingText = `Fetching details, please wait..`;
+    this.spinner.show();
+
+    const formData = {
+      // userId: this.userInfo.id
+    }
+    this.settingService.getBankDetails()
+      .subscribe((response) => {
+        this.spinner.hide();
+        if (response.status === `Success`) {
+          const sepaDebit = response.data.find(x => x.accountType == 'Direct debit');
+          if (sepaDebit) {
+            this.setSEPADebitData(sepaDebit);
+          }
+          
+        }
+      }, (error) => {
+        this.spinner.hide();
+        console.log(error);
+        if (error.error) {
+          this.helperService.alertFailure(error.error.message[0].message, `Error`);
+        } else {
+          this.helperService.alertFailure(`Something went wrong, Please try again`, `Error`);
+        }
+      });
+  }
+
   setPersonalData(data) {
     if (data) {
       this.userDetails.fName = data.fName;
@@ -175,6 +207,16 @@ export class AccountSettingsComponent implements OnInit {
       this.bakeryInfo.houseStreetNumber = data.houseStreetNumber;
       this.bakeryInfo.phone = data.phone;
       this.bakeryInfo.fax = data.fax;
+    }
+  }
+
+  setSEPADebitData(data) {
+    if (data) {
+      this.bankSEPADebit.iban = data.iban;
+      this.bankSEPADebit.accountType = data.accountType;
+      this.bankSEPADebit.bic = data.bic;
+      this.bankSEPADebit.creditorId = data.creditorId;
+      this.bankSEPADebit.usage = data.usage;
     }
   }
 
@@ -253,6 +295,39 @@ export class AccountSettingsComponent implements OnInit {
         if (response.status === `Success`) {
           this.helperService.alertSuccess(response.message, response.status);
           this.getDeliveryCharge();
+        }
+      }, (error) => {
+        this.spinner.hide();
+        console.log(error);
+        if (error.error) {
+          this.helperService.alertFailure(error.error.message[0].message, `Error`);
+        } else {
+          this.helperService.alertFailure(`Something went wrong, Please try again`, `Error`);
+        }
+      });
+  }
+
+  bankDetailSubmit() {
+    this.loadingText = `Submitting Form, Please Wait ..`;
+    this.spinner.show();
+    if (this.bankSEPADebit.iban) {
+      if(this.bankSEPADebit.bic && this.bankSEPADebit.creditorId) {
+        this._updateBankDetails()
+      } else {
+        this.spinner.hide();
+        this.helperService.alertFailure(`Please Enter All required fields of SEAPA direct debit`, `Invalid`);
+      }
+    }
+  }
+
+  _updateBankDetails() {
+    const formData: any = this.bankSEPADebit;
+    this.settingService.updateBankDetails(formData)
+      .subscribe((response) => {
+        this.spinner.hide();
+        if (response.status === `Success`) {
+          this.helperService.alertSuccess(response.message, response.status);
+          this.getBankDetail();
         }
       }, (error) => {
         this.spinner.hide();
